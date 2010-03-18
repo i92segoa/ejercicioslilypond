@@ -1,0 +1,63 @@
+
+\setcounter{section}{13} %para 14 articulaciones
+
+
+\section{Articulaciones y digitaciones: Sonatina de Bartok (I)}
+
+
+\subsection{Modelo}
+
+Este ejercicio procede de la Sonatina para piano de Bela
+Bartok. Contiene una indicación metronómica, digitaciones, acentos y
+otras articulaciones.
+
+\bigskip
+
+\begin[staffsize=17.5,line-width=17\cm]{lilypond}
+\new Staff \relative c' { \time 2/4 \tempo "Moderato" 4=80
+	 
+	e32(-> -2 \mf 
+	%-"pesante"
+	fis e8 d16) e32( ->fis e8 d16)
+	c16(-3 b)-. a-. b-. c4-3--->
+	
+	e32(-> -2 
+	fis e8 d16) e32( ->fis e8 d16)
+	c16(-4 b)-. a-. g-. a4-3--->
+}
+\end{lilypond}
+
+\subsection{Tempo con indicación metronómica}
+Además de la instrucción normal de tempo del tipo
+\verb+\tempo "Allegro"+, podemos añadir un valor de figura, seguido de
+un signo igual y un número, que se imprimirán entre paréntesis como
+indicación metronómica. La indicación metronómica aparecerá sola, si
+no se escribe ningún texto dentro de las comillas. También puede
+aparecer sin los paréntesis, quitando el texto y las comillas.
+
+\begin[relative=1,verbatim,staffsize=17.5]{lilypond}
+\tempo "Allegro" 1=120 c1 c c \tempo "" 1=80 c c c \tempo 1=40 c c c
+\end{lilypond}
+
+\subsection{Digitaciones y articulaciones}
+
+Mediante el guión podemos adjuntar a una nota articulaciones,
+digitaciones o textos:
+
+\begin[relative=1,verbatim,staffsize=17.5]{lilypond}
+ c4-> c-- c-. c-2 c1-"texto"
+\end{lilypond}
+
+En general se recomienda dejar la situación automática que LilyPond da
+a las articulaciones, pero también se puede forzar su posición encima
+o debajo de la nota sustituyendo el guión por un circunflejo o una
+barra baja, respectivamente:
+
+\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+ b4-> b-- b-. b-2 b1-"texto"   % automático
+ b4^> b^- b^. b^2 b1^"texto"   % siempre arriba
+ b4_> b_- b_. b_2 b1_"texto"   % siempre abajo
+\end{lilypond}
+
+
+

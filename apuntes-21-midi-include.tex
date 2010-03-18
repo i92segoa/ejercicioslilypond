@@ -1,0 +1,306 @@
+%\setcounter{section}{20} %para 21 MIDI
+
+
+\section{MIDI. Transposición. Il est bel et bon, de P. Passereau}
+
+
+\subsection{Modelo}
+
+Hoy mostraremos la forma de escuchar las partituras elaboradas con
+LilyPond.  A partir de una partitura se puede generar un pequeño
+archivo MIDI que contiene las notas, pero no los sonidos: éstos se
+generan cuando el archivo se reproduce y pueden sonar algo distintos
+en cada sistema.  Sin embargo, podemos elegir los instrumentos que
+determinarán el timbre de cada pentagrama.
+
+Aprovecharemos para realizar un transporte sobre el tono original, un
+tono y medio hacia arriba.
+
+No todos los elementos de la música se exportan al archivo MIDI. Antes
+de introducir el modelo, el comienzo de \emph{Il est bel et bon}, una
+la \emph{chanson} de Pierre Passereau (s.XVI), analizaremos qué
+elementos merece la pena omitir si solamente queremos producir un
+archivo MIDI para escuchar la música.  En primer lugar, el ejemplo
+original:
+
+
+\bigskip
+
+\begin[staffsize=15,
+line-width=17\cm,
+indent=0
+]{lilypond}
+
+%#(set-global-staff-size 14)
+
+%\version "2.13.16"
+
+ \header { title = "Il es bel et bon" composer = "Pierre Passereau" }
+
+sop = \relative c' { %\tempo 1=60 
+	% \key d \minor 
+	\time 2/2
+	d8 e f g a4 a
+	a4 a a a 
+	g4 e r2
+	d8 e f g a4 a 
+	a4 a a a
+	g4 e8 e g4 e8 e
+	f4 d d c d2 }
+
+alt = \relative c' { R1
+	a8 b c d e4 e
+	e4 e e e
+	f2 e
+	a,8 b c d e4 e
+	e4 e b b8 b
+	d4 a a a
+a2 }
+
+ten = \relative c { \clef "G_8"
+	r2 d8 e f g
+	a4 a c c
+	b4 b g2
+	a2 a8 g f g 
+	a4 a c c
+	b2 g4 g
+	a4. g8 f4 e
+d2 }
+
+baj = \relative c { \clef bass
+	R1
+	r2 a8 b c d
+	e4 e e e 
+	d2 a~
+	a2 a8 b c d
+	e4 e e e
+	d4 d a a
+d2 }
+
+
+letrasop = \lyricmode { Il est bel et bon, bon, 
+	bon, bon, bon, com --
+	mè -- re,
+	Il est bel et bon, bon,
+	bon, bon, bon, com --
+	mè -- re, com -- mè -- re, com --
+	mè -- re mon ma -- ri. }
+	
+letraalt = \lyricmode { Il est bel et bon, bon, 
+	bon, bon, bon, com --
+	mè -- re,
+	Il est bel et bon, bon,
+	bon, com -- mè -- re, com --
+	mè -- re, mon ma -- ri. }
+
+
+letraten = \lyricmode { Il est bel et
+	bon, bon, bon, bon,
+	bon, com -- mè --
+	re, Il est bel et
+	bon, bon, bon, com --
+	mè -- re, com --
+	mè -- re mon ma -- ri. }
+
+letrabaj = \lyricmode { Il est bel et
+	bon, bon, bon, com --
+	mè -- re,
+	Il est bel et
+	bon, bon, bon, com --
+	mè -- re mon ma -- ri. }
+
+
+\score {
+	% \transpose d f
+	\new ChoirStaff 
+	<<
+		\new Staff { \set Staff.instrumentName="S"
+                  \set Staff.midiInstrument = "oboe"
+		\sop }
+		\addlyrics { \letrasop } 
+		\new Staff { \set Staff.instrumentName="A"
+                  \set Staff.midiInstrument = "oboe"
+		\alt }
+		\addlyrics { \letraalt } 
+		\new Staff { \set Staff.instrumentName="T"
+                  \set Staff.midiInstrument = "bassoon"
+		\ten  }
+		\addlyrics { \letraten } 
+		\new Staff { \set Staff.instrumentName="B"
+                  \set Staff.midiInstrument = "clarinet"
+		\baj }
+		\addlyrics { \letrabaj } 
+>>
+%\midi { }
+%\layout { }
+}
+
+\paper { system-count=2 indent=1\cm }
+
+\end{lilypond}
+
+
+Ahora bien: los nombres de los pentagramas, la letra de la canción,
+las agrupaciones de pentagramas que trazan llaves, los títulos, las
+articulaciones y otros elementos no se reflejan el el resultado MIDI.
+La indicación metronómica sí se refleja; así pues, bastaría con
+dejarlo de esta manera:
+
+\bigskip
+
+\begin[staffsize=15,
+line-width=17\cm,
+indent=0
+]{lilypond}
+
+%#(set-global-staff-size 14)
+
+%\version "2.13.16"
+
+% \header { title = "Il es bel et bon" composer = "Pierre Passereau" }
+
+sop = \relative c' { \tempo 1=60 
+	% \key d \minor 
+	\time 2/2
+	d8 e f g a4 a
+	a4 a a a 
+	g4 e r2
+	d8 e f g a4 a 
+	a4 a a a
+	g4 e8 e g4 e8 e
+	f4 d d c d2 }
+
+alt = \relative c' { R1
+	a8 b c d e4 e
+	e4 e e e
+	f2 e
+	a,8 b c d e4 e
+	e4 e b b8 b
+	d4 a a a
+a2 }
+
+ten = \relative c { \clef "G_8"
+	r2 d8 e f g
+	a4 a c c
+	b4 b g2
+	a2 a8 g f g 
+	a4 a c c
+	b2 g4 g
+	a4. g8 f4 e
+d2 }
+
+baj = \relative c { \clef bass
+	R1
+	r2 a8 b c d
+	e4 e e e 
+	d2 a~
+	a2 a8 b c d
+	e4 e e e
+	d4 d a a
+d2 }
+
+
+\score {
+	% \transpose d f
+	% \new ChoirStaff 
+	<<
+		\new Staff { \set Staff.midiInstrument = "oboe"
+		\sop }
+		%\addlyrics { \letrasop } 
+		\new Staff { \set Staff.midiInstrument = "oboe"
+		\alt }
+		%\addlyrics { \letraalt } 
+		\new Staff { \set Staff.midiInstrument = "bassoon"
+		\ten  }
+		%\addlyrics { \letraten } 
+		\new Staff { \set Staff.midiInstrument = "clarinet"
+		\baj }
+		%\addlyrics { \letrabaj } 
+>>
+%\midi { }
+%\layout { }
+}
+
+\paper { system-count=1 }
+
+
+\end{lilypond}
+
+
+\subsection{El bloque midi}
+
+Para producir un archivo MIDI, debe existir un bloque \verb+\midi{ }+,
+posiblemente vacío, dentro de un bloque \verb+\score+ explícito que
+contiene la música.  En nuestro ejemplo, después de definir las
+variables (en su caso), podemos hacerlo así:
+
+\begin{verbatim}
+\score {
+<< 
+   \new Staff { \soprano }
+   \new Staff { \alto }
+   \new Staff { \tenor }
+   \new Staff { \bajo }
+>>
+
+\midi { }
+}
+\end{verbatim}
+
+Si existe un bloque \verb+\midi{}+ y no hay un bloque \verb+layout{}+, el proceso será muy rápido pero no habrá ninguna salida en PDF.  Para obtener MIDI y PDF, deben estar los dos bloques, así:
+
+\begin{verbatim}
+\score {
+    ...
+
+\midi { }
+\layout{ }
+}
+\end{verbatim}
+
+El archivo MIDI tiene la extensión \verb+.mid+ (en UNIX: \verb+.midi+)
+y se creará en el mismo directorio que el archivo fuente.  En teoría,
+debería poder reproducirse fácilmente mediante un doble click.
+
+\subsection{Instrumentos MIDI}
+
+ Es posible (y así lo haremos) determinar un sonido MIDI por cada voz
+ y cada pentagrama.  En esta ocasión lo haremos estableciendo el valor
+ de la propiedad \verb+midiInstrument+ del contexto Score, a un texto
+ que corresponderá exactamente al nombre oficial del instrumento según
+ el estándar General Midi, que puede consultarse en las tablas de la
+ documentación de LilyPond.
+
+ Para \emph{Il est bel et bon} vamos a asignar a las voces de soprano
+ y contralto un sonido de oboe; a la de tenor, de fagot (``bassoon'');
+ y a la de bajo, un sonido de clarinete (``clarinet'') (aunque es muy
+ grave para el clarinete, podría ser un clarinete bajo).
+
+\begin{verbatim}
+\new Staff {
+     \set Staff.midiInstrument = "oboe"
+     \soprano
+}
+\end{verbatim}
+
+
+
+
+\subsection{Transposición}
+
+Ahora queremos que la música suene un tono y medio más alta.
+Utilizamos para ello la instrucción \verb+\transpose+ previa a la
+expresión musical.  La instrucción admite dos alturas de nota que se
+toman como referencia del tono de partida y del de destino de la
+transposición.  Lo vemos en este ejemplo donde hemos introducido
+música en Sol mayor y la hemos impreso en Fa mayor (un tono más baja):
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+\transpose g f
+  \relative c'' { \key g \major
+     g4 a b c d1
+  }
+\end{lilypond}
+
+Se transporta la armadura solamente si está establecida dentro de la
+expresión que se transporta.

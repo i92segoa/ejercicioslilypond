@@ -1,0 +1,168 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{2}
+\section{Serenata nocturna, de Mozart}
+\subsection{Modelo}
+
+Esta vez utilizaremos como modelo el conocido comienzo de la
+``serenata nocturna'' de Mozart.
+
+\bigskip
+
+\begin[relative=2,staffsize=18,fragment]{lilypond}
+\key g \major \tempo "Allegro"
+<g d' g>4 \f r8 d' g4 r8 d
+g8 d g b d4 r
+c4 r8 a c4 r8 a
+c8 a fis a d,4 r4 \bar "||"
+\end{lilypond}
+
+Este fragmento contiene los elementos nuevos de notación musical
+que iremos revisando en los apartados siguientes.
+
+\subsection{Tonalidad}
+Podemos definir la armadura de la tonalidad mediante la
+instrucción \verb+\key+ seguida del nombre de una nota y de la
+instrucción \verb+\major+ (para mayor) o \verb+\minor+ (para
+menor):
+
+\begin[verbatim,relative=2,staffsize=13]{lilypond}
+\key f \minor
+f g a
+\end{lilypond}
+
+Observemos que '\verb+a+' produce un La natural aunque la armadura
+es de Fa menor.
+
+\subsection{Indicación de tempo}
+
+Mediante \verb+\tempo+ seguido de una expresión entre comillas,
+colocamos en el lugar adecuado una indicación de tempo.
+
+\begin[verbatim,relative=1,staffsize=13,fragment]{lilypond}
+\tempo "Allegro con fuoco" c1 c c
+\end{lilypond}
+
+\subsection{Acordes}
+
+Los acordes se introducen escribiendo las notas entre ángulos, en
+cualquier orden.  La duración se coloca después del ángulo de
+cierre.
+\begin[verbatim,relative=1,staffsize=13,fragment]{lilypond}
+< c e g >2
+\end{lilypond}
+
+%\begin{minipage}{\textwidth}
+El modo relativo funciona dentro de un acorde, pero es la primera
+nota del acorde la que se tiene en cuenta para las notas que
+siguen.  El último Do del siguiente ejemplo no es relativo a la
+tercera nota del acorde, sino a la primera.
+
+\begin[verbatim,relative=1,staffsize=13,fragment]{lilypond}
+< c e g > c
+\end{lilypond}
+%\end{minipage}
+
+\newpage
+\subsection{Notas alteradas}
+
+El sostenido se obtiene añadiendo ``\verb+is+'' al nombre de la nota, y el bemol añadiendo ``\verb+es+'':
+
+\begin[verbatim,relative=2,staffsize=13,fragment]{lilypond}
+c cis a aes
+\end{lilypond}
+
+
+En LilyPond se introduce siempre la altura real de las notas,
+naturales o alteradas, aunque no presenten una alteración
+accidental.  Por ejemplo, en la tonalidad de Fa mayor es necesario
+escribir ``\verb+bes+'' para obtener el Si bemol, aunque la
+armadura ya contiene esta alteración.
+
+\begin[verbatim,relative=2,staffsize=13,fragment]{lilypond}
+\key f \major bes1
+\end{lilypond}
+
+\subsection{Matices}
+
+Para imprimir una indicación de dinámica podemos escribir
+\verb+\p+, \verb+\mf+, \verb+\f+, etc. después de una nota.
+
+\begin[verbatim,relative=2,staffsize=13,fragment]{lilypond}
+c2 \pp c \mf  c \f  c \ff
+\end{lilypond}
+
+\subsection{Silencios}
+
+Los silencios se escriben como si fueran notas con el nombre
+'\verb+r+':
+
+\begin[verbatim,relative=2,staffsize=13,fragment]{lilypond}
+r2 r4 r8 r16
+\end{lilypond}
+
+
+
+
+\subsection{Barra doble}
+
+La barra introducida mediante \verb+\bar "||"+ produce una doble
+barra simple, distinta a la doble barra final que se obtiene
+mediante \verb+\bar "|."+
+
+\begin[verbatim,relative=1,staffsize=13,fragment]{lilypond}
+c1 \bar "||"
+\end{lilypond}
+
+En el teclado español, el signo de barra '|' está en AltGr + 1.
+
+
+\end{document}
+

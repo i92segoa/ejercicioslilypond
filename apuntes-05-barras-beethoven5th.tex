@@ -1,0 +1,138 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{4} %para 05 beethoven
+
+
+\section{``La llamada del destino'' (Quinta sinfonía de Beethoven)}
+
+
+\subsection{Modelo}
+
+En este modelo que reproduce el tema del primer movimiento de la
+5ª sinfonía de Beethoven, vemos un caso de barrado manual:
+
+\bigskip
+
+\begin[staffsize=17.5,no-ragged-right]{lilypond}
+\version "2.11.63"
+
+\relative c''{
+ \key c \minor
+ \time 2/4
+ r8 g8[ g g]  
+ ees2 \fermata 
+ r8 f8[  f f]  
+ d2 ~  
+ d \fermata  
+}
+\end{lilypond}
+
+
+\subsection{Número de la versión}
+
+Los archivos de entrada de LilyPond siguen una sintaxis estricta.
+Los desarrolladores del programa LilyPond tratan de mantener lo
+más estable posible esta sintaxis, pero de vez en cuando se
+producen cambios que hacen incompatibles los archivos de entrada
+antiguos con las versiones de LilyPond recientes.  Existe un
+programa convertidor que no usaremos aún, pero que requiere que
+especifiquemos el número de la versión del programa para la que se
+escribió la partitura; de esa forma, será posible convertir
+automáticamente los archivos para actualizarlos.  El número de la
+versión debe escribirse siempre al principio del texto, en la
+forma \verb+\version "2.12.0"+, donde aparece entrecomillado el
+número de la versión actual del programa.
+
+Si no especificamos ningún número de versión, el programa
+registrará una advertencia en el archivo de salida \verb+.log+.
+
+
+\begin{verbatim}GNU LilyPond 2.13.5
+Procesando «05-barras-beethoven-5thsym.ly»
+Analizando...
+05-barras-beethoven-5thsym.ly:0:
+warning: no se ha encontrado ninguna instrucción \version, escriba
+
+\version "2.13.5"
+
+para disponer de compatibilidad en el futuro
+\end{verbatim}
+
+\subsection{Barrado manual}
+Las barras de corchea, semicorchea y figuras de menor duración se
+imprimen automáticamente; sin embargo, en ciertos casos debemos
+especificarlas manualmente, por ejemplo en el siguiente caso:
+
+\begin[verbatim,relative=2,staffsize=13]{lilypond}
+\time 2/4
+r8 g a b
+c r r4
+\end{lilypond}
+
+
+Si queremos que las tres primeras corcheas estén unidas mediante
+una barra, marcamos la primera con un corchete recto de apertura
+'\verb+[+' y la última con un corchete recto de cierre '\verb+]+',
+de la siguiente forma:
+
+\begin[verbatim,relative=2,staffsize=13]{lilypond}
+\time 2/4
+r8 g[ a b]
+c r r4
+\end{lilypond}
+
+Es importante observar que los corchetes \textbf{no encierran
+  conjuntos de notas}, sino que marcan las notas primera y última
+de una barra colocándose cada uno \textbf{detrás} de la nota
+correspondiente.
+
+
+\end{document}
+

@@ -1,0 +1,130 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{3}
+
+
+\section{Ofrenda Musical, de Bach}
+
+
+\subsection{Modelo}
+
+Estudiaremos los títulos de cabecera y ejercitaremos las alteraciones
+accidentales con este ejemplo de Bach:
+
+\bigskip
+
+\begin[staffsize=17.5,no-ragged-right]{lilypond}
+\header { title="Tema real" 
+          subtitle="de la \"Ofrenda musical\""
+          composer="J.S. Bach"
+}
+\relative c'' {
+\key c \minor
+\time 2/2
+c2 es g as b, r4
+g' fis2 f e es~ es4 d des c b a8 g c4 f es2 d c4 }
+\end{lilypond}
+
+Casi todos los elementos de notación de este fragmento ya se han
+estudiado.  Veamos, en los apartados siguientes, solamente los que
+faltan.
+
+\subsection{Títulos}
+
+El título, subtítulo, autor y otros muchos encabezamientos se
+especifican dentro de un bloque \verb+\header { ... }+ en la siguiente
+forma:
+
+\begin{verbatim}
+\header {
+  title    = "Título"
+  subtitle = "Subtítulo"
+  composer = "Autor"
+}
+\end{verbatim}
+
+Si el propio encabezamiento contiene comillas, es necesario escribir
+\verb+\"+ para imprimir cada una estas comillas.  Por ejemplo:
+
+\begin{verbatim}
+\header {
+  title="Sonata \"Claro de luna\""
+}
+\end{verbatim}
+
+
+
+\subsection{Compás}
+Definimos el tipo de compás mediante la instrucción \verb+\time+ seguida de un quebrado:
+
+\begin[verbatim,relative=2,staffsize=13]{lilypond}
+\time 3/4
+c4 c c
+\time 6/8
+c4. c
+\time 2/4
+c2
+\time 2/2
+c1
+\end{lilypond}
+
+
+\subsection{Ligadura de unión}
+
+Utilizamos la tilde curva (en la tecla Alt Gr + 4) para unir dos notas
+de idéntica altura:
+
+\begin[verbatim,relative=1,staffsize=13,fragment]{lilypond}
+c ~ c
+\end{lilypond}
+
+
+\end{document}
+

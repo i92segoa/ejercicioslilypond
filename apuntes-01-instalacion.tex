@@ -1,0 +1,115 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+%\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+%\usepackage[left=3cm, right=3cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=9pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section[1]{Uso de LilyPond bajo Windows}
+\subsection{Descarga e instalación}
+
+LilyPond está disponible para su descarga gratuita en la página
+oficial del proyecto, \texttt{lilypond.org}.  Después de
+ejecutar el instalador, la aplicación está lista para su uso.
+
+\subsection{Creación de una partitura sencilla}
+
+Elegiremos el Escritorio para la realización de nuestro primer
+ejemplo. Para ello, abrimos el accesorio «Bloc de notas» de Windows y
+escribimos lo siguiente\footnote{Las llaves se consiguen con AltGr
+  pulsando una tecla que en los teclados de PC suele estar junto a la
+  'Ñ'. Los apóstrofos se consiguen mediante la tecla que está justo a
+  la derecha del número 0.}:
+
+\begin{quote}
+\begin{verbatim}
+{  c' d' e' f' g'2 e' }
+\end{verbatim}
+\end{quote}
+
+Denominamos a este texto \emph{código de entrada}.
+
+Guardamos este texto con un nombre terminado en la extensión
+\verb+.ly+, por ejemplo \verb+prueba.ly+, con las siguientes
+precauciones:
+
+\begin{enumerate}
+\item En la lista desplegable «Guardar como archivo de tipo\ldots» del
+  diálogo de Guardar, elegimos «Todos los archivos (*.*)»
+\item En la lista desplegable «Codificación» es necesario seleccionar
+  «UTF-8».
+\end{enumerate}
+
+Denominaremos a este archivo con la extensión \verb+.ly+ que
+contiene el código de entrada, \emph{archivo fuente} o
+\emph{archivo de entrada}.
+
+\subsection{Procesar el documento}
+
+El programa LilyPond no se utiliza para editar la partitura, sino para
+producir una salida en formato PDF a partir del documento de texto que
+hemos preparado. Esto se denomina \emph{procesar el código de
+  entrada}. Para procesar el código de entrada, si el icono del
+documento está seleccionado, pulsamos la tecla Enter. Si no, podemos
+hacer doble click sobre él con el ratón. También podemos pulsar con el
+botón derecho y elegir del menú «Procesar documento». En cualquier
+caso LilyPond hará su trabajo: interpretar el código de entrada y
+producir una salida.
+
+El procesado tarda un par de segundos\footnote{La primera vez, el
+  programa tiene que preparar las fuentes tipográficas; esto lleva
+  aproximadamente medio minuto, pero las ejecuciones posteriores
+  tardan, como se ha dicho, unos segundos.}. El resultado es un
+archivo PDF que en nuestro caso se llamará \verb+prueba.pdf+ y que
+puede examinarse con cualquier visor de documentos en este formato,
+como por ejemplo Acrobat Reader. El resultado es el siguiente:
+
+\begin[staffsize=15,fragment]{lilypond}
+  c' d' e' f' g'2 e' 
+\end{lilypond}
+
+
+\end{document}
+

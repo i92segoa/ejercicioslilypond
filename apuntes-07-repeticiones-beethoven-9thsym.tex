@@ -1,0 +1,111 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{6} %para 07repeticiones
+
+
+\section{Repeticiones. Novena sinfonía de Beethoven}
+
+
+\subsection{Modelo}
+
+
+
+He aquí un ejemplo de repetición de primera y segunda vez:
+
+\bigskip
+
+\begin[staffsize=17.5,no-ragged-right]{lilypond}
+
+
+\header { title = "Novena Sinfonía" composer = "Beethoven" }  
+
+\relative c' { \key c \major
+
+\repeat volta 2 { e2 f4 g g f e d c c d e } \alternative { { e2 d2 } { d2 c2 } }
+
+
+}
+
+
+\end{lilypond}
+
+
+\subsection{Repeticiones sencillas}
+
+En LilyPond, las repeticiones no se hacen definiendo tipos de barra o
+dibujando explícitamente puntos de repetición.  En lugar de eso,
+definimos el fragmento que se repite y cuáles son los finales
+alternativos, como bloques separados dentro de la instrucción
+\verb+\repeat+.  Hay varios tipos de repetición; para la primera y
+segunda vez, empleamos esta forma:
+
+\verb+\repeat volta veces {trozo que se repite} \alternative{{primera vez}{segunda vez}}+
+
+En este ejemplo, dejamos \verb+volta+ como está, para expresar el tipo
+de repetición; sustituimos \verb+veces+ por el número de repeticiones,
+y en los bloques de primera y segunda vez escribimos la música que va
+dentro de las casillas de primera y segunda.  Los bloques de los
+finales alternativos van, a su vez, dentro del bloque
+\verb+\alternative{}+ entre llaves.
+
+Si hay más de dos repeticiones, la segunda alternativa se marca para
+ejecutarse la última vez. 
+
+\begin[verbatim,relative=2,staffsize=13]{lilypond}
+\repeat volta 3 { g4 f e d } \alternative{{ g1 } { c,1 }}
+\end{lilypond}
+
+El modo relativo sigue funcionando dentro del texto de entrada de
+forma normal como si toda la música fuese secuencial, sin
+repeticiones.
+
+
+\end{document}
+

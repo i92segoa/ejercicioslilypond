@@ -1,0 +1,265 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{17} %para 18 emperador
+
+
+\section{Polifonía compleja: la ``Canción del Emperador''.}
+
+
+\subsection{Modelo}
+
+Esta versión para guitarra de la ``Canción del Emperador'' de Luis de
+Narváez, sobre el tema ``Mille Regretz'', es una transcripción de las
+tablaturas originales y presenta una polifonía enrevesada porque todas
+las voces están contenidas en un solo pentagrama.  Para este ejemplo
+hará falta una cuidadosa planificación y el empleo de silencios
+ocultos.  Además contiene indicaciones del número de cuerda, silencios
+con altura definida y otros ajustes menores.  Por sencillez, el resto
+de los ajustes necesarios se omiten por el momento.
+
+\bigskip
+
+%\hspace{3cm}
+\begin[staffsize=15,line-width=14\cm,indent=1.5\cm]{lilypond}
+
+% canción del emperador. Narváez
+\header { title = "CANCIÓN DEL EMPERADOR" 
+	composer= "Luys de Narváez"
+	opus =  "(1530-1550)"
+} 
+\version "2.12.0"
+
+cantus = \relative c'{ 
+	<b fis' fis\4 b>1
+	<b b' b\3 >
+	<c e'>
+	<c' e>
+	<b d> \break %5
+	d2 c4 b
+	a2 g
+	a1
+	r2 <b g'>2
+	<b g'> g' \break %10
+	fis fis4 g
+	e2 e
+	r4 g8_( fis) e d e fis
+	<g, b g'>2 <g b g'> \break
+	fis'8( g) fis g fis e d c
+	b2  e  ~ 
+	e4 e4 dis cis
+	<dis fis,>2 <dis fis,>   
+ }
+
+
+altus = \relative c'' {
+	s1
+	s1
+	g4 a8 b c d c b
+	a,8 b c d e4 a,
+	b8 cis d e fis4 b, % \break %5
+	b4 d a g
+	c4\rest dis e2 ^~
+	e4 dis e dis
+	\stemUp g2 s2
+	s2 \voiceThree b4 cis %10
+	\shiftOff d1
+	c1
+}
+
+tenor = \relative c { \voiceTwo 
+	s1
+	s1
+	s1
+	s1
+	s1 %5
+	s1
+	fis2 r4 e
+	fis1
+	<e e'>1
+	e2 e'
+	d2 b
+	c2 a8 b c d
+	<e g b>1
+	e2 e
+	<d a'>1
+	<e g>1
+	<b fis'>1
+	b2 b
+} %5
+
+\score {
+\new Staff \relative c' { \set Staff.instrumentName = "Guitarra"
+    \time 4/4
+    \key g \major
+
+    <<
+	\new Voice { \voiceOne \cantus }
+	\new Voice { \voiceFour \altus } 
+	\new Voice { \voiceTwo \tenor }
+    >>
+  }
+
+\layout { left-margin=0\cm
+%, indent=2\cm
+}
+
+}
+\end{lilypond}
+
+
+
+
+\subsection{Silencios ocultos o de separación}
+\label{sub:ocultos}
+
+Será de gran ayuda, para la realización de partituras de polifonía
+compleja, la inserción de silencios de separación.  Éstos no se
+imprimen pero ocupan el mismo espacio que una figura con la duración
+correspondiente.  Para insertarlos se utiliza \verb+s+ como si fuera
+una nota; en el siguiente ejemplo hemos rellenado la voz inferior con
+un silencio de blanca oculto:
+
+\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+\new Staff <<
+  { c4 d e f }
+  \\
+  { a,4 s2 d4 }
+>>
+\end{lilypond}
+
+
+\subsection{Silencios con altura. Ligaduras orientadas}
+
+Los silencios se suelen colocar automáticamente de forma que no haya
+colisiones con las notas de las otras voces.  Sin embargo, si queremos
+colocar un silencio a la altura de una nota determinada, lo hacemos
+mediante \verb+\rest+ que convierte la nota anterior en un silencio.  
+
+\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+c4 g'8\rest g, c2 ^~ c1 _~ c
+\end{lilypond}
+
+En este ejemplo, además, hemos utilizado los indicadores de dirección
+para orientar la ligadura de unión hacia arriba o hacia abajo.
+
+\subsection{Planificación de las voces en polifonía compleja.}
+
+Existen varias técnicas para resolver el problema de la polifonía en
+casos similares al de arriba.  Una solución es preparar una
+construcción polifónica \verb+<< { } \\ { } >>+ por cada compás o por
+cada pocos compases.  Hoy recomendamos un enfoque orientado a voces
+que se extienden a lo largo de toda la pieza, quizá utilizando
+silencios ocultos como se explica en el apartado \ref{sub:ocultos}.
+
+
+No es necesario que los acordes de redonda pertenezcan a distintas
+voces.  Aquí usamos, simplemente, un acorde:
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+
+vozUno = \relative c''{ <g e'>1 }
+vozDos = \relative c' { r2 c8 d e f }
+\new Staff << \vozUno \vozDos >>
+
+\end{lilypond}
+
+
+Para la orientación adecuada de las plicas y el desplazamiento de las
+voces secundarias, tendremos en cuenta que las dos primeras voces
+tienen las plicas en direcciones opuestas; las voces tercera y cuarta,
+además, llevan un desplazamiento a la derecha.  El mismo efecto puede
+conseguirse en cualquier momento gracias a las instrucciones
+\verb+\voiceOne+, \verb+\voiceTwo+, \verb+\voiceThree+, y
+\verb+\voiceFour+.
+
+En el siguiente ejemplo utilizamos \verb+\voiceOne+ y
+\verb+\voiceThree+ para que las dos voces tengan las plicas hacia
+arriba, y la voz de contralto tenga un desplazamiento horizontal a la
+derecha:
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+soprano   = { g''1 }
+contralto = { b'2 cis'' }
+\new Staff << \new Voice { \voiceOne \soprano }
+              \new Voice { \voiceThree \contralto } >>
+\end{lilypond}
+
+
+En caso necesario puede usarse \verb+\shiftOff+ para anular el
+desplazamiento de una voz secundaria.  Podemos recurrir a
+\verb+\stemUp+ y \verb+\stemDown+ para orientar las plicas hacia
+arriba o hacia abajo:
+
+\begin[verbatim,relative=2,staffsize=17.5]{lilypond}
+\stemUp c4 b a g \stemDown f e d c
+\end{lilypond}
+
+
+
+\subsection{Saltos de línea manuales.}
+
+En ocasiones conviene insertar un cambio de línea manual: lo hacemos
+con \verb+\break+, aunque sólo se producirá el salto si en el momento
+actual es posible saltar.  Lo podemos comprobar aquí:
+
+\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+c4 c c \break c
+c1 \break
+c1 c
+\end{lilypond}
+
+\subsection{Números de cuerda.}
+
+Las cuerdas de la guitarra se indican mediante un número dentro de un
+círculo. Las escribimos con \verb+\1+, \verb+\2+, etc.
+
+
+\end{document}
+

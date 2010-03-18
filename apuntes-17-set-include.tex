@@ -1,0 +1,138 @@
+\setcounter{section}{16} %para 17 set
+
+
+\section{Cuarteto de cuerda. La instrucción \texttt{set}.}
+
+
+\subsection{Modelo}
+
+Presentamos el comienzo de un cuarteto de Beethoven en el que puede
+verse el nombre de los instrumentos, clave de Do en la viola y una
+serie de títulos adicionales.  El contexto que engloba a los
+pentagramas es \verb+StaffGroup+.
+
+\bigskip
+
+\begin[staffsize=12.5,line-width=17\cm]{lilypond}
+%#(set-global-staff-size 12.5)
+
+
+\header {
+title = "SECHS QUARTETTE"
+subtitle = "für 2 Violinen, Bratsche und Violoncell"
+composer = "L. VAN BEETHOVEN"
+opus = "Opus 18. nº1."
+piece = "Quartett nº1."
+%subsubtitle = "."
+dedication = "Dem Fürsten von Lobkowitz gewidmet."}
+
+violinUno = \relative c' { \set Staff.instrumentName = #"Violino I "
+			\key f \major 	\time 3/4
+			\tempo "Allegro con brio"
+			f4\p ~
+			 f8( g16 f) e8_. f_. 
+			c4 r4 r4 
+			f4~ f8( g16 f) e8_. f_. 
+			d4 r4 r4
+			f'4~ \< f8( g16 f) e8-. f-.
+			g2(\> bes,4)
+			a2(\! d8. bes16) 
+			a2( g4) \break
+			
+}
+			
+			
+violinDos = \relative c' { \set Staff.instrumentName = #"Violino II " \key f \major 	\time 3/4 
+			f4~\p f8( g16 f) e8_. f_. 
+			c4 r4 r4 
+			f4~ f8( g16 f) e8_. f_. 
+			d4 r4 r4
+			bes'2.(\<
+			bes2)\>( g4)
+			f2(\! bes8. g16)
+			f2( e4)
+}
+			
+
+viola = \relative c { \set Staff.instrumentName = #"Viola" \key f \major \time 3/4  \clef alto
+			f4~ \p f8( g16 f) e8_. f_. 
+			c4 r4 r4 
+			f4~ f8( g16 f) e8_. f_. 
+			d4 r4 r4
+			d'2.(\<
+			c2.)(\>
+			c4)(\! d g,)
+			c8( b c b c4)
+}
+			
+cello = \relative c { \set Staff.instrumentName = #"Violoncello" \key f \major \time 3/4  \clef bass
+			f4~ \p f8( g16 f) e8^. f^. 
+			c4 r4 r4 
+			f4~ f8( g16 f) e8^. f^. 
+			d4 r4 r4
+			d2.(\<
+			e2.)(\>
+			f4)(\! d bes) 
+			c2.
+			
+}
+
+
+\score {
+\new StaffGroup {
+<<	\new Staff {\violinUno}
+    \new Staff {\violinDos}
+    \new Staff {\viola}
+    \new Staff {\cello}  >>
+    }
+    \layout{indent=1.5\cm}
+    \midi{}
+}
+\end{lilypond}
+
+\subsection{Establecer el nombre del instrumento con \texttt{set}.}
+
+En LilyPond, los contextos tienen una serie de propiedades que podemos
+modificar mediante la instrucción \verb+\set+ indicando el nombre del
+contexto y de la propiedad que se quiere modificar, separados mediante
+un punto, después un signo igual ``\verb+=+'' y finalmente el valor
+deseado para la propiedad.  Por ejemplo, si queremos establecer la
+propiedad \verb+instrumentName+ (nombre del instrumento) del contexto
+\verb+Staff+ al valor ``Flauta'', escribimos lo siguiente:
+
+\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+\set Staff.instrumentName = #"Flauta"
+f2.
+\end{lilypond}
+
+\subsection{Clave de viola: Do en tercera}
+
+Podemos aplicar la clave de Do en tercera línea que utiliza la viola
+con la abreviatura ``alto'' como argumento para la instrucción
+\verb+\clef+.  Como siempre, las notas se deben introducir en su
+altura real, independientemente de la clave:
+
+\begin[relative=1,verbatim,staffsize=17.5]{lilypond}
+\set Staff.instrumentName = #"Viola"
+\clef alto
+c2.
+\end{lilypond}
+
+
+\subsection{Títulos adicionales}
+
+Para el ejemplo hemos cumplimentado algunos títulos adicionales en el
+bloque \verb+\header+.  Ya conocemos \verb+title+ (título),
+\verb+substitle+ (subtítulo) y \verb+composer+ (autor).  Ahora
+añadimos los siguientes: \verb+opus+, \verb+piece+ y \verb+dedication+
+para el número de Opus, denominación de la pieza y dedicatoria,
+respectivamente.
+
+\begin{verbatim}
+\header{ title="Título"
+ dedication="Dedicatoria"
+ opus="Número de Opus"
+ piece="Pieza"
+} 
+\end{verbatim}
+

@@ -1,0 +1,211 @@
+%\setcounter{section}{20} %para 21 MIDI
+
+
+\section{Trabajo colaborativo: quinteto ``La trucha'' de Schubert.}
+
+
+\subsection{Modelo}
+
+He aquí el comienzo del Tema con variaciones del quinteto D.667 para
+piano, violín, viola, violoncello y contrabajo, ``La trucha'', de
+F. Schubert.  La realización de este ejercicio puede hacerse en grupos
+de dos a cuatro personas.  Aprenderemos a incluir el contenido de
+distintos documentos dentro de uno solo, y a variar el tamaño de los
+pentagramas.
+
+
+\bigskip
+
+\begin[staffsize=15,
+line-width=17\cm,
+indent=0
+]{lilypond}
+#(set-global-staff-size 17)
+
+
+global = { \key d \major \time 2/4 \tempo "Andantino" \partial 8 }
+
+
+violin = \relative c'' { \global a8 \pp
+	d8.-. ( d16-. fis8-. fis-.)
+	d4( a)
+	a8.. a32 e'16.( d32 cis16. b32)
+	a4. a8
+	d8.-. ( d16-. fis8-. fis-.)
+	d4( a8) d
+	cis8[( \grace{ d16[ cis] } b16.) cis32] d8(-> gis,)
+	a4. a8
+	}
+
+viola = \relative c' { \global \clef alto r8 \pp
+	<a fis'>4-.( q8-. q-.)
+	fis'2
+	<g a>4-. ( q8-. q-.)
+	q8-. e( fis g)
+	<a, fis'>4-.( q8-. q-.)
+	fis'4. fis8
+	e4.  e8
+	e8-. g( fis e)
+	}
+
+cello = \relative c' { \global \clef bass r8 ^\pp
+	d4-.( d8-. d-.)
+	a8( b16 cis d4)
+	cis4 cis16.( d32 e16. d32)
+	cis8-. cis( d e)
+	d4-.( d8-. d-.)
+	a8( b16. cis32 d8 a)
+	a8( gis16.) a32 b8( d)
+	cis8-. e( d cis)
+	}
+
+contrabajo = \relative c { 
+\global \clef bass r8 \pp
+	d4-.( d8-. d-.)
+	d2
+	a'4-.( a8-. a-.)
+	a4 r
+	d,4-.( d8-. d-.)
+	d4. d8
+	e4. e8 a,4 r
+	}
+
+pianoManoDerecha = \relative c'' { \global \clef treble r8
+	R2*8	
+	}
+
+pianoManoIzquierda = \relative c'' { \global \clef bass r8
+	R2*8
+	}
+	
+<<
+	\new Staff \with { fontSize = #-3 
+		\override StaffSymbol #'staff-space = #(magstep -3)
+	%	\override StaffSymbol #'thickness = #(magstep -3)
+	}
+		{  \violin }
+	\new Staff \with { fontSize = #-3 
+		\override StaffSymbol #'staff-space = #(magstep -3)
+	%	\override StaffSymbol #'thickness = #(magstep -3) 
+	}
+		{ \viola }
+	\new Staff \with { fontSize = #-3 
+		\override StaffSymbol #'staff-space = #(magstep -3)
+	%	\override StaffSymbol #'thickness = #(magstep -3)
+	}
+		{ << \cello \\ \contrabajo >> }
+	\new PianoStaff <<
+	  \new Staff { \pianoManoDerecha }
+	  \new Staff { \pianoManoIzquierda }
+	>>
+>>
+
+
+\paper { indent=0 system-count =1 }
+
+\end{lilypond}
+
+
+\subsection{Inclusión de documentos}
+
+La inclusión de archivos externos nos será de utilidad para mantener
+la independencia entre el contenido musical y la estructura de una
+partitura.  Mediante esta técnica podemos crear documentos que
+dependen de otros archivos, quizá realizados por otras personas.  De
+esa manera, un equipo puede trabajar de forma colaborativa sobre un
+proyecto común.
+
+La inclusión de archivos externos funciona de la siguiente manera:
+supongamos que el archivo \verb+violin.ly+ contiene solamente lo
+siguiente:
+
+\begin{verbatim}
+violin = \relative c'' { \key d \major \time 2/4 \partial 8
+  a8 \pp d8.-. ( d16-. fis8-. fis-.)
+  }
+\end{verbatim}
+
+Un archivo diferente, llamado \verb+parte-violin.ly+, puede incluirlo
+especificando su nombre:
+
+\begin{verbatim}
+\include "violin.ly"
+
+\score {
+   \new Staff { \violin }
+}
+\end{verbatim}
+
+Entonces, todo el contenido del archivo especificado se inserta en
+sustitución de la instrucción \verb+\include+, cuando se procesa el
+archivo \verb+parte-violin.ly+.
+
+\begin[relative=2,staffsize=17.5]{lilypond}
+\key d \major \time 2/4 \partial 8
+a8 \pp d8.-. ( d16-. fis8-. fis-.)
+\end{lilypond}
+
+Otro documento puede contener una estructura distinta e incluir el
+mismo archivo que contiene la música, por ejemplo
+\verb+piano-general.ly+ podría ser algo así:
+
+\begin{verbatim}
+\include "violin.ly"
+\include "viola.ly"
+\include "cello.ly"
+\include "contrabajo.ly"
+\include "piano.ly"
+
+<<
+  \new Staff { \violin }
+  \new Staff { \viola }
+  \new Staff { << \cello \\ \contrabajo >> }
+  \new PianoStaff <<
+    \new Staff { \pianoManoDerecha }
+    \new Staff { \pianoManoIzquierda }
+  >>
+>>
+\end{verbatim}
+
+De esa forma estamos produciendo la partitura general del pianista, y
+la particella de los instrumentos, a partir de la misma fuente y en
+archivos independientes.  Para este ejercicio pediremos a cada miembro
+de un grupo, que se encargue de elaborar una parte de los
+instrumentos, en archivos separados, tales que cuando se inserten en
+la estructura que hemos dado arriba, produzcan la partitura general de
+piano.  Para probar el resultado de su trabajo parcial, puede crear un
+archivo de particella que incluya solamente su parte.
+
+\subsection{Tamaño de la partitura y de los pentagramas}
+
+El tamaño normal de una partitura de LilyPond es ``20'', pero puede
+cambiarse de forma global con una instrucción del lenguaje interno
+``Scheme'' \verb+set-global-staff-size+, como en este ejemplo que
+produce música en miniatura, de tamaño 10:
+
+
+\begin[verbatim,relative=2]{lilypond}
+#(set-global-staff-size 10)
+\key d \major \time 2/4 \partial 8
+a8 \pp d8.-. ( d16-. fis8-. fis-.)
+\end{lilypond}
+
+Las instrucciones del lenguaje Scheme van precedidas del carácter de
+almohadilla \verb+#+.  Esta instrucción tiene un efecto general sobre
+la partitura; para pentagramas sueltos debe especificarse dentro de
+una cláusula \verb+\with{}+ al crear el contexto, con las siguientes
+instrucciones:
+
+\begin{verbatim}
+\new Staff \with {
+  fontSize = #-3 
+  \override StaffSymbol #'staff-space = #(magstep -3)
+}
+\end{verbatim}
+
+Aquí hemos usado la sobreescritura de propiedades que se estudiará con
+detalle en un ejercicio posterior.  La primera instrucción reduce el
+tamaño de la fuente de tipografía musical y la segunda el tamaño del
+pentagrama.  Una especificación de -3 para el tamaño, en ambos casos,
+establece una reducción como la que hemos aplicado en el ejemplo de
+Schubert para los instrumentos de cuerda.

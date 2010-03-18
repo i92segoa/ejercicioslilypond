@@ -1,0 +1,123 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{15} %para 16 adornos
+
+
+\section{Ornamentos barrocos: Aria de las Variaciones Goldberg.}
+
+
+\subsection{Modelo}
+
+El siguiente fragmento es el comienzo del Aria de las ``Variaciones
+Goldberg'' BWV 988 de Bach.  Contiene abundantes apoyaturas y
+ornamentos barrocos, y nos servirá para introducir las notas de adorno
+en general.
+
+\bigskip
+
+\begin[staffsize=17.5]{lilypond}
+\relative c''' {
+	\key g \major \time 3/4
+        g4 g( a8.\prallmordent) b16
+        a8 \appoggiatura g16 fis8 \appoggiatura e16 d2
+        g,4\prallmordent g4.\downprall fis16 g
+        a32( g fis16) g32( fis e16) \appoggiatura e8 d2
+        d'4 d( e8.\prallmordent) f16
+        e8 \appoggiatura d16 c8 \appoggiatura b16
+        a4.
+        fis'8 \turn
+        g32( fis16.) a32( g16.) fis32( e16.) d32( c16.)
+        \appoggiatura c8 a'8. c,16
+        b32( g16.) fis8
+        \appoggiatura fis8 g2\prallmordent
+}
+\end{lilypond}
+
+\subsection{Notas de adorno}
+Para conseguir un mordente de una nota (que está tachado por una línea
+inclinada y se ejecuta rápidamente) o una apoyatura (que tiene el
+valor que representa) empleamos las instrucciones \verb+\appoggiatura+
+y \verb+\acciaccatura+, respectivamente, como prefijos:
+
+\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+g2 \acciaccatura b8 a8 g a b
+\appoggiatura gis4 a2 r
+\end{lilypond}
+
+Estas notas se dibujan con una ligadura que las une a la nota
+principal.  Al utilizar \verb+\grace+ como prefijo de una expresión
+obtenemos mordentes de varias notas, pero es necesario escribir la
+ligadura explícitamente:
+
+\begin[relative=0,verbatim,staffsize=17.5]{lilypond}
+\clef bass
+\grace { a32[( c e] } a8) a a a
+\end{lilypond}
+
+
+\subsection{Algunas abreviaturas y otros ornamentos barrocos}
+
+Nuestro modelo no utiliza acciaccaturas pero sí emplea grupos
+abreviados de notas de adorno muy utilizados en el barroco; las
+palabras clave se emplean como sufijos, a modo de articulaciones, pero
+sin el guión de éstas.  Usaremos \verb+\prallmordent+ para el
+semitrino largo con resolución descendente, \verb+\downprall+ para el
+semitrino con preparación descendente y \verb+\turn+ para el grupeto
+circular.
+
+\begin[relative=3,verbatim,staffsize=17.5]{lilypond}
+a2 \prallmordent
+g  \downprall
+f1 \turn
+\end{lilypond}
+
+
+\end{document}
+

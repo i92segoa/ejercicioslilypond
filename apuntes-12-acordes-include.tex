@@ -1,0 +1,64 @@
+
+\setcounter{section}{11} %para 12 acordes
+
+
+\section{Esta noche es Nochebuena (2). Acordes.}
+
+
+\subsection{Modelo}
+
+En esta ocasión hemos añadido al villancico ``Deck the Halls'' unos acordes en cifrado americano:
+
+\bigskip
+
+\begin[staffsize=17.5,line-width=17\cm]{lilypond}
+
+<<
+\new ChordNames \chordmode { f2 c4:7 f c:7 f c:7 f
+f2 c4:7 f bes f/c c:7 f }
+\relative c'' { \key f \major
+c8. bes16 a8 g
+f g a8 f
+g16 a bes g a8. g16
+f8 e f4
+c'8. bes16 a8 g
+f g a8( f)
+d'16 d d d c8. bes16
+a8 g f4
+}
+\addlyrics { Es -- ta no che~es No -- che -- bue -- na,
+	fa la la la la, la la la la.
+	Y no~es no  -- che de dor -- mir
+	fa la la la la, la la la la. }
+	
+>>
+\end{lilypond}
+
+
+\subsection{Contextos de acordes}
+
+El contexto de nombres de acorde se llama ChordNames, y su contenido
+debe ir precedido de \verb+\chordmode+ para que se interprete como
+acordes. Se escriben las fundamentales de los acordes con sus
+duraciones, y si no hay acorde se escribe ''r'' como silencio, así:
+
+\begin[verbatim,relative=3,staffsize=17.5]{lilypond}
+<<
+  \new ChordNames \chordmode { r4 c2. g4 }
+  \new Staff \relative c'' { \time 3/4 \partial 4 g8. g16 a4 g c b }
+  \new Lyrics \lyricmode { Cum8. -- ple16 -- a4 -- ños fe -- liz }
+>>
+\end{lilypond}
+
+Las variantes como séptima dominante se escriben después de los dos
+puntos, y las inversiones se indican escribiendo una barra inclinada y
+luego la nota del bajo.
+
+\begin[verbatim,relative=3,staffsize=17.5]{lilypond}
+<<
+  \new ChordNames \chordmode { r4 c4 c/e g:7 }
+  \relative c' { \partial 4 e8 f g4 c b8 b r4 }
+  \addlyrics { ¿Dón -- de~es -- tán las lla -- ves? }
+>>
+\end{lilypond}
+

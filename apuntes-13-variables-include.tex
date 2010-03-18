@@ -1,0 +1,65 @@
+
+\setcounter{section}{12} %para 13 variables
+
+
+\section{Variables. Reutilización del código.}
+
+
+\subsection{Modelo}
+
+Para este ejercicio de procedente de la Corrente de la partita para
+flauta, BWV 1030, de Bach, debe escribir la música dentro de una
+variable, y emplear la variable más tarde dentro de un contexto de
+pentagrama:
+
+\bigskip
+
+\begin[staffsize=17.5]{lilypond}
+corrente =  {  
+\time 3/4
+    \partial 8
+    e''8 |
+    a'16 ( b'16 c''16 d''16 e''8 fis''16  gis''16) a''8 b''8 |
+    c'''8 a'8 g'4 b''4 |
+f'8 a''16 gis''16 a''8 e'8 d'8 b''8 
+gis''4.\trill b''16 a''16 gis''16 fis''16 e''16 d''16 |}
+
+\new Staff { \corrente }
+
+
+\end{lilypond}
+
+
+\subsection{Definición y utilización de variables}
+
+Dando nombre a una expresión, podemos reutilizar la expresión
+escribiendo su nombre precedido de una barra invertida.
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+musica = \relative c' { c1 d e }
+
+<<
+  \new Staff { \musica }
+  \new Staff { \musica }
+>>
+\end{lilypond}
+
+Estas expresiones con un nombre se llaman \textbf{variables}.  Los
+nombres de variable no pueden contener números, aunque sí vocales
+acentuadas y 'ñ'.  El problema es que se deben utilizar con el mismo
+nombre exacto que se les dio al crearlas, por lo que se recomienda
+utilizar nombres fáciles de escribir sin errores.
+
+También se pueden almacenar en variables expresiones de letra:
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+musicaUno = \relative c' { f1 e d c }
+musicaDos = \relative c { \clef bass d1 g g, c }
+letra = \lyricmode { La, la, la, la. }
+
+<<
+  \new Staff { \musicaUno } \addlyrics { \letra }
+  \new Staff { \musicaDos } \addlyrics { \letra }
+>>
+\end{lilypond}
+

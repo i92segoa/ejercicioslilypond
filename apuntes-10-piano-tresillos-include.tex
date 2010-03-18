@@ -1,0 +1,70 @@
+
+\setcounter{section}{9} %para 10 tresillos
+
+
+\section{Sistemas de piano. Tresillos}
+
+
+\subsection{Modelo}
+
+Este fragmento de música para piano tiene una llave que une los dos
+pentagramas.  En él hay tresillos y dos voces en el pentagrama
+inferior.
+
+\bigskip
+
+\begin[staffsize=17.5]{lilypond}
+\new PianoStaff <<
+\new Staff \relative c' { \time 2/4
+	\times 2/3 { c8 e g } d4
+	e8 c d4
+	\times 2/3 { c8 e g } \times 2/3 { f e d }
+	c4 d
+}
+\new Staff \relative c { \clef bass
+	<< {
+	c4 fis
+	g4 fis
+	e4 fis
+	e d }
+	\\
+	{ c2 ~ c ~ c ~ c } >>	
+}
+>>
+\end{lilypond}
+
+
+\subsection{Tresillos y otros grupos de valoración especial}
+
+He aquí cómo se pueden expresar los tresillos del Bolero de M. Ravel:
+
+
+\begin[verbatim,relative=3,staffsize=17.5]{lilypond}
+\time 3/4 g8[ \times 2/3 { g16 g g] } g8[ \times 2/3 { g16 g g] } g8 g
+\end{lilypond}
+
+
+Para componer tipográficamente un grupo de valoración especial se usa
+la instrucción \verb+\times+ \emph{fracción} \verb+{ ... }+, que
+multiplica la expresión entre llaves por la fracción expresada.
+
+Por ejemplo, el siguiente grupo vale como 6 corcheas:
+
+\begin[verbatim,relative=2,staffsize=17.5]{lilypond}
+\time 3/4 \times 6/7 { ees8( f ees d ees ges8. f16) }
+\end{lilypond}
+
+
+\subsection{Sistemas de piano}
+
+Declarando el contexto explícito \verb+PianoStaff+ podemos dibujar un
+sistema de piano e introducir dentro de él los pentragramas superior e
+inferior:
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+\new PianoStaff <<
+  \new Staff \relative c' { c4 c c c }
+  \new Staff \relative c  { \clef bass c4 c c c }
+>>
+\end{lilypond}
+

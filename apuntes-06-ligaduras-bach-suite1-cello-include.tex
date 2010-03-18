@@ -1,0 +1,44 @@
+\setcounter{section}{5} %para 06 ligaduras
+
+
+\section{``Suite para cello número 1'', de Bach}
+
+
+\subsection{Modelo}
+
+En este fragmento se utilizan ligaduras de expresión:
+
+\bigskip
+
+\begin[staffsize=17.5,no-ragged-right]{lilypond}
+\version "2.11.63"
+
+\relative g, {
+
+	\clef bass
+	\time 4/4
+	\key g \major
+%	\set Staff.midiInstrument = "cello"
+
+	% 1
+	g16(d') b' a b( d, b' d,) g,(d') b' a b( d, b' d,) |
+	g,(e') c' b c( e, c' e,) g,(e') c' b c( e, c' e,) |
+%	g,(e') c' b c( e, c') e, g,(e') c' b c( e, c' e,) |
+
+}
+\end{lilypond}
+
+
+\subsection{Ligaduras de expresión}
+
+De la misma forma que en el caso de las barras manuales (que se
+indican mediante corchetes de manera que no encierran conjuntos de
+notas, sino que los corchetes de apertura y cierre marcan las
+notas primera y última que pertenecen a la barra), las ligaduras
+de expresión se indican mediante paréntesis de apertura y cierre
+que marcan por la derecha las notas primera y última de una ligadura de expresión.
+
+\begin[verbatim,relative=1,staffsize=13]{lilypond}
+c( d e f g a b c)
+\end{lilypond}
+

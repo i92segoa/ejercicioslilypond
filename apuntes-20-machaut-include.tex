@@ -1,0 +1,184 @@
+%\setcounter{section}{19} %para 20 Machaut
+
+
+\section{Grabadores. Misa de Notre Dame, de Machaut}
+
+
+\subsection{Modelo}
+
+
+Esta transcripción moderna del ``Ite missa est'' de la Misa de Notre
+Dame, de Guillaume de Machaut (s.XIV) contiene indicaciones de
+tesitura y omite la indicación de compás.  Esto se hace añadiendo o
+retirando los complementos grabadores o ``plug-ins'' encargados de
+hacer esta tarea, en todos los contextos de pentagrama.  Además, la
+letra contiene apenas dos sílabas, por lo que es necesario saltar
+muchas notas de una sílaba a la siguiente.  También utiliza un sistema
+especial para coro, sin líneas divisorias entre los pentagramas.
+
+\bigskip
+
+\begin[staffsize=15,
+line-width=17\cm,
+indent=0
+]{lilypond}
+#(set-global-staff-size 14)
+
+%{
+
+\header { title = "Ite missa est"
+	subtitle = \markup {
+		\score { { c'8 c c c c c c c c c c c c } \layout { indent=0  \context { \Staff \remove "Time_signature_engraver" 
+	\remove Bar_engraver } } }	
+	}
+	
+	
+}
+
+
+
+%}
+
+triplum = \relative c'' { \time 3/2 c1.
+g1. 
+e2 bes'8 a g f e4 g
+f1.
+r4 g e  r4 r8  a4 g8
+f4. a4 c a8 a g a f
+e2 fis4. g4 a fis8
+g1.
+}
+
+motetus = \relative c' { f1.
+d1.
+c2 d4 f e d
+c1.
+e2 r d
+f4 c2  d4 r8  c4 b8
+cis2. d4 r8  d cis d
+e1.
+}
+
+tenor = \relative c { \clef "G_8" f1.
+g1.
+a1.
+f1.
+g1.
+r2 f f
+e2 d1(
+c1.)
+}
+
+contratenor = \relative c' { \clef "G_8" c1.
+r2 bes1
+a2 d, e
+f2 a1
+g4 c,2 d e4
+f2 r g
+a2 b1
+c1.
+}
+
+\score {
+\new ChoirStaff <<
+\new Staff { \triplum } \addlyrics { De -- \repeat unfold 26 { \skip 8 } o }
+\new Staff { \motetus } \addlyrics { De -- \repeat unfold 14 { \skip 8 } o  gra- }
+\new Staff { \tenor } \addlyrics { De -- \repeat unfold 7 { \skip 8 } o }
+\new Staff { \contratenor } \addlyrics { De -- \repeat unfold 14 { \skip 8 } o }
+>>
+
+\layout {
+   \context { \Staff \remove Time_signature_engraver
+	            \consists Ambitus_engraver }
+           }
+        }
+
+\end{lilypond}
+
+
+\subsection{Skips}
+
+Cuando se escribe la letra de un pasaje melismático (que tiene muchas
+notas para una sílaba), es frecuente recurrir al empleo del salto o
+``skip'', que se inserta en la letra una vez por cada nota que
+queremos saltar.  La instrucción requiere una duración como argumento,
+aunque esta duración se desprecia y no influye en el resultado.
+
+\begin[verbatim,relative=1,staffsize=17.5]{lilypond}
+{ c d e f } \addlyrics { De -- \skip 4 \skip 4 o }
+\end{lilypond}
+
+Se recomienda el empleo de repeticiones desplegadas para insertar
+múltiples saltos seguidos.
+
+\begin[verbatim,relative=1,staffsize=17.5]{lilypond}
+{ \time 3/4 f16 g f e f e d e d c b d c4 }
+\addlyrics { Pen -- \repeat unfold 11  \skip 4  sier! }
+\end{lilypond}
+
+
+\subsection{Añadir y quitar grabadores}
+
+Existen más de 120 grabadores o complementos distintos, que se agrupan
+en contextos como los conocidos \verb+Staff+ o \verb+Voice+.  Si un
+grabador se suprime de un contexto, no se trazan aquellos elementos
+que estaban a su cargo; si se añade un grabador nuevo a un contexto,
+podrán aparecer elementos nuevos.
+
+Los contextos se añaden o se suprimen con las instrucciones
+\verb+\consists+ y \verb+\remove+.  Existen dos formas de hacerlo:
+para cada contexto uno a uno, o para todos los contextos de una
+clase al mismo tiempo.
+
+\textbf{1.} Para añadir un grabador a todos los contextos de una
+clase, abrimos un bloque \verb+\layout+ fuera de la expresión
+principal de nuestra partitura.  La sintaxis para añadir un
+grabador (aquí el grabador \verb+Ambitus_engraver+ que se encarga
+de la indicación de tesitura) es la siguiente:
+
+
+\begin[verbatim,staffsize=15]{lilypond}
+{ c'2 c'' } 
+\layout {
+  \context { \Staff \consists Ambitus_engraver }
+}
+
+\end{lilypond}
+
+Se pueden introducir varias instrucciones \verb+\consists+ o
+\verb+\remove+ dentro del mismo bloque \verb+\context+.
+
+\textbf{2.} Para gestionar los grabadores en un solo contexto,
+introducimos las instrucciones \verb+\consists+ y \verb+\remove+
+en el momento de la creación del contexto, dentro de un bloque
+\verb+\with+.  En el siguiente ejemplo vamos a crear dos contextos
+de pentagrama y en el segundo de ellos quitaremos los grabadores
+de la indicación de compás y de la clave.
+
+\begin[verbatim,relative=2,staffsize=15]{lilypond}
+<<
+  \new Staff { c1 }
+  \new Staff \with { \remove Time_signature_engraver
+                     \remove Clef_engraver
+                   } { c1 }
+>>
+\end{lilypond}
+
+
+\subsection{Sistemas de coro}
+
+La música vocal polifónica suele emplear sistemas de pentagramas sin
+líneas divisorias entre ellos, para no entorpecer al texto.  LilyPond
+lo hace mediante el contexto \verb+ChoirStaff+.  Aquí vemos un ejemplo
+con dos pentagramas:
+
+
+
+\begin[verbatim,staffsize=15]{lilypond}
+letra = \lyricmode { Hal -- le -- lu -- jah! }
+\new ChoirStaff <<
+  \time 2/4 \partial 8
+  \new Staff \relative c'' { c16 c c8 c }            \addlyrics { \letra }
+  \new Staff \relative c   { \clef bass e16 e f8 c } \addlyrics { \letra }
+>>
+\end{lilypond}

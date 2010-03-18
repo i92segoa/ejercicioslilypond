@@ -1,0 +1,126 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase book del Koma-script bundle
+%\linespread{1.25}
+\usepackage{setspace}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\setcounter{section}{14} %para 15 reguladores
+
+
+\section{Reguladores.  Elementos de marcado. Sonatina de Bartok (II)}
+
+
+\subsection{Modelo}
+
+Para este ejercicio podemos reutilizar la parte hecha en el anterior.
+Aquí hemos incorporado una inscripción textual en tipo itálica, en el
+primer compás, y hemos añadido otros cuatro compases que contienen
+reguladores.
+
+\bigskip
+
+\begin[staffsize=17.5]{lilypond}
+\new Staff \relative c' { 
+	\time 2/4 \tempo "Moderato" 4=80
+	 
+	e32(-> -2 \mf 
+
+	fis 	-\markup{ \italic "pesante" } e8 d16) e32( ->fis e8 d16)
+	c16(-3 b)-. a-. b-. c4-3--->
+	
+	e32(-> -2 
+	fis e8 d16) e32( ->fis e8 d16)
+	c16(-4 b)-. a-. g-. a4-3---> \break
+
+	g8.->(-1 \< a32 b c8-.-4)\! c-.-4
+	c16-3( b-.) a-. b-. c32-^(\> d c d \times 4/5 { c[ d c b a]\! }
+	
+	g8.->-2)\< ( a32 b c8-.-5)\! c-.-5
+	c16-4( b-.)\> a-. g-. a4-.-- \!
+	\bar "||"
+
+
+}
+\end{lilypond}
+
+\subsection{Elementos de marcado}
+Ya vimos que los textos se pueden adjuntar a una nota como si se
+tratase de una articulación. Estos textos simples no admiten ningún
+formato, pero los elementos de marcado sí permiten una amplia variedad
+de estilos.  Por ahora, tan sólo pondremos como ejemplo un texto en
+itálica para expresar un cierto carácter:
+
+\begin[relative=1,verbatim,staffsize=17.5]{lilypond}
+c8 -\markup{ \italic "dolce" }
+d e f g a b c
+\end{lilypond}
+
+\subsection{Reguladores}
+
+Para obtener indicaciones gráficas de matices dinámicos, se marca la
+nota de comienzo y la de final con dos símbolos especiales.  La marca
+de final para cancelar el regulador sólo es necesaria cuando no ocurre
+una indicación dinámica normal.
+
+\begin[relative=1,verbatim,staffsize=17.5]{lilypond}
+c8 \p \< d e f g a b c 
+d \f \> c b a g f e d \! c1 
+\end{lilypond}
+
+\subsection{Acento}
+
+El acento en forma de 'v' o de 'v invertida' utiliza el símbolo del
+acento circunflejo, con un significado distinto al de forzar la
+dirección:
+
+\begin[relative=1,verbatim,staffsize=17.5]{lilypond}
+c1 -^
+c ^^
+\end{lilypond}
+
+
+\end{document}
+
