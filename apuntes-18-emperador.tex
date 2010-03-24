@@ -22,13 +22,13 @@ de los ajustes necesarios se omiten por el momento.
 \begin[staffsize=15,line-width=14\cm,indent=1.5\cm]{lilypond}
 
 % canción del emperador. Narváez
-\header { title = "CANCIÓN DEL EMPERADOR" 
+\header { title = "CANCIÓN DEL EMPERADOR"
 	composer= "Luys de Narváez"
 	opus =  "(1530-1550)"
-} 
+}
 \version "2.12.0"
 
-cantus = \relative c'{ 
+cantus = \relative c'{
 	<b fis' fis\4 b>1
 	<b b' b\3 >
 	<c e'>
@@ -44,9 +44,9 @@ cantus = \relative c'{
 	r4 g8_( fis) e d e fis
 	<g, b g'>2 <g b g'> \break
 	fis'8( g) fis g fis e d c
-	b2  e  ~ 
+	b2  e  ~
 	e4 e4 dis cis
-	<dis fis,>2 <dis fis,>   
+	<dis fis,>2 <dis fis,>
  }
 
 
@@ -65,7 +65,7 @@ altus = \relative c'' {
 	c1
 }
 
-tenor = \relative c { \voiceTwo 
+tenor = \relative c { \voiceTwo
 	s1
 	s1
 	s1
@@ -93,7 +93,7 @@ tenor = \relative c { \voiceTwo
 
     <<
 	\new Voice { \voiceOne \cantus }
-	\new Voice { \voiceFour \altus } 
+	\new Voice { \voiceFour \altus }
 	\new Voice { \voiceTwo \tenor }
     >>
   }
@@ -132,7 +132,7 @@ un silencio de blanca oculto:
 Los silencios se suelen colocar automáticamente de forma que no haya
 colisiones con las notas de las otras voces.  Sin embargo, si queremos
 colocar un silencio a la altura de una nota determinada, lo hacemos
-mediante \verb+\rest+ que convierte la nota anterior en un silencio.  
+mediante \verb+\rest+ que convierte la nota anterior en un silencio.
 
 \begin[relative=2,verbatim,staffsize=17.5]{lilypond}
 c4 g'8\rest g, c2 ^~ c1 _~ c

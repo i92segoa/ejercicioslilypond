@@ -37,13 +37,13 @@ indent=0
 
  \header { title = "Il es bel et bon" composer = "Pierre Passereau" }
 
-sop = \relative c' { %\tempo 1=60 
-	% \key d \minor 
+sop = \relative c' { %\tempo 1=60
+	% \key d \minor
 	\time 2/2
 	d8 e f g a4 a
-	a4 a a a 
+	a4 a a a
 	g4 e r2
-	d8 e f g a4 a 
+	d8 e f g a4 a
 	a4 a a a
 	g4 e8 e g4 e8 e
 	f4 d d c d2 }
@@ -61,7 +61,7 @@ ten = \relative c { \clef "G_8"
 	r2 d8 e f g
 	a4 a c c
 	b4 b g2
-	a2 a8 g f g 
+	a2 a8 g f g
 	a4 a c c
 	b2 g4 g
 	a4. g8 f4 e
@@ -70,7 +70,7 @@ d2 }
 baj = \relative c { \clef bass
 	R1
 	r2 a8 b c d
-	e4 e e e 
+	e4 e e e
 	d2 a~
 	a2 a8 b c d
 	e4 e e e
@@ -78,15 +78,15 @@ baj = \relative c { \clef bass
 d2 }
 
 
-letrasop = \lyricmode { Il est bel et bon, bon, 
+letrasop = \lyricmode { Il est bel et bon, bon,
 	bon, bon, bon, com --
 	mè -- re,
 	Il est bel et bon, bon,
 	bon, bon, bon, com --
 	mè -- re, com -- mè -- re, com --
 	mè -- re mon ma -- ri. }
-	
-letraalt = \lyricmode { Il est bel et bon, bon, 
+
+letraalt = \lyricmode { Il est bel et bon, bon,
 	bon, bon, bon, com --
 	mè -- re,
 	Il est bel et bon, bon,
@@ -112,24 +112,24 @@ letrabaj = \lyricmode { Il est bel et
 
 \score {
 	% \transpose d f
-	\new ChoirStaff 
+	\new ChoirStaff
 	<<
 		\new Staff { \set Staff.instrumentName="S"
                   \set Staff.midiInstrument = "oboe"
 		\sop }
-		\addlyrics { \letrasop } 
+		\addlyrics { \letrasop }
 		\new Staff { \set Staff.instrumentName="A"
                   \set Staff.midiInstrument = "oboe"
 		\alt }
-		\addlyrics { \letraalt } 
+		\addlyrics { \letraalt }
 		\new Staff { \set Staff.instrumentName="T"
                   \set Staff.midiInstrument = "bassoon"
 		\ten  }
-		\addlyrics { \letraten } 
+		\addlyrics { \letraten }
 		\new Staff { \set Staff.instrumentName="B"
                   \set Staff.midiInstrument = "clarinet"
 		\baj }
-		\addlyrics { \letrabaj } 
+		\addlyrics { \letrabaj }
 >>
 %\midi { }
 %\layout { }
@@ -159,13 +159,13 @@ indent=0
 
 % \header { title = "Il es bel et bon" composer = "Pierre Passereau" }
 
-sop = \relative c' { \tempo 1=60 
-	% \key d \minor 
+sop = \relative c' { \tempo 1=60
+	% \key d \minor
 	\time 2/2
 	d8 e f g a4 a
-	a4 a a a 
+	a4 a a a
 	g4 e r2
-	d8 e f g a4 a 
+	d8 e f g a4 a
 	a4 a a a
 	g4 e8 e g4 e8 e
 	f4 d d c d2 }
@@ -183,7 +183,7 @@ ten = \relative c { \clef "G_8"
 	r2 d8 e f g
 	a4 a c c
 	b4 b g2
-	a2 a8 g f g 
+	a2 a8 g f g
 	a4 a c c
 	b2 g4 g
 	a4. g8 f4 e
@@ -192,7 +192,7 @@ d2 }
 baj = \relative c { \clef bass
 	R1
 	r2 a8 b c d
-	e4 e e e 
+	e4 e e e
 	d2 a~
 	a2 a8 b c d
 	e4 e e e
@@ -202,20 +202,20 @@ d2 }
 
 \score {
 	% \transpose d f
-	% \new ChoirStaff 
+	% \new ChoirStaff
 	<<
 		\new Staff { \set Staff.midiInstrument = "oboe"
 		\sop }
-		%\addlyrics { \letrasop } 
+		%\addlyrics { \letrasop }
 		\new Staff { \set Staff.midiInstrument = "oboe"
 		\alt }
-		%\addlyrics { \letraalt } 
+		%\addlyrics { \letraalt }
 		\new Staff { \set Staff.midiInstrument = "bassoon"
 		\ten  }
-		%\addlyrics { \letraten } 
+		%\addlyrics { \letraten }
 		\new Staff { \set Staff.midiInstrument = "clarinet"
 		\baj }
-		%\addlyrics { \letrabaj } 
+		%\addlyrics { \letrabaj }
 >>
 %\midi { }
 %\layout { }
@@ -236,7 +236,7 @@ variables (en su caso), podemos hacerlo así:
 
 \begin{verbatim}
 \score {
-<< 
+<<
    \new Staff { \soprano }
    \new Staff { \alto }
    \new Staff { \tenor }

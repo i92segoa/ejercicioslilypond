@@ -15,21 +15,21 @@ reguladores.
 \bigskip
 
 \begin[staffsize=17.5,line-width=17\cm]{lilypond}
-\new Staff \relative c' { 
+\new Staff \relative c' {
 	\time 2/4 \tempo "Moderato" 4=80
-	 
-	e32(-> -2 \mf 
+
+	e32(-> -2 \mf
 
 	fis 	-\markup{ \italic "pesante" } e8 d16) e32( ->fis e8 d16)
 	c16(-3 b)-. a-. b-. c4-3--->
-	
-	e32(-> -2 
+
+	e32(-> -2
 	fis e8 d16) e32( ->fis e8 d16)
 	c16(-4 b)-. a-. g-. a4-3---> \break
 
 	g8.->(-1 \< a32 b c8-.-4)\! c-.-4
 	c16-3( b-.) a-. b-. c32-^(\> d c d \times 4/5 { c[ d c b a]\! }
-	
+
 	g8.->-2)\< ( a32 b c8-.-5)\! c-.-5
 	c16-4( b-.)\> a-. g-. a4-.-- \!
 	\bar "||"
@@ -58,8 +58,8 @@ de final para cancelar el regulador sólo es necesaria cuando no ocurre
 una indicación dinámica normal.
 
 \begin[relative=1,verbatim,staffsize=17.5]{lilypond}
-c8 \p \< d e f g a b c 
-d \f \> c b a g f e d \! c1 
+c8 \p \< d e f g a b c
+d \f \> c b a g f e d \! c1
 \end{lilypond}
 
 \subsection{Acento}

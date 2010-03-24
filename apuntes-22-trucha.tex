@@ -59,7 +59,7 @@ cello = \relative c' { \global \clef bass r8 ^\pp
 	cis8-. e( d cis)
 	}
 
-contrabajo = \relative c { 
+contrabajo = \relative c {
 \global \clef bass r8 \pp
 	d4-.( d8-. d-.)
 	d2
@@ -71,25 +71,25 @@ contrabajo = \relative c {
 	}
 
 pianoManoDerecha = \relative c'' { \global \clef treble r8
-	R2*8	
+	R2*8
 	}
 
 pianoManoIzquierda = \relative c'' { \global \clef bass r8
 	R2*8
 	}
-	
+
 <<
-	\new Staff \with { fontSize = #-3 
+	\new Staff \with { fontSize = #-3
 		\override StaffSymbol #'staff-space = #(magstep -3)
 	%	\override StaffSymbol #'thickness = #(magstep -3)
 	}
 		{  \violin }
-	\new Staff \with { fontSize = #-3 
+	\new Staff \with { fontSize = #-3
 		\override StaffSymbol #'staff-space = #(magstep -3)
-	%	\override StaffSymbol #'thickness = #(magstep -3) 
+	%	\override StaffSymbol #'thickness = #(magstep -3)
 	}
 		{ \viola }
-	\new Staff \with { fontSize = #-3 
+	\new Staff \with { fontSize = #-3
 		\override StaffSymbol #'staff-space = #(magstep -3)
 	%	\override StaffSymbol #'thickness = #(magstep -3)
 	}
@@ -203,7 +203,7 @@ instrucciones:
 
 \begin{verbatim}
 \new Staff \with {
-  fontSize = #-3 
+  fontSize = #-3
   \override StaffSymbol #'staff-space = #(magstep -3)
 }
 \end{verbatim}
