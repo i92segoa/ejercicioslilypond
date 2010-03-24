@@ -110,7 +110,7 @@ aunque esta duración se desprecia y no influye en el resultado.
 
 Se recomienda el empleo de repeticiones desplegadas para insertar
 múltiples saltos seguidos.
-
+\label{unfold}
 \begin[verbatim,relative=1,staffsize=17.5]{lilypond}
 { \time 3/4 f16 g f e f e d e d c b d c4 }
 \addlyrics { Pen -- \repeat unfold 11  \skip 4  sier! }
@@ -129,6 +129,7 @@ Los contextos se añaden o se suprimen con las instrucciones
 \verb+\consists+ y \verb+\remove+.  Existen dos formas de hacerlo:
 para cada contexto uno a uno, o para todos los contextos de una
 clase al mismo tiempo.
+\label{consists}
 
 \textbf{1.} Para añadir un grabador a todos los contextos de una
 clase, abrimos un bloque \verb+\layout+ fuera de la expresión

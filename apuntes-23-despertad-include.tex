@@ -1,0 +1,107 @@
+%\setcounter{section}{20} %para 21 MIDI
+
+
+\section{Ejercicios para voz y pulso, para niños.}
+
+
+\subsection{Modelo}
+
+En la enseñanza musical para niños pequeños, es muy frecuente la
+utilización de canciones sencillas con un acompañamiento en forma
+de \emph{ostinato} rítmico.  Para realizar este ejemplo hemos
+utilizado un contexto especial que traza una pauta de una sola
+línea, y hemos hecho que presente una clave especial utilizada en
+percusión.  Además, las figuras tienen la cabeza en forma de línea
+inclinada.
+
+% \def\betweenLilyPondSystem#1{\vspace{0.2cm}\linebreak}
+
+\bigskip
+
+\begin[staffsize=15,
+line-width=16.5\cm,
+indent=0
+]{lilypond}
+#(set-global-staff-size 17)
+musica =  \relative c'' { \time 2/4
+	g4 g e2
+	g4 g e2
+	g4 g e e
+	g4 g e e
+
+	e4 e c2
+	e4 e c2
+	e4 e c c
+	e4 e c2 \bar "|."
+}
+
+letra = \lyricmode { Des -- per -- tad a mi voz,
+me re -- pi -- ten las cam -- pa -- nas.
+Din din don.
+Din din don.
+¡La ma -- ña -- na ya lle -- gó!
+}
+
+\header { title = "DESPERTAD" }
+
+\score { << \new Staff { \set Staff.instrumentName="Voz" \musica }
+		\addlyrics { \letra }
+	\new RhythmicStaff \with { \consists "Clef_engraver" }
+
+	{  \set Staff.instrumentName="Pulso" \clef percussion
+	\improvisationOn \stemDown
+	\repeat unfold 32 { c4 } }
+>>
+
+
+}
+
+\end{lilypond}
+
+
+\subsection{Pauta rítmica}
+
+El contexto \verb+RhythmicStaff+ traza una pauta sin clave, de una sola línea. La altura de las notas no se tiene en cuenta.
+
+\begin[verbatim,relative=2,staffsize=17.5]{lilypond}
+\new RhythmicStaff { c4 d e2
+  c8 c c d e2 }
+\end{lilypond}
+
+
+\subsection{Clave de percusión}
+
+La clave de percusión puede conseguirse mediante la instrucción
+\verb+\clef+ con la palabra ``percussion'' como argumento.
+
+\begin[verbatim,relative=1,staffsize=17.5]{lilypond}
+\clef percussion c4 d e2 c8 c c d e2
+\end{lilypond}
+
+
+\subsection{Figuras de estilo improvisado}
+
+A veces se representan mediante figuras en forma de línea
+inclinada las notas que no se especifican con una altura
+determinada, sino que se deja que el intérprete las improvise.  Para esto se utiliza la instrucción  \verb+\improvisationOn+:
+
+\begin[verbatim,relative=2,staffsize=17.5]{lilypond}
+\improvisationOn c4 d e2 c8 c c d e2
+\end{lilypond}
+
+
+\subsection{Notas}
+
+\begin{itemize}
+\item Utilice repeticiones desplegadas para el pulso (véase el
+  apartado \ref{unfold}, página \pageref{unfold})
+\item Añada el grabador de clave, llamado \verb+Clef_engraver+, al
+  contexto \verb+RhythmicStaff+, (véase el apartado
+  \ref{consists}, página \pageref{consists})
+\item El grabador encargado de ignorar la altura de las notas para
+  imprimirlas sobre una línea es \verb+Pitch_squash_engraver+,
+  puede añadirse al contexto \verb+Voice+, pero ya viene incluido
+  en el contexto \verb+RhythmicStaff+.
+\end{itemize}
+
+\let\betweenLilyPondSystem\undefined

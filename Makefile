@@ -13,7 +13,8 @@ RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
 IMAGENES=lily-logo.png
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex apuntes-01-instalacion-include.tex		\
-	apuntes-02-cumple-include.tex apuntes-03-mozart-include.tex	\
+	apuntes-02-cumple-include.tex					\
+	apuntes-03-mozart-include.tex					\
 	apuntes-03-mozart-include.tex					\
 	apuntes-04-alteraciones-titulos-ofrenda-include.tex		\
 	apuntes-05-barras-beethoven5th-include.tex			\
@@ -31,7 +32,8 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion-include.tex		\
 	apuntes-18-emperador-include.tex				\
 	apuntes-19-bajocifrado-include.tex				\
 	apuntes-20-machaut-include.tex apuntes-21-midi-include.tex	\
-	apuntes-22-trucha-include.tex
+	apuntes-22-trucha-include.tex					\
+	apuntes-23-despertad-include.tex
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex
