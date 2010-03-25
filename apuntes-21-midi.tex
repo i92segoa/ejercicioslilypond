@@ -236,14 +236,13 @@ variables (en su caso), podemos hacerlo así:
 
 \begin{verbatim}
 \score {
-<<
-   \new Staff { \soprano }
-   \new Staff { \alto }
-   \new Staff { \tenor }
-   \new Staff { \bajo }
->>
-
-\midi { }
+  <<
+     \new Staff { \soprano }
+     \new Staff { \alto }
+     \new Staff { \tenor }
+     \new Staff { \bajo }
+  >>
+  \midi { }
 }
 \end{verbatim}
 
@@ -253,8 +252,8 @@ Si existe un bloque \verb+\midi{}+ y no hay un bloque \verb+layout{}+, el proces
 \score {
     ...
 
-\midi { }
-\layout{ }
+  \midi { }
+  \layout{ }
 }
 \end{verbatim}
 
@@ -278,8 +277,8 @@ debería poder reproducirse fácilmente mediante un doble click.
 
 \begin{verbatim}
 \new Staff {
-     \set Staff.midiInstrument = "oboe"
-     \soprano
+  \set Staff.midiInstrument = "oboe"
+  \soprano
 }
 \end{verbatim}
 
