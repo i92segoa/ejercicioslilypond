@@ -50,16 +50,15 @@ Din din don.
 	\improvisationOn \stemDown
 	\repeat unfold 32 { c4 } }
 >>
-
-
 }
-
 \end{lilypond}
 
 
 \subsection{Pauta rítmica}
 
-El contexto \verb+RhythmicStaff+ traza una pauta sin clave, de una sola línea. La altura de las notas no se tiene en cuenta.
+El contexto \verb+RhythmicStaff+ traza una pauta sin clave, de una
+sola línea. La altura de las notas no se tiene en cuenta, como puede
+verse en el ejemplo siguiente:
 
 \begin[verbatim,relative=2,staffsize=17.5]{lilypond}
 \new RhythmicStaff { c4 d e2
@@ -79,14 +78,17 @@ La clave de percusión puede conseguirse mediante la instrucción
 
 \subsection{Figuras de estilo improvisado}
 
-A veces se representan mediante figuras en forma de línea
-inclinada las notas que no se especifican con una altura
-determinada, sino que se deja que el intérprete las improvise.  Para esto se utiliza la instrucción  \verb+\improvisationOn+:
+A veces se representan mediante figuras en forma de línea inclinada
+las notas que no se especifican con una altura determinada, sino que
+se deja que el intérprete las improvise.  Para esto se utiliza la
+instrucción \verb+\improvisationOn+:
 
 \begin[verbatim,relative=2,staffsize=17.5]{lilypond}
 \improvisationOn c4 d e2 c8 c c d e2
 \end{lilypond}
 
+Más tarde, en caso necesario, es posible volver a la notación normal
+mediante \verb+\improvisationOff+.
 
 \subsection{Notas}
 
