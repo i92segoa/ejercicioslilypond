@@ -1,0 +1,130 @@
+\section{Varias partituras en un documento: libros.  Marcados de alto nivel}
+
+
+\subsection{Modelo}
+
+Cuando se quiere elaborar un documento de varias páginas que contiene
+distintas piezas (p.ej. los movimientos de una sonata) o distintas
+obras completas que deben ir en páginas separadas, se hace necesario
+utilizar los conceptos de libro, parte y pieza.
+
+Para este ejercicio debemos elegir \emph{ocho} piezas ya realizadas
+que se insertarán en el texto del documento.  Produciremos, a partir
+de un solo documento de LilyPond, dos archivos de salida PDF o
+\emph{libros}, cada uno de los cuales tendrá dos partes en páginas
+separadas, y cada parte de cada libro contendrá dos partituras con
+especificación de la pieza en la cabecera correspondiente.
+
+\bigskip
+\parindent=0mm
+\fbox{\includegraphics[width=39mm]{outA1}}
+\fbox{\includegraphics[width=39mm]{outA2}}
+\fbox{\includegraphics[width=39mm]{outB1}}
+\fbox{\includegraphics[width=39mm]{outB2}}
+\parindent=6mm
+\bigskip
+
+Se deberá tener cuidado en que los nombres de variable,
+procedentes de distintas piezas, no se confundan al incluirlos en
+el mismo texto.
+
+% Aumentar la separación entre sistemas
+%\def\betweenLilyPondSystem#1{\vspace{0.2cm}\linebreak}
+
+\subsection{Bloques de partitura: distintas piezas}
+
+Si en un documento aparece más de un bloque \verb+\score+, una pieza
+aparecerá a continuación de la otra, en la misma página. Sólo se
+imprimen, para cada una, las cabeceras \verb+piece+ y \verb+opus+.  Se
+pueden volver a definir los títulos de cabecera para cada partitura.
+
+Para imprimir el título de cada partitura, se requiere un bloque
+\verb+\paper+ (fuera de todas las partituras) que contenga el
+siguiente ajuste:
+
+\begin{verbatim}
+\paper{
+  print-all-headers = ##t
+}
+\end{verbatim}
+
+En nuestro ejemplo esto no es necesario, pero debe tenerse en cuenta
+que las cabeceras de cada partitura deben ir \emph{después} de la
+música dentro del bloque \verb+\score+, así:
+
+\begin{verbatim}
+\score{ \cumple
+  \header { piece="Cumpleaños feliz" }
+}
+\end{verbatim}
+
+
+\subsection{Elementos de marcado del nivel superior}
+
+Si se escribe un elemento \verb+\markup+ fuera de cualquier partitura,
+aparecerá en su lugar correspondiente.  Estos elementos se denominan
+``Marcados de alto nivel'' porque se encuentran en lo alto de la
+jerarquía de la sintaxis de un documento, es decir, fuera de cualquier
+bloque.  Los elementos de marcado del nivel superior se pueden emplear
+para escribir las letras de las estrofas de una canción.  También
+puede insertarse una separación para distanciar dos partituras entre
+sí, o antes de una partitura para separarla del borde superior:
+
+\begin{verbatim}
+\score { ... }
+\markup{ \vspace #5 }
+\score { ... }
+\end{verbatim}
+
+
+\subsection{Bloques de libro: distintos archivos de salida}
+
+Cuando en un documento aparecen bloques \verb+\book+, se produce un
+archivo de salida PDF distinto para cada bloque, con todas las
+partituras que contenga.  El primer archivo tiene el mismo nombre del
+documento, como es usual, y a partir del segundo libro se añade un
+número consecutivo al final del nombre.
+
+Es preciso tener en cuenta la siguiente salvedad: los documentos de
+partitura completos, que pueden contener indicaciones de alto nivel
+como definiciones de variables, no pueden incluirse mediante la
+instrucción \verb+\include+ dentro de un bloque \verb+\book+.  Las
+definiciones de variables son instrucciones del nivel sintáctico
+superior y por tanto deben ir fuera de cualquier bloque.
+
+\subsection{Bloques de parte: distintas páginas en un libro}
+
+Es sencillo mantener en páginas separadas dos o más conjuntos de
+partituras dentro de un libro: tan sólo hay que encerrar cada conjunto
+en un bloque \verb+\bookpart+.  Las cabeceras de título de la primera
+parte serán las que se impriman al principio del libro.
+
+\subsection{Pie de página}
+
+La cabecera \verb+tagline+ contiene las indicaciones que aparecen en
+la última página de cada libro.  Si no se especifica una línea de pie,
+la línea predeterminada contiene una nota de autopromoción del
+programa y la versión del mismo con que se hizo el archivo de salida.
+
+\subsection{Ejemplo}
+
+La siguiente estructura es un ejemplo que resume lo explicado más
+arriba.
+
+\begin{verbatim}
+musicaUno={...}
+musicaDos={...}
+...
+
+\book{                          % primer libro
+  \bookpart{                      % primera parte
+    \header{ title = ... }          % cabeceras de este libro y parte  
+    \score{ \músicaUno...             % primera partitura
+      \header { piece = ... }         % cabeceras de esta partitura  
+    }
+    \score{ ... }                   % segunda partitura
+  }                               % fin de la parte y salto de página
+  \bookpart{ ... }                % segunda parte
+
+\book{ ... }                    % segundo libro
+\end{verbatim}
