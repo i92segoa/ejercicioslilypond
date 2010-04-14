@@ -1,0 +1,153 @@
+\section{Instrumentos transpositores. Cambio de pentagrama}
+
+
+\subsection{Modelo}
+
+La música para instrumentos transpositores requiere particellas
+preparadas para ellos con la transposición inversa, y las partes en
+tono de concierto (p.ej. para el piano) no llevan esta transposición.
+Nuestro ejemplo de hoy procede de la segunda pieza de concierto para
+dos clarinetes y piano, de Mendelssohn.  Podemos transcribir la música
+de los clarinetes a partir de las particellas o a partir de la
+partitura de conjunto; en cualquier caso, el MIDI de la partitura de
+conjunto debe sonar a la altura correcta.
+
+Debemos producir, a partir de la misma fuente, un documento con la
+partitura de piano en tono de concierto, y en páginas o en documentos
+separados las particellas de los clarinetes preparadas para un
+instrumento en Si$\flat$.
+
+La parte de piano necesita un cambio de pentagrama en el tercer
+compás.
+
+\begin{lilypond}
+clarinete = \relative c''' { \tempo "Presto"
+	\key e \minor \time 2/2  \partial 4. c8( \ff b) ais-.
+b4.-> fis8-. g4.-> dis8-.
+e4-. e,-. r8 e'8( g) fis-. e( d) c-. b-. a-. g-. fis-. e-.
+c'4-. fis,-.
+}
+
+clarineteUno = { \transposition bes \clarinete }
+
+clarineteDos = \transpose c c, { \transposition bes \clarinete }
+pianoMD = \relative c'' { %\tempo "Presto"
+	\key d \minor \time 2/2 \partial 4. bes8( \ff  a) gis-.
+	a4.-> e8 f4.-> cis8
+	d4-. <f, a>-. r8 d'( f) e-.
+	d8( c) bes-. a-. \change Staff = "abajo" \voiceOne g-. f-. e-. d-.
+	\change Staff ="arriba" <bes' d e>4-. q-.
+	}
+pianoMI = \relative c { \key d \minor \clef bass \time 2/2 \partial 4. bes8( a) gis-.
+	a4.-> <e e'>8 <f f'>4.-> <cis cis'>8
+	<d d'>4-> q-> r8 d'( f) e-.
+	d8-. c-. bes-. a-.  \voiceTwo g-. f-. e-. d-.
+	g4-. g-.
+}
+
+
+\score {
+<< 	\new Staff \with { fontSize = #-3 
+		\override StaffSymbol #'staff-space = #(magstep -3)
+		instrumentName="Clarinete I" 
+	%	\override StaffSymbol #'thickness = #(magstep -3)
+	} \transpose c bes, { \clarineteUno }
+	\new Staff \with { fontSize = #-3 
+		\override StaffSymbol #'staff-space = #(magstep -3)
+		instrumentName="Clarinete II"
+	%	\override StaffSymbol #'thickness = #(magstep -3)
+	} \transpose c bes, { \clarineteDos }
+	\new PianoStaff \with { instrumentName="Piano" } <<
+		\new Staff ="arriba" { \pianoMD }
+		\new Staff ="abajo" { \pianoMI }
+	>>
+>>
+\layout{}
+\midi{}
+}
+
+
+\score {
+	\new Staff \with { instrumentName="Clarinete I" } { \clarineteUno }
+\layout{}
+\midi{}
+	
+	
+}
+
+\score {
+	\new Staff \with { instrumentName="Clarinete II" } { \clarineteDos }
+\layout{}
+\midi{}
+}
+
+\end{lilypond}
+
+% Aumentar la separación entre sistemas
+%\def\betweenLilyPondSystem#1{\vspace{0.2cm}\linebreak}
+
+\subsection{Cambios de pentagrama}
+
+Podemos cambiar la música de un pentagrama a otro si en la creación de
+los contextos hemos dado un nombre a cada uno.  Después, la
+instrucción \verb+\change+ nos permite especificar el contexto al que
+deseamos cambiar, llamándolo por su nombre.  Por ejemplo:
+
+\begin[verbatim]{lilypond}
+musica = \relative c''{ g16 e c \change Staff="abajo" g c,4 }
+<< \new Staff = "arriba" { \musica }
+   \new Staff ="abajo"   { \clef bass s2 }
+>>
+\end{lilypond}
+
+El contexto que recibe la música debe existir mientras duran las notas
+cambiadas, lo que podemos hacer con silencios de separación como puede
+verse en el ejemplo.  Después del cambio, puede ser necesario orientar
+las plicas mediante una instrucción del tipo \verb+\voiceOne+.
+
+
+\subsection{Instrumentos transpositores}
+
+Para fijar el intervalo de transposición de un instrumento, se usa la
+instrucción \verb+\transposition+ seguida de una nota en altura
+absoluta.  El intervalo que forma la nota con el Do central, \verb+c'+,
+corresponde al intervalo transpositor del instrumento.  Por ejemplo,
+si un instrumento como el clarinete en Si$\flat$ transporta un tono
+hacia abajo, debemos poner lo siguiente:
+
+\begin{verbatim}
+\transposition bes
+\end{verbatim}
+
+A continuación podemos escribir la música tal y como aparece en su
+particella.
+
+\begin[verbatim]{lilypond}
+\relative c''' { \transposition bes
+  \key e \minor
+  \time 2/2
+  \partial 4. c8( \ff b) ais-. }
+
+\end{lilypond}
+
+
+
+Más tarde podemos imprimir la partitura en tono de concierto aplicando
+a esta música el transporte del instrumento, en este caso un tono
+hacia abajo:
+
+\begin[verbatim]{lilypond}
+clarinete = \relative c''' { \transposition bes
+  \key e \minor
+  \time 2/2
+  \partial 4. c8( \ff b) ais-. }
+
+\transpose c bes, { \clarinete }
+\end{lilypond}
+
+
+
+Si no nos preocupa la producción de MIDI, para producir una particella
+con destino a un instrumento transpositor a partir de música en tono
+de concierto, sólo hay que aplicar el transporte inverso en el momento
+de imprimir la particella.
