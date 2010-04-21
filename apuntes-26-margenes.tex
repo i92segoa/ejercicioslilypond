@@ -1,0 +1,127 @@
+\section{Márgenes. Frère Jacques}
+
+
+\subsection{Modelo}
+
+Es fácil establecer los márgenes de la partitura y el número de
+sistemas, así como otros retoques de aspecto final. En este ejemplo
+hemos establecido unos márgenes izquierdo y derecho de 3 cm., (sin
+sangrado en la primera línea), un margen superior de 4 cm. y un margen
+inferior de 10 cm.  Hemos aumentado el tamaño global de la partitura a
+26 puntos y hemos distribuido los compases en cuatro sistemas que
+ocupen toda la página hasta el margen inferior.  Se han suprimido la
+línea informativa final y los números de compás.  Hemos marcado las
+entradas del canon con números en negrita.  Por último, añadimos
+indicaciones de verso para señalar el idioma de cada uno de los
+textos.
+
+\bigskip
+\begin{center}
+\fbox{\includegraphics[width=100mm]{frerejacques}}
+\end{center}
+\bigskip
+
+
+% Aumentar la separación entre sistemas
+%\def\betweenLilyPondSystem#1{\vspace{0.2cm}\linebreak}
+
+\subsection{Márgenes.  Sangrado de la primera línea}
+
+Es bastante amplio el abanico de variables que se pueden ajustar
+dentro del bloque \verb+\layout+ para controlar la forma en que se
+imprime la partitura.  Cada bloque \verb+\layout+ dentro de una
+partitura controla los ajustes para esa partitura; para ajustar todas
+las partituras de un documento al mismo tiempo, se usa de la misma
+forma el bloque \verb+\paper+ fuera de los bloques \verb+\score+.
+
+La variable que controla el sangrado de la primera línea es
+\verb+indent+, y aquellas que controlan la medida de los márgenes son
+\verb+left-margin+, \verb+right-margin+, \verb+top-margin+ y
+\verb+bottom-margin+, para los márgenes izquierdo, derecho, superior e
+inferior, respectivamente\footnote{Sólo a partir de la versión 2.13 es
+  posible determinar la longitud de la línea por medio de los márgenes
+  izquierdo y derecho.  En la versión 2.12 debe hacerse explícitamente
+  mediante la definición de \texttt{line-width} y
+  \texttt{left-margin}.}.
+
+Para expresar las medidas en milímetros o centímetros, se utiliza
+\verb+\mm+ ó \verb+\cm+ después del valor; no es necesario si el valor
+es cero.  Por ejemplo, aquí hemos suprimido el sangrado de la primera
+línea y establecido el margen izquierdo a 2 centímetros:
+
+\begin{verbatim}
+\paper {
+  indent = 0
+  left-margin = 2\cm
+}
+\end{verbatim}
+
+
+\subsection{Número de sistemas}
+
+Aunque es posible insertar saltos de línea en los lugares deseados
+mediante la instrucción \verb+\break+, puede ser más cómodo
+especificar simplemente cuántos sistemas queremos.  Lo hacemos dando
+un valor a la variable \verb+system-count+ en el bloque \verb+\layout+
+o \verb+\paper+.
+
+
+\subsection{Ocupación de la página}
+
+Si se da un valor falso a la variable \verb+ragged-last-bottom+, el
+último sistema llegará hasta el final de la última página y la
+partitura ocupará todo el papel hasta el margen inferior.
+
+\begin{verbatim}
+\paper {
+  ragged-last-bottom=##f
+}
+\end{verbatim}
+
+
+\subsection{Quitar los números de compás}
+
+Para suprimir los números de compás, se quita el grabador
+\verb+Bar_number_engraver+ del contexto \verb+\Score+, véase el
+apartado \ref{consists} de la página \pageref{consists}.
+
+
+\subsection{Negrita}
+
+Dentro de un elemento de marcado, la instrucción \verb+\bold+ establece un estilo negrita:
+
+\begin[verbatim,fragment]{lilypond}
+c'^\markup{ Normal, \bold Negrita. }
+\end{lilypond}
+
+
+\subsection{Verso de la letra}
+
+La propiedad de contexto ``\verb+stanza+'' fija un texto que aparece antes
+de la primera sílaba de la letra.  Se puede establecer con \verb+\set+
+dentro de la expresión que contiene la letra, o dentro de un bloque
+\verb+\with+ al crear el contexto \verb+\Lyrics+.
+
+\begin[verbatim,fragment]{lilypond}
+\new Staff { c'1 }
+\addlyrics { \set stanza = "1." Dooo }
+\end{lilypond}
+
+
+\subsection{Notas}
+
+\begin{itemize}
+\item Consulte cómo cambiar el tamaño global de la partitura en el apartado \ref{tamano-global} de la página \pageref{tamano-global}.
+\item Suprima línea informativa final definiendo \verb+tagline=##f+
+  dentro del bloque \verb+\header+.
+\item Pruebe cómo suena el canon con este bloque de ejemplo: \footnotesize
+\begin{verbatim}
+\score { << \new Staff \with { midiInstrument="trumpet" }{ \tempo 4=150 \canon }
+            \new Staff \with { midiInstrument="muted trumpet" }{  R1*2 \canon  }
+            \new Staff \with { midiInstrument="accordion" }{ R1*4 \canon }
+            \new Staff \with { midiInstrument="choir aahs" }{  R1*6 \canon  }
+	>> \midi{} \layout{} }
+\end{verbatim}
+\normalsize
+\end{itemize}
+

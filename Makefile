@@ -10,7 +10,7 @@ RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/software/biblatex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 #para Oregano
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/trabajos-doctorado/biblatex/biblatex/doc/resources/latin1.csf  $(NOMBRE)
-IMAGENES=lily-logo.png outA1.pdf outA2.pdf outB1.pdf outB2.pdf
+IMAGENES=lily-logo.png outA1.pdf outA2.pdf outB1.pdf outB2.pdf frerejacques.pdf
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-02-cumple.tex apuntes-03-mozart.tex			\
@@ -28,7 +28,7 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-19-bajocifrado.tex apuntes-20-machaut.tex		\
 	apuntes-21-midi.tex apuntes-22-trucha.tex			\
 	apuntes-23-despertad.tex apuntes-24-book.tex			\
-	apuntes-25-mendelssohn.tex
+	apuntes-25-mendelssohn.tex apuntes-26-margenes.tex
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex
