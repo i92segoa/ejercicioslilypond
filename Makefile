@@ -62,6 +62,9 @@ $(SPLITPDFS): pruebalibro.ly
 	lilypond pruebalibro.ly
 	. ./scriptPDFTK.sh
 
+frerejacques.pdf: frerejacques.ly
+	lilypond frerejacques.ly
+
 muestra:
 	@echo 'NOMBRE: $(NOMBRE)'
 	@echo 'LY: $(LYNOMBRES)'
