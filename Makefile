@@ -10,7 +10,8 @@ RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/software/biblatex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 #para Oregano
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/trabajos-doctorado/biblatex/biblatex/doc/resources/latin1.csf  $(NOMBRE)
-IMAGENES=lily-logo.png outA1.pdf outA2.pdf outB1.pdf outB2.pdf frerejacques.pdf
+SPLITPDFS=outA1.pdf outA2.pdf outB1.pdf outB2.pdf
+IMAGENES=lily-logo.png $(SPLITPDFS) frerejacques.pdf
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-02-cumple.tex apuntes-03-mozart.tex			\
@@ -32,7 +33,7 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex
-ARCHIVOSCOPIAR=$(IMAGENES) # $(INCLUDESTEX)  #BIBARCHIVOS) $(IMAGENES)  $(INCLUDESVERB) $(FUENTESPYX) $(DATOSPYX)# $(INCLUDESTEX)
+ARCHIVOSCOPIAR=$(IMAGENES)
 COPIAR=cp $(ARCHIVOSCOPIAR) $(OUT)
 
 all: build show
@@ -56,6 +57,10 @@ $(NOMBRE).pdf: $(NOMBRE).tex $(INCLUDESTEX) $(IMAGENES)
 	$(RUNPDF)
 
 	cp $(OUT)/$(NOMBRE).pdf ./
+
+$(SPLITPDFS): pruebalibro.ly
+	lilypond pruebalibro.ly
+	. ./scriptPDFTK.sh
 
 muestra:
 	@echo 'NOMBRE: $(NOMBRE)'
