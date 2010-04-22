@@ -11,12 +11,12 @@ frerejacques = \relative c' { \clef treble
 	\key f \major
 	\time 4/4 \repeat volta 2 {
 	f4^\markup{\bold 1.} g a f
-	f g a f
-	a^\markup{\bold 2.} bes c2
+	f4 g a f
+	a4^\markup{\bold 2.} bes c2
 	a4 bes c2
 	c8^\markup{\bold 3.} d c bes a4 f
 	c'8 d c bes a4 f
-	f^\markup{\bold 4.} c f2
+	f4^\markup{\bold 4.} c f2
 	f4 c f2 }
 }
 
@@ -56,21 +56,21 @@ textES = \lyricmode {
 	\set stanza = "(Esp.) "
 	Fray San -- tia -- go, Fray San -- tia -- go,
 	¿duer -- me~us ted? ¿duer -- me~us ted?
-	To -- can a mai -- ti -- nes, To -- can a mai -- ti -- nes:
+	To -- can a mai -- ti -- nes, to -- can a mai -- ti -- nes:
 	¡Din dan don, din dan don!
 }
 
 \score {
-			%\override Score . BarNumber #'break-visibility = #all-invisible
-			\new Staff {  \frerejacques }
-			\addlyrics { \textF }
-			%\addlyrics  { \textD }
-			%\addlyrics  { \textE }
-			%\addlyrics  { \textI }
-			\addlyrics  { \textES }
-		\layout { \context { \Score \remove "Bar_number_engraver" }
-		}
-	}
+  \new Staff {  \frerejacques }
+  \addlyrics { \textF }
+  %\addlyrics  { \textD }
+  %\addlyrics  { \textE }
+  %\addlyrics  { \textI }
+  \addlyrics  { \textES }
+  \layout {
+    \context { \Score \remove "Bar_number_engraver" }
+  }
+}
 
 \paper { indent = 0
 	left-margin=3\cm
