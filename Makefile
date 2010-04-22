@@ -42,7 +42,7 @@ build: $(NOMBRE).pdf
 show: 
 	$(RUNEVINCE)
 
-$(NOMBRE).pdf: $(NOMBRE).tex $(INCLUDESTEX)
+$(NOMBRE).pdf: $(NOMBRE).tex $(INCLUDESTEX) $(IMAGENES)
 	mkdir -p $(OUT)
 	if [ -f $(OUT)/$(NOMBRE).tex ] ; then rm $(OUT)/$(NOMBRE).tex; fi
 	# rm $(OUT)/$(NOMBRE).tex
