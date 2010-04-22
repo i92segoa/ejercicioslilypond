@@ -1,7 +1,7 @@
 # de Slave Songs A. Simpson 1867, Marcus Brinkmann 2007
 
 NOMBRE=libro
-OUT=/tmp/salida
+OUT=out
 #LYNOMBRES=faenas incarnatus 			#fuentes lilypond
 #LYARCHIVOS=$(addsuffix .ly, $(LYNOMBRES))
 #LYPDF=$(addsuffix .pdf, $(LYNOMBRES))
@@ -84,6 +84,7 @@ clean:
 
 force:
 	rm -rf $(OUT)
+	touch $(NOMBRE).tex
 	make
 
 .PHONY: wordcount
