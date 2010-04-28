@@ -256,7 +256,7 @@ incipitTimpaniGroup = \markup {
 
     \new PianoStaff  <<  %bassoons
 	\new Staff  { \set Staff.instrumentName = "3 Bassoons" << \bassoonsI \\ \bassoonsIII >> }
-	\new Staff  { \set Staff.instrumentName = "Double Bassoons" \doble }  >>
+	\new Staff  { \set Staff.instrumentName = "Double Bassoon" \doble }  >>
 
     \new PianoStaff  <<  %horns
 	\set PianoStaff.instrumentName = "6 Horns in F"
