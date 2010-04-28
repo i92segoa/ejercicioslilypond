@@ -220,7 +220,7 @@ incipitTimpaniGroup = \markup {
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        #(set-global-staff-size 10) %antes 15.5 para a3
+        #(set-global-staff-size 10.5) %antes 15.5 para a3
 	#(set-default-paper-size "a4")
 
    \paper { ragged-right=##f
@@ -233,6 +233,7 @@ incipitTimpaniGroup = \markup {
 \header {
 	title = \markup { \fontsize #6 { \smallCaps {  "I. Mars, " } "the Bringer of War" } } 
 	%	copyright = "Francisco Vila, sobre un trabajo de Guadalupe Cuevas Piñero"
+	tagline=##f
 }
 
 
