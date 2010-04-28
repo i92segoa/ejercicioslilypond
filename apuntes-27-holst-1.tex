@@ -54,8 +54,9 @@ incipitTimpaniGroup = \markup {
 		>>
 
 	\layout {
-		\context {
-			\Staff \remove "Time_signature_engraver"
+		\context { \Staff
+                         \remove "Time_signature_engraver"
+                         \remove "Clef_engraver"
 		}
 		line-width=2.5\cm
                 indent=1\cm
@@ -128,8 +129,8 @@ partiturita=\markup{
       \times 2/3 { c'4 c'8 }
     }
     \layout{
-      \context {
-        \RhythmicStaff \remove "Time_signature_engraver"
+      \context { \RhythmicStaff
+               \remove "Time_signature_engraver"
       }
     }
   }
@@ -149,9 +150,9 @@ siguiente manera:
 \new Staff { \cadenzaOn c2 d e }
 \end{lilypond}
 
-Además no tiene indicación de compás, para ello hay que eliminar el
-grabador correspondiente del contexto de Staff: véase el apartado
-\ref{consists} de la página \pageref{consists}.
+Además no tiene indicación de compás ni clave, para ello hay que
+eliminar los grabadores correspondientes del contexto de Staff: véase
+el apartado \ref{consists} de la página \pageref{consists}.
 
 \subsection{Columnas en el marcado}
 
