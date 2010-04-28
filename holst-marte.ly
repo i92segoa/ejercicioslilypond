@@ -189,37 +189,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	incipitTimpaniI = \markup{
-	\score{
-		{
-		\set Staff.instrumentName="I"
-		\cadenzaOn
-		\clef bass
-		\time 3/2
-	  	g,2 d2 bes,2
-    	}
-	\layout { \context { \Staff \remove "Time_signature_engraver" }
-		line-width=5\cm indent=4\cm
-	}
-	}
-}
-incipitTimpaniII = \markup{  \combine \hspace #15
-
-	\score{
-		{ %\override InstrumentName #'self-alignment-X = #-1
-		\set Staff.instrumentName="II"
-		\cadenzaOn
-		\clef bass
-		\time 3/2
-	  	c2 es2 a,2
-    	}
-	\layout { \context { \Staff \remove "Time_signature_engraver" }
-		line-width=1.8\cm indent=0.5\cm
-	}
-	}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 incipitTimpaniGroup = \markup {
 	\score{
@@ -239,8 +208,9 @@ incipitTimpaniGroup = \markup {
 		>>
 
 	\layout {
-		\context {
-			\Staff \remove "Time_signature_engraver"
+		\context { \Staff
+			\remove "Time_signature_engraver"
+			\remove "Clef_engraver"
 		}
 		line-width=2.5\cm indent=1\cm
 		margin-left=0\cm
