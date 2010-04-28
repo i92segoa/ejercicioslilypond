@@ -11,7 +11,7 @@ RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
 #para Oregano
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/trabajos-doctorado/biblatex/biblatex/doc/resources/latin1.csf  $(NOMBRE)
 SPLITPDFS=outA1.pdf outA2.pdf outB1.pdf outB2.pdf
-IMAGENES=lily-logo.png $(SPLITPDFS) frerejacques.pdf
+IMAGENES=lily-logo.png $(SPLITPDFS) frerejacques.pdf holst-marte.pdf
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-02-cumple.tex apuntes-03-mozart.tex			\
@@ -29,7 +29,8 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-19-bajocifrado.tex apuntes-20-machaut.tex		\
 	apuntes-21-midi.tex apuntes-22-trucha.tex			\
 	apuntes-23-despertad.tex apuntes-24-book.tex			\
-	apuntes-25-mendelssohn.tex apuntes-26-margenes.tex
+	apuntes-25-mendelssohn.tex apuntes-26-margenes.tex		\
+	apuntes-27-holst-1.tex
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex
@@ -64,6 +65,9 @@ $(SPLITPDFS): pruebalibro.ly
 
 frerejacques.pdf: frerejacques.ly
 	lilypond frerejacques.ly
+
+holst-marte.pdf: holst-marte.ly
+	lilypond holst-marte.ly
 
 muestra:
 	@echo 'NOMBRE: $(NOMBRE)'

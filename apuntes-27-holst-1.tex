@@ -1,0 +1,233 @@
+\includepdf{holst-marte}
+
+\section{Un gran ejemplo orquestal: Marte, de Holst (1)}
+
+
+\subsection{Modelo}
+
+Para esta gran partitura orquestal perteneciente a la suite ``Los
+planetas'' de Gustav Holst, vamos a trabajar en varias fases. Por
+ahora añadiremos dos instrumentos: los timbales y el gong. El
+ejemplo contiene repeticiones de trémolo, silencios de compás
+completo en 5/4 y una partitura completa dentro de un marcado.
+
+\bigskip
+
+% Aumentar la separación entre sistemas
+\def\betweenLilyPondSystem#1{\vspace{0.4cm}\linebreak}
+
+\begin[line-width=17cm]{lilypond}
+
+\version "2.13.18"
+
+           timpaniI = \relative g, { \clef bass
+                         \key c \major
+   \times 2/3 { g8\p ^"wooden sticks" g g }  g4 g g8 g g4
+   \times 2/3 { g8 g g } g4 g g8 g g4
+   \times 2/3 { g8 g g } g4 g g8 g g4
+   \times 2/3 { g8 \< g g } g4 g g8 g g4\!
+   \times 2/3 { g8 \> g g } g4 g g8 g g4\! }
+
+           timpaniII = { \clef bass
+                         \key c \major
+	   R1*5/4 R1*5/4 R1*5/4 R1*5/4 R1*5/4 }
+
+	gong = { g2.:32 \pp  g2:32 g2.:32 g2:32 g2.:32 g2:32 g2.\< :32 g2\!:32 g2.\>:32 g2:32 \! }
+
+
+incipitTimpaniGroup = \markup {
+	\score{
+		 \new PianoStaff  <<
+                    \set PianoStaff.instrumentName= \markup {
+				\center-column {"6 Timpani" "(two players)"}
+			}
+			\new Staff { \set Staff.instrumentName = "I"
+				\clef bass
+				\time 3/2
+				\cadenzaOn g,2 d2 bes,2
+			}
+			\new Staff { \set Staff.instrumentName = "II"
+				\clef bass
+				\time 3/2
+				\cadenzaOn c2 es2 a,2
+			}
+		>>
+
+	\layout {
+		\context {
+			\Staff \remove "Time_signature_engraver"
+		}
+		line-width=2.5\cm
+                indent=1\cm
+		%margin-left=0\cm
+	} %layout
+  } %score
+} %markup
+
+        #(set-global-staff-size 15.5)
+	% #(set-default-paper-size "a3")
+
+   \paper {  ragged-right=##f
+             system-count=1
+             }
+
+
+%\header { title =  "I. Mars, the Bringer of War"
+% title = \markup { \fontsize #6 { \smallCaps {  "I. Mars, " } "the Bringer of War" } }
+	%	copyright = "Francisco Vila, sobre un trabajo de Guadalupe Cuevas Piñero"
+%}
+
+
+\score {
+    \new StaffGroup <<   %\tempo "Allegro"       % main
+	\time 5/4
+
+    \new PianoStaff \with { systemStartDelimiter=#'SystemStartBar } <<  %timpani
+         \set PianoStaff.instrumentName =
+		\markup {
+			\incipitTimpaniGroup
+		}
+	    \new Staff  {  \timpaniI }
+	    \new Staff  { \timpaniII } >>
+
+    \new RhythmicStaff		%gong
+	{ \set Staff.instrumentName = "Gong"
+	\gong }
+
+>> %main
+   \layout { indent=3.5\cm
+	   \context { \Staff
+%                        \override InstrumentName #'padding = #-50
+%              \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3)
+%	       \override instrumentName #'font-size = #8.0
+	   }
+   }%layout
+
+} %score
+
+\end{lilypond}
+
+\subsection{Preparación del incipit: partitura dentro de un marcado}
+
+A veces se denomina ``incipit'' a una pequeña partitura previa al
+sistema que contiene la música real, y que tiene una finalidad
+informativa.  La parte de timbales contiene un incipit que
+prepararemos como una partitura normal y luego la insertaremos
+dentro del nombre del sistema de piano de los timbales.
+
+Haremos un elemento de marcado que contendrá una partitura
+completa en la forma de un bloque \verb+\score+, y que deberá
+incluir un bloque \verb+\layout{}+. Este elemento de marcado se
+asignará a una variable que luego podrá utilizarse en cualquier
+lugar donde se admita un marcado.  Aquí vemos un ejemplo sencillo:
+
+\begin[verbatim]{lilypond}
+partiturita=\markup{
+  \score {
+    \new RhythmicStaff { \time 2/4
+      \times 2/3 { c'4 c'8 }
+    }
+    \layout{
+      \context {
+        \RhythmicStaff \remove "Time_signature_engraver"
+      }
+    }
+  }
+}
+
+\new Staff \relative c' {
+  c8_\partiturita c c c c c c c
+}
+\end{lilypond}
+
+\subsection{Cadenza}
+
+El fragmento del incipit aparece sin compasear, lo haremos de la
+siguiente manera:
+
+\begin[verbatim,relative=2]{lilypond}
+\new Staff { \cadenzaOn c2 d e }
+\end{lilypond}
+
+Además no tiene indicación de compás, para ello hay que eliminar el
+grabador correspondiente del contexto de Staff: véase el apartado
+\ref{consists} de la página \pageref{consists}.
+
+\subsection{Columnas en el marcado}
+
+Son muy numerosas las instrucciones de marcado y es recomendable
+consultar la documentación oficial para aprender a usarlas.  La
+instrucción de marcado que utilizaremos para el nombre de dos
+líneas del sistema de timbales (en sustitución de una simple
+línea) es \verb+\center-column+.  Esta instrucción admite un
+bloque con varias expresiones textuales, que colocará centradas y
+superpuestas:
+
+\begin[verbatim]{lilypond}
+\markup{
+  \center-column {"6 Timpani" "(two players)"}
+}
+
+\end{lilypond}
+
+Después emplearemos este marcado como el valor de la propiedad
+\verb+PianoStaff.instrumentName+ de nuestra pequeña partitura.
+
+Así pues, tenemos un marcado con dos líneas que es el nombre del
+sistema de piano de una pequeña partitura, que a su vez está
+dentro de un marcado que es el nombre del sistema de piano de los
+timbales de la partitura grande.
+
+\subsection{Figuras escaladas}
+
+El escalado de valores se efectúa gracias al asterisco como
+símbolo de multiplicación.  De esta forma podemos escribir una
+figura con el aspecto de un valor dado, pero con la duración
+reducida o ampliada según un factor.
+
+Lo usaremos para rellenar compases de 5/4 con silencios de compás
+completo, que se escriben mediante la letra R~mayúscula.  Si además
+utilizamos otro factor de multiplicación entero, aparecerá
+repetido el compás de silencio.
+
+\begin[verbatim,relative=2]{lilypond}
+\time 5/4 R1*5/4 c2. c2 R1*5/4*3
+\end{lilypond}
+
+
+\subsection{Repeticiones de trémolo}
+
+Los trémolos, usados en el golpe repetido del gong, se expresan
+mediante el símbolo de dos puntos seguido del valor de repetición.
+
+\begin[verbatim,relative=2]{lilypond}
+c2:8 c2:16 c2:32
+\end{lilypond}
+
+
+\subsection{Notas}
+
+\begin{itemize}
+\item Consulte en el apartado \ref{rhythmicstaff} de la página
+\pageref{rhythmicstaff} la forma de crear un pentagrama de una sola
+línea para percusión.
+
+\item Puede probar muchas combinaciones para las variables del
+  bloque \verb+\layout+ de la partitura del incipit, pero éstas
+  pueden servir de orientación:
+
+\begin{verbatim}
+  line-width=2.5\cm
+  indent=1\cm
+\end{verbatim}
+
+\item Suprimiremos las llaves del sistema de piano de los timbales
+  con la asignación
+
+\begin{verbatim}
+\new PianoStaff \with { systemStartDelimiter=#'SystemStartBar }
+  << ...
+\end{verbatim}
+
+
+\end{itemize}
