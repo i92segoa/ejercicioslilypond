@@ -20,9 +20,10 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-05-barras-beethoven5th.tex				\
 	apuntes-06-ligaduras-bach-suite1-cello.tex			\
 	apuntes-07-repeticiones-beethoven-9thsym.tex			\
-	apuntes-08-contextos-simultanea.tex apuntes-09-polifonia.tex	\
-	apuntes-10-piano-tresillos.tex apuntes-11-canciones.tex		\
-	apuntes-12-acordes.tex apuntes-13-variables.tex			\
+	apuntes-08-contextos-simultanea.tex				\
+	apuntes-09-polifonia.tex apuntes-10-piano-tresillos.tex		\
+	apuntes-11-canciones.tex apuntes-12-acordes.tex			\
+	apuntes-13-variables.tex					\
 	apuntes-14-articulaciones-digitaciones.tex			\
 	apuntes-15-reguladores-markup.tex apuntes-16-adornos.tex	\
 	apuntes-17-set.tex apuntes-18-emperador.tex			\
@@ -30,7 +31,7 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-21-midi.tex apuntes-22-trucha.tex			\
 	apuntes-23-despertad.tex apuntes-24-book.tex			\
 	apuntes-25-mendelssohn.tex apuntes-26-margenes.tex		\
-	apuntes-27-holst-1.tex
+	apuntes-27-holst-1.tex apuntes-28-holst-2.tex
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex

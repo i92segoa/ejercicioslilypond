@@ -1,4 +1,10 @@
 \version "2.13.0"
+
+juntaPentagrama = \with { \override VerticalAxisGroup #'next-staff-spacing =
+                   #'((space . 6) (padding . 0)) 
+		   }
+
+
                piccolo = { R1*5/4*5 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,8 +47,18 @@
 
 		bassoonsIII =  \relative  d, {
 			\clef bass
-			s1*5/4 s1*5/4 R1*5/4
-			<< R1*5/4 { s1 s8 s8_"III" \mp } >> des2. \>  ~ des2 \! \laissezVibrer % ~ des
+			s1*5/4 s1*5/4 R1*5/4*2
+			%  \once \override Voice.DynamicText #'extra-offset = #'(-2.9 . 2.9 ) 
+			\override TextScript #'whiteout = ##t
+			\override DynamicText #'whiteout = ##t
+			\once \override DynamicText #'X-offset = #-4.5
+			\once \override DynamicText #'extra-offset = #'(-0.1 . 2.3 )
+			\once \override TextScript #'outside-staff-priority = ##f
+			\once \override TextScript #'X-offset = #-4
+			des2.
+			-"III"
+			 \mp
+			 \>  ~ des2 \! \laissezVibrer % ~ des
 		}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,7 +161,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
        violinI = \relative g {
-	\times 2/3 { g8\p ^\markup { "col legno" } g g }  g4 g g8 g g4
+	\once \override DynamicText #'extra-offset = #'(-0.8 . 1 )
+	\once \override DynamicText #'X-offset = #-2.5
+	\times 2/3 { g8\p ^"col legno" g g }  g4 g g8 g g4
 	\times 2/3 { g8 g g } g4 g g8 g g4
 	\times 2/3 { g8 g g } g4 g g8 g g4
 	\times 2/3 { g8 \< g g } g4 g g8 g g4\!
@@ -154,7 +172,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	violinII = \relative g {
-		\times 2/3 { g8\p ^\markup { "col legno" } g g }  g4 g g8 g g4
+		\once \override DynamicText #'extra-offset = #'(-0.8 . 1 )
+		\once \override DynamicText #'X-offset = #-2.5
+		\times 2/3 { g8 \p ^"col legno" g g }  g4 g g8 g g4
 		\times 2/3 { g8 g g } g4 g g8 g g4
 		\times 2/3 { g8 g g } g4 g g8 g g4
 		\times 2/3 { g8 \< g g } g4 g g8 g g4\!
@@ -163,6 +183,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	viola = \relative g { \clef alto
+	\once \override DynamicText #'extra-offset = #'(-0.8 . 1 )
+	\once \override DynamicText #'X-offset = #-2.5
 	\times 2/3 { g8\p ^"col legno" g g }  g4 g g8 g g4
 	\times 2/3 { g8 g g } g4 g g8 g g4
 	\times 2/3 { g8 g g } g4 g g8 g g4
@@ -172,6 +194,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
        violonchelo = \relative g, { \clef bass
+       	\once \override DynamicText #'extra-offset = #'(-0.8 . 1 )
+	\once \override DynamicText #'X-offset = #-2.5
 	\times 2/3 { g8\p ^"col legno" g g }  g4 g g8 g g4
 	\times 2/3 { g8 g g } g4 g g8 g g4
 	\times 2/3 { g8 g g } g4 g g8 g g4
@@ -238,18 +262,19 @@ incipitTimpaniGroup = \markup {
 
     % piccolos, flutes
     \new PianoStaff <<
-	\new Staff  \with { instrumentName = "2 Piccolos" } { \piccolo }
-	\new Staff  \with { instrumentName = "2 Flutes"   } { \flute } >>
+	\new Staff  \with { instrumentName = "2 Piccolos" \juntaPentagrama } { \piccolo }
+	\new Staff  \with { instrumentName = "2 Flutes"   \juntaPentagrama } { \flute } >>
 
     % oboes
     \new PianoStaff  <<
-	\new Staff  \with { instrumentName = "2 Oboes" } { \oboe }
-	\new Staff  \with { instrumentName = "English Horn" } { \horn }
+	\new Staff  \with { instrumentName = "2 Oboes" \juntaPentagrama } { \oboe }
+	\new Staff  \with { instrumentName = "English Horn" \juntaPentagrama } { \horn }
 	\new Staff  \with { instrumentName = "Bass Oboe" }  { \bassoboe } >>
 
     %clarinets
     \new PianoStaff  <<
-	\new Staff  \with { instrumentName = \markup { \line { "3 Clarinets in B" \smaller \flat } } }
+	\new Staff  \with { instrumentName = \markup { \line { "3 Clarinets in B" \smaller \flat } } 
+	     	    	    \juntaPentagrama }
                     { \clarinetes }
 	\new Staff  \with { instrumentName = \markup { \line { "Bass Clarinet in B" \small \flat } } }
                     { \bassclarinet } >>
@@ -285,7 +310,9 @@ incipitTimpaniGroup = \markup {
     \new PianoStaff \with { systemStartDelimiter=#'SystemStartBar
     	 	    	    instrumentName = \markup { \incipitTimpaniGroup } } <<
                     \new Staff  { \timpaniI }
-	            \new Staff  { \timpaniII } >>
+	            \new Staff \with { \override VerticalAxisGroup #'next-staff-spacing =
+                   #'((space . 6) (padding . 0)) }
+		     { \timpaniII } >>
 
     %side drum
     \new RhythmicStaff
@@ -370,7 +397,7 @@ incipitTimpaniGroup = \markup {
 
 
 \paper { ragged-right=##f
-         ragged-last-bottom=##f
+%         ragged-last-bottom=##f
 	 page-count=1
 	 system-count=1
 }
