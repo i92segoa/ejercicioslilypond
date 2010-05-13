@@ -31,7 +31,8 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-21-midi.tex apuntes-22-trucha.tex			\
 	apuntes-23-despertad.tex apuntes-24-book.tex			\
 	apuntes-25-mendelssohn.tex apuntes-26-margenes.tex		\
-	apuntes-27-holst-1.tex apuntes-28-holst-2.tex
+	apuntes-27-holst-1.tex apuntes-28-holst-2.tex			\
+	apuntes-29-espanol.tex
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex
