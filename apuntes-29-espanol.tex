@@ -1,0 +1,162 @@
+\section{Nombres de las notas en español}
+
+
+\subsection{Modelo}
+
+Es posible escribir la música en el lenguaje de LilyPond con los
+nombres de las notas en español.  Sin embargo, no lo hemos visto
+antes por las siguientes razones:
+
+\begin{itemize}
+\item La comunidad de usuarios de LilyPond a nivel global utiliza
+  los nombres predeterminados (holandeses) principalmente.
+\item Es bueno acostumbrarse a leer y escribir con soltura la
+  música en el idioma en que están escritos la mayoría de los
+  documentos que circulan entre usuarios de cualquier
+  nacionalidad.
+\item No es posible copiar y pegar directamente los ejemplos de un
+  idioma dentro de un documento que utiliza otro idioma, y no se
+  pueden mezclar fácilmente varios idiomas en el mismo documento.
+\end{itemize}
+
+A pesar de ello, es posible que algunos usuarios prefieran
+escribir los nombres de las notas en su propio idioma, y por ello
+lo mencionamos aquí.  El ejemplo que presentamos es el final del
+primero de los Intermezzi para piano Op.4 de Schumann y contiene
+gran cantidad de expresiones, digitaciones y articulaciones,
+polifonía en el pentagrama inferior, notas de pentagrama cruzado y
+reguladores textuales; proponemos que se tipografíe utilizando
+nombres de nota en español.
+
+\bigskip
+
+% Aumentar la separación entre sistemas
+\def\betweenLilyPondSystem#1{\vspace{0.4cm}\linebreak}
+
+\begin[staffsize=15]{lilypond}
+\version "2.11.54"
+
+% Schumann, Op.4, I, 11 last measures
+
+%#(set-global-staff-size 18)
+
+rone = \relative c { \override Voice.Fingering #'avoid-slur = #'inside
+\oneVoice R2.
+R2.
+\clef bass \voiceOne cis4(
+\once \override DynamicText #'extra-offset = #'(-1.5 . -4.5)
+d'^\sf <cis-4>8.. b32) \clef treble
+<ais-1-2>4( <g'-5 e-3>\sf  <fis-4 d-1>8.. <e-5 cis-3>32
+<d b>8.. <cis a!>32 \clef bass <b -3-5>4 b \clef treble
+\change Staff = "LH"
+<a e cis>8..)^\ff ( <a d,>32 <a e>8)
+\change Staff = "RH"
+<a b>_. \p <cis a>_. <d a>_.
+<e b>8_.  <fis cis>_.\< <gis d>_. <a e>_. <b fis>_. <b e,>_.
+\once \override  DynamicText #'whiteout = ##t
+<cis a cis,>8.._([ \ff -4 <d a d,>32 <e a, e>8) <b fis>_. \p <cis gis>_. <d a>_. ]
+\oneVoice %\crescTextCresc
+<e b>8-.  \cresc <fis cis>-. <gis d>-. <a e>-. <b fis>-. <b e,>-.
+\once \override  DynamicText #'whiteout = ##t
+<cis-4 a cis,>8..  \ff ( [ <d a d,>32 <e a, e>8) <gis, d>_> ( <a cis,>) <gis d>_> ( ]
+<a cis,>8-.) r <a, cis,>4._> r8 \fermata \bar"|."
+}
+
+rtwo = \relative c { s2. s2. s4 fis g <fis_1>  s4 s
+s4 gis8.. <a fis>32 <gis e>8.. <fis d!>32 }
+
+lone = \relative c, {  cis4 \f (
+\once \override DynamicText #'extra-offset = #'(-0.5 . 4)
+d' \sf cis8.. b32
+\once \override NoteColumn #'force-hshift = #1.5
+<a>8.. gis32 fis4 eis)
+fis8..( e!32 d4 e
+fis8.. gis32 ais4 b8.. cis32
+d8.. dis32 e8-.) r \oneVoice e,4
+\stemDown
+\override Staff.SustainPedalLineSpanner #'Y-extent = #'(0 . 0)
+\override Staff.SustainPedalLineSpanner #'staff-padding = #'10
+<a a,>8.. (\sustainOn <b b,>32 <cis cis,>8 ) \sustainOff <d d,>-. <e e,>-. <fis fis,>-.
+\stemNeutral <gis gis,>8-. <a a,>-. <a b,>-. <a cis,>-. <a d,>-. <gis e>-.
+\override Staff.SustainPedalLineSpanner #'staff-padding = #'6
+<a a,>8.. ( [ \sustainOn <b b,>32 <cis cis,>8 ) \sustainOff <d d,>-. <e e,>-. <fis fis,>-. ] \clef treble
+<gis gis,>-. <a a,>-. <a b,>-. <a cis,>-. <a d,>-. <gis e>-.
+<a a,>8.. ( [ \sustainOn <b b,>32 <cis cis,>8 ) e,( \sustainOff <a a,>) e( ]
+<a a,>8-. ) \sustainOn r \clef bass <e,, a,>4. r8 \sustainOff \fermata
+
+}
+
+ltwo = \relative c, { R2. cis4(^\markup{\italic "R."} d'^\sf cis8.. b32
+a4) a g8.. d'32
+cis4.. fis16~ fis4~
+fis4
+}
+
+common = { \time 3/4 \key a \major }
+
+
+\new PianoStaff \with { instrumentName="Piano" }<<
+\new Staff = "RH" { \common << {\rone} \\ {\rtwo} >>  }
+\new Staff = "LH" { \common \clef bass << {\ltwo} \\ {\lone} >> }
+>>
+
+\paper {  system-count = 2 
+line-width=16.5\cm
+indent=1\cm
+}
+
+\end{lilypond}
+
+
+\subsection{Inclusión de archivos de inicio predeterminados}
+
+Ya hemos visto (consulte el apartado \ref{include} en la
+pág. \pageref{include}) cómo se incluyen archivos externos en el
+documento actual.  Normalmente es necesario especificar la ruta
+del archivo si éste no se encuentra en el mismo directorio.  Son
+una excepción a esta regla los archivos de inicio predeterminados,
+que se leen directamente del directorio de instalación del
+programa, y para los que no hay necesidad de especificar una ruta
+especial.  Estos archivos contienen ajustes diversos y entre ellos
+se encuentran los archivos de idioma: después de incluirlos se
+produce un cambio en las definiciones de los nombres de nota de
+tal forma que podemos elegir el idioma en que se escribe la
+música.  Veamos un ejemplo para el idioma español:
+
+\begin[verbatim]{lilypond}
+\include "espanol.ly"
+\new Staff \relative do' { \cadenzaOn
+  do8[ dos reb re res mib mi fa fas solb sol sols lab la las sib si do]
+}
+\end{lilypond}
+
+Los nombres de las notas con sostenido se forman añadiendo
+\verb+'s'+ y los bemoles añadiendo \verb+'b'+.  Debemos recordar
+que en todo lugar en que aparezca un nombre de nota, ya sea dentro
+de una instrucción \verb+\relative+, \verb+\transpose+ o
+\verb+\key+, entre otras, debe escribirse en el idoma establecido.
+
+
+\subsection{Pedal de piano}
+
+Las instrucciones \verb+\sustainOn+ y \verb+\sustainOff+ producen
+las marcas clásicas del pedal derecho del piano:
+
+\begin[verbatim]{lilypond}
+\new PianoStaff <<
+  \new Staff { R1*2 }
+  \new Staff { \clef bass c1 ~ \sustainOn c \sustainOff }
+>>
+\end{lilypond}
+
+
+\subsection{Crescendo de texto}
+
+A partir de la versión 2.13 de LilyPond disponemos de
+instrucciones para tipografiar reguladores de texto, como puede
+verse aquí:
+
+\begin[verbatim,relative=1]{lilypond}
+c16  \p \cresc c c c c c c c c c c c c c c c
+c \f \dim c c c c c c c c c c c c c c c \p
+\end{lilypond}
