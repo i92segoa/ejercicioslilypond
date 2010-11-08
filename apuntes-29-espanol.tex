@@ -108,23 +108,15 @@ indent=1\cm
 \end{lilypond}
 
 
-\subsection{Inclusión de archivos de inicio predeterminados}
+\subsection{Selección del idioma de las notas}
 
-Ya hemos visto (consulte el apartado \ref{include} en la
-pág. \pageref{include}) cómo se incluyen archivos externos en el
-documento actual.  Normalmente es necesario especificar la ruta
-del archivo si éste no se encuentra en el mismo directorio.  Son
-una excepción a esta regla los archivos de inicio predeterminados,
-que se leen directamente del directorio de instalación del
-programa, y para los que no hay necesidad de especificar una ruta
-especial.  Estos archivos contienen ajustes diversos y entre ellos
-se encuentran los archivos de idioma: después de incluirlos se
-produce un cambio en las definiciones de los nombres de nota de
-tal forma que podemos elegir el idioma en que se escribe la
-música.  Veamos un ejemplo para el idioma español:
+La instrucción \verb+\language+ seguida de una cadena específica que
+denota el idioma, permite escoger el idioma en que se escriben los
+nombres de las notas.  En nuestro caso, la cadena es ``espanol'' con
+``n'' en lugar de ``ñ'', como se ve en el ejemplo siguiente:
 
 \begin[verbatim]{lilypond}
-\include "espanol.ly"
+\language "espanol"
 \new Staff \relative do' { \cadenzaOn
   do8[ dos reb re res mib mi fa fas solb sol sols lab la las sib si do]
 }
