@@ -1,0 +1,15 @@
+Not really an INSTALL file as there is nothing to install. This is a
+LaTeX document and you can render it to PDF by running
+
+  make
+
+Currently it depends on the following software:
+
+  make, to manage dependencies
+  LilyPond, to typeset the music
+  LaTeX, to typeset the document
+  pdftk, to split an example into four pages
+
+I am aware that file names are in Spanish, but it is a document in
+Spanish, anyway.  If you'd like to maintain a translation, we could
+host it in the same project.
