@@ -1,7 +1,7 @@
 \version "2.13.0"
 
-juntaPentagrama = \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0)) 
+juntaPentagrama = \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0)) 
 		   }
 
 
@@ -310,35 +310,29 @@ incipitTimpaniGroup = \markup {
     \new PianoStaff \with { systemStartDelimiter=#'SystemStartBar
     	 	    	    instrumentName = \markup { \incipitTimpaniGroup } } <<
                     \new Staff  { \timpaniI }
-	            \new Staff \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0)) }
+	            \new Staff \with { \juntaPentagrama }
 		     { \timpaniII } >>
 
     %side drum
     \new RhythmicStaff
-         \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0))
+         \with { \juntaPentagrama
                  instrumentName = "Side Drum" }
                { \side }
 
     % cymbals
     \new RhythmicStaff
-         \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0))
+         \with { \juntaPentagrama
                  instrumentName = "Cymbals" }
 	       { \cymbals  }
 
     %bass drum
     \new RhythmicStaff
-         \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0))
+         \with { \juntaPentagrama
                  instrumentName = "Bass Drum" }
 	{ \drum }
 
     %gong
-    \new RhythmicStaff \with {
-      \override VerticalAxisGroup #'next-staff-spacing =
-        #'((space . 6) (padding . 0))
+    \new RhythmicStaff \with { \juntaPentagrama
       instrumentName = "Gong" }
     { \gong }
 
@@ -379,12 +373,12 @@ incipitTimpaniGroup = \markup {
 
    \layout { indent=2.5\cm %era 4 para a3
 	   \context { \Staff
-%               \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3)
+%               \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3) % obsoleto
 %	       \override instrumentName #'font-size = #8.0
 	    %  \override InstrumentName #'padding = #-4
 	   }
 	      \context { \Score
-%               \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3)
+%               \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3) % obsoleto
 %	       \override instrumentName #'font-size = #8.0
 	      \override InstrumentName #'padding = #-2 %-2 para a3
 	      \override StaffSymbol #'thickness = #(magstep -3)

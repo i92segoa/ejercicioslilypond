@@ -32,8 +32,8 @@ partitura orquestal a tamaño reducido.
 
 \version "2.13.0"
 
-juntaPentagrama = \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0)) 
+juntaPentagrama = \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0)) 
 		   }
 
 
@@ -325,27 +325,25 @@ de sentido opuesto, y el aspecto predeterminado en segundo lugar.
 \subsection{Separación de pautas}
 
 El espaciado vertical es un asunto delicado.  El ajuste de la
-separación entre cada pauta y la siguiente se hace también
-mediante sobreescritura de propiedades, pero desde la versión de
-desarrollo 2.13 de LilyPond los objetos y propiedades han cambiado
-de nombre y la sobreescritura tiene otro formato.  En cualquier
-caso aquí tenemos las que valdrán para la futura versión estable
-2.14:
+separación entre cada pauta y la siguiente se hace también mediante
+sobreescritura de propiedades.  Aquí tenemos las que valen para la
+última versión en el momento de escribir esto, la
+\emph{estable}\ 2.14:
 
 \medskip
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Staff & VerticalAxisGroup  & 'next-staff-spacing & \#((space . 6) (padding . 0)) \\
+Staff & VerticalAxisGroup  & 'staff-staff-spacing & \#((basic-distance . 6) (padding . 0)) \\
 \end{tabular}
 \medskip
 
 Esta sobreescritura se puede almacenar en una variable para utilizarla
-repetidas veces (sólo para 2.13):
+repetidas veces:
 
 \begin[verbatim]{lilypond}
 juntaPauta = \with {
-                    \override VerticalAxisGroup #'next-staff-spacing =
-                      #'((space . 3) (padding . 0))
+                    \override VerticalAxisGroup #'staff-staff-spacing =
+                      #'((basic-distance . 3) (padding . 0))
                   }
 <<
   \new RhythmicStaff
