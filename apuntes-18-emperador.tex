@@ -1,16 +1,16 @@
-\section{Polifonía compleja: la ``Canción del Emperador''.}
+\section{Polifonía compleja: \emph{Canción del Emperador}.}
 
 
 \subsection{Modelo}
 
 Esta versión para guitarra de la ``Canción del Emperador'' de Luis de
-Narváez, sobre el tema ``Mille Regretz'', es una transcripción de las
-tablaturas originales y presenta una polifonía enrevesada porque todas
-las voces están contenidas en un solo pentagrama.  Para este ejemplo
-hará falta una cuidadosa planificación y el empleo de silencios
-ocultos.  Además contiene indicaciones del número de cuerda, silencios
-con altura definida y otros ajustes menores.  Por sencillez, el resto
-de los ajustes necesarios se omiten por el momento.
+Narváez, sobre el tema \emph{Mille Regretz}, es una transcripción de
+las tablaturas originales y presenta una polifonía enrevesada porque
+todas las voces están contenidas en un solo pentagrama.  Para este
+ejemplo hará falta una cuidadosa planificación y el empleo de
+silencios ocultos.  Además contiene indicaciones del número de cuerda,
+silencios con altura definida y otros ajustes menores.  Por sencillez,
+el resto de los ajustes necesarios se omiten por el momento.
 
 \bigskip
 
@@ -22,7 +22,7 @@ de los ajustes necesarios se omiten por el momento.
 	composer= "Luys de Narváez"
 	opus =  "(1530-1550)"
 }
-\version "2.12.0"
+\version "2.15.20"
 
 cantus = \relative c'{
 	<b fis' fis\4 b>1
@@ -160,12 +160,12 @@ vozDos = \relative c' { r2 c8 d e f }
 
 
 Para la orientación adecuada de las plicas y el desplazamiento de las
-voces secundarias, tendremos en cuenta que las dos primeras voces
-tienen las plicas en direcciones opuestas; las voces tercera y cuarta,
-además, llevan un desplazamiento a la derecha.  El mismo efecto puede
-conseguirse en cualquier momento gracias a las instrucciones
-\verb+\voiceOne+, \verb+\voiceTwo+, \verb+\voiceThree+, y
-\verb+\voiceFour+.
+voces secundarias, tendremos en cuenta que las voces 1 y 3 tienen las
+plicas en direcciones opuestas a las voces 2 y 4; las voces tercera y
+cuarta, además, llevan un desplazamiento a la derecha.  El mismo
+efecto puede conseguirse en cualquier momento gracias a las
+instrucciones \verb+\voiceOne+, \verb+\voiceTwo+, \verb+\voiceThree+,
+y \verb+\voiceFour+.
 
 En el siguiente ejemplo utilizamos \verb+\voiceOne+ y
 \verb+\voiceThree+ para que las dos voces tengan las plicas hacia
@@ -197,7 +197,7 @@ En ocasiones conviene insertar un cambio de línea manual: lo hacemos
 con \verb+\break+, aunque sólo se producirá el salto si en el momento
 actual es posible saltar.  Lo podemos comprobar aquí:
 
-\begin[relative=2,verbatim,staffsize=17.5]{lilypond}
+\begin[relative=2,verbatim,staffsize=17.5,line-width=6\cm]{lilypond}
 c4 c c \break c
 c1 \break
 c1 c

@@ -1,4 +1,4 @@
-\section{Márgenes. Frère Jacques}
+\section{Márgenes. \emph{Frère Jacques}}
 
 
 \subsection{Modelo}
@@ -119,9 +119,9 @@ dentro de la expresión que contiene la letra, o dentro de un bloque
 \item Pruebe cómo suena el canon con este bloque de ejemplo: \footnotesize
 \begin{verbatim}
 \score { << \new Staff \with { midiInstrument="trumpet" }{ \tempo 4=150 \canon }
-            \new Staff \with { midiInstrument="muted trumpet" }{  R1*2 \canon  }
-            \new Staff \with { midiInstrument="accordion" }{ R1*4 \canon }
-            \new Staff \with { midiInstrument="choir aahs" }{  R1*6 \canon  }
+            \new Staff \with { midiInstrument="muted trumpet" }  { R1*2 \canon }
+            \new Staff \with { midiInstrument="accordion" }      { R1*4 \canon }
+            \new Staff \with { midiInstrument="choir aahs" }     { R1*6 \canon }
 	>> \midi{} \layout{} }
 \end{verbatim}
 \normalsize

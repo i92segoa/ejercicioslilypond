@@ -1,27 +1,26 @@
-\section{Sobreescritura de propiedades: Marte, de Holst (II)}
+\section{Sobreescritura de propiedades: \emph{Marte}, de Holst (II)}
 
 
 \subsection{Modelo}
 
-Para completar el ejemplo orquestal, hoy aprenderemos a mover
-objetos para ajustar su posición; en el caso que nos ocupa, esto
-ahorra espacio y permite un tamaño de los pentagramas algo mayor,
-sin que se produzcan colisiones entre los objetos de los distintos
-pentagramas, y todo ello de forma que la música quepa en una sola
-página.  En el título usaremos el efecto \emph{smallcaps} de
-mayúsculas pequeñas para ``Mars''.
+Para completar el ejemplo orquestal, hoy aprenderemos a mover objetos
+para ajustar su posición; en el caso que nos ocupa, esto ahorra
+espacio y permite un tamaño de los pentagramas algo mayor, sin que se
+produzcan colisiones entre los objetos de los distintos pentagramas, y
+todo ello de forma que la música quepa en una sola página.  En el
+título usaremos el efecto \emph{smallcaps} de mayúsculas pequeñas para
+``Mars''.
 
 En el fragmento aparecen los pentagramas de los fagotes y el
-contrafagot, con el matiz \emph{mezzopiano} y la indicación
-``III'' del tercer fagot desplazadas a la izquierda y hacia
-arriba.  Se ha enmascarado en blanco el pentagrama detrás de estas
-indicaciones para evitar la superposición.  Las pautas de
-percusión se han acercado entre sí para ahorrar espacio. La
-indicación \emph{piano} de los violines está también desplazada
-para hacer sitio al texto \emph{col legno} del siguiente
-pentagrama.  Para finalizar, hemos reducido el grosor de las
-líneas de pauta para suavizar el aspecto demasiado negro de una
-partitura orquestal a tamaño reducido.
+contrafagot, con el matiz \emph{mezzopiano} y la indicación ``III''
+del tercer fagot desplazadas a la izquierda y hacia arriba.  Se ha
+enmascarado en blanco el pentagrama detrás de estas indicaciones para
+evitar la superposición.  Las pautas de percusión se han acercado
+entre sí para ahorrar espacio. La indicación \emph{piano} de los
+violines está también desplazada para hacer sitio al texto \emph{col
+  legno} del siguiente pentagrama.  Para finalizar, hemos reducido el
+grosor de las líneas de pauta para suavizar el aspecto demasiado negro
+de una partitura orquestal a tamaño reducido.
 
 \bigskip
 
@@ -29,148 +28,126 @@ partitura orquestal a tamaño reducido.
 \def\betweenLilyPondSystem#1{\vspace{0.4cm}\linebreak}
 
 \begin[line-width=13cm]{lilypond}
+\version "2.15.20"
 
-\version "2.13.0"
+juntaPentagrama = \with {
+  \override VerticalAxisGroup #'staff-staff-spacing =
+  #'((padding . 1))
+}
 
-juntaPentagrama = \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0)) 
-		   }
+bassoonsI =
+\relative  g, {
+  \clef bass
+  \oneVoice R1*5/4 R1*5/4
+  \voiceOne g2. ^"I II a2" ~ ( \p  g2 ~
+  g2. ^\< d'2 ) \!  des2. ^\> ~ des2 \! \laissezVibrer % ~ des
+}
 
+bassoonsIII =
+\relative  d, {
+  \clef bass
+  s1*5/4 s1*5/4 R1*5/4*2
+  %  \once \override Voice.DynamicText #'extra-offset = #'(-2.9 . 2.9)
+  \override TextScript #'whiteout = ##t
+  \override DynamicText #'whiteout = ##t
+  \once \override DynamicText #'X-offset = #-4.5
+  \once \override DynamicText #'extra-offset = #'(-0.1 . 2.3)
+  \once \override TextScript #'outside-staff-priority = ##f
+  \once \override TextScript #'X-offset = #-4
+  des2.
+  -"III"
+  \mp
+  \>  ~ des2 \! \laissezVibrer % ~ des
+}
 
-		bassoonsI =  \relative  g, {
-			\clef bass
-			\oneVoice R1*5/4 R1*5/4
-			\voiceOne g2. ^"I II a2" ~ ( \p  g2 ~
-			g2. ^\< d'2 ) \!  des2. ^\> ~ des2 \! \laissezVibrer % ~ des
-		}
+doble = \relative  g, {
+  \key c \major
+  \clef bass
+  R1*5/4 R1*5/4
+  g2.\p ~ ( g2 ~ g2. \< d'2 \! ) des2. \> ~ des2 \! \laissezVibrer % ~ des
+}
 
-		bassoonsIII =  \relative  d, {
-			\clef bass
-			s1*5/4 s1*5/4 R1*5/4*2
-			%  \once \override Voice.DynamicText #'extra-offset = #'(-2.9 . 2.9) 
-			\override TextScript #'whiteout = ##t
-			\override DynamicText #'whiteout = ##t
-			\once \override DynamicText #'X-offset = #-4.5
-			\once \override DynamicText #'extra-offset = #'(-0.1 . 2.3)
-			\once \override TextScript #'outside-staff-priority = ##f
-			\once \override TextScript #'X-offset = #-4
-			des2.
-			-"III"
-			 \mp
-			 \>  ~ des2 \! \laissezVibrer % ~ des
-		}
+side  = { R1*5/4*5 }
+cymbals  = { R1*5/4*5 }
+drum  = { R1*5/4*5 }
 
+violinI = \relative g {
+  \once \override DynamicText #'extra-offset = #'(-0.8 . 1)
+  \once \override DynamicText #'X-offset = #-2.5
+  \times 2/3 { g8\p ^"col legno" g g }  g4 g g8 g g4
+  \times 2/3 { g8 g g } g4 g g8 g g4
+  \times 2/3 { g8 g g } g4 g g8 g g4
+  \times 2/3 { g8 \< g g } g4 g g8 g g4\!
+  \times 2/3 { g8 \> g g } g4 g g8 g g4\! }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-             doble = \relative  g, { \key c \major
-			\clef bass
-			R1*5/4 R1*5/4
-			g2.\p ~ ( g2 ~ g2. \< d'2 \! ) des2. \> ~ des2 \! \laissezVibrer % ~ des
-	     }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	side  = { R1*5/4*5 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	cymbals  = { R1*5/4*5 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	drum  = { R1*5/4*5 }
-
-
-       violinI = \relative g {
-	\once \override DynamicText #'extra-offset = #'(-0.8 . 1)
-	\once \override DynamicText #'X-offset = #-2.5
-	\times 2/3 { g8\p ^"col legno" g g }  g4 g g8 g g4
-	\times 2/3 { g8 g g } g4 g g8 g g4
-	\times 2/3 { g8 g g } g4 g g8 g g4
-	\times 2/3 { g8 \< g g } g4 g g8 g g4\!
-	\times 2/3 { g8 \> g g } g4 g g8 g g4\! }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-	violinII = \relative g {
-		\once \override DynamicText #'extra-offset = #'(-0.8 . 1)
-		\once \override DynamicText #'X-offset = #-2.5
-		\times 2/3 { g8 \p ^"col legno" g g }  g4 g g8 g g4
-		\times 2/3 { g8 g g } g4 g g8 g g4
-		\times 2/3 { g8 g g } g4 g g8 g g4
-		\times 2/3 { g8 \< g g } g4 g g8 g g4\!
-		\times 2/3 { g8 \> g g } g4 g g8 g g4\! }
+violinII = \relative g {
+  \once \override DynamicText #'extra-offset = #'(-0.8 . 1)
+  \once \override DynamicText #'X-offset = #-2.5
+  \times 2/3 { g8 \p ^"col legno" g g }  g4 g g8 g g4
+  \times 2/3 { g8 g g } g4 g g8 g g4
+  \times 2/3 { g8 g g } g4 g g8 g g4
+  \times 2/3 { g8 \< g g } g4 g g8 g g4\!
+  \times 2/3 { g8 \> g g } g4 g g8 g g4\! }
 
 
-        #(set-global-staff-size 10.5)  % antes 15.5 para a3
-	#(set-default-paper-size "a4") % antes a3
+#(set-global-staff-size 10.5)  % antes 15.5 para a3
+#(set-default-paper-size "a4") % antes a3
 
 \header {
-	title = \markup { \fontsize #6 { \smallCaps {  "I. Mars, " } "the Bringer of War" } }
-	tagline=##f
+  title = \markup { \fontsize #6 { \smallCaps {  "I. Mars, " } "the Bringer of War" } }
+  tagline=##f
 }
 
 
 \score {
 
-    % main
-    \new StaffGroup <<   \tempo "Allegro"
-	\time 5/4
+  % main
+  \new StaffGroup <<
 
     %bassoons
     \new PianoStaff  <<
-	\new Staff  \with { instrumentName = "3 Bassoons" } { << \bassoonsI \\ \bassoonsIII >> }
-	\new Staff  \with { instrumentName = "Double Bassoon" } { \doble }  >>
+      \new Staff  \with { instrumentName = "3 Bassoons" } { << \tempo "Allegro" \time 5/4 \bassoonsI \\ \bassoonsIII >> }
+      \new Staff  \with { instrumentName = "Double Bassoon" } { \doble }  >>
 
     %side drum
     \new RhythmicStaff
-         \with { \juntaPentagrama
-                 instrumentName = "Side Drum" }
-               { \side }
+    \with { \juntaPentagrama
+            instrumentName = "Side Drum" }
+    { \side }
 
     % cymbals
     \new RhythmicStaff
-         \with { \juntaPentagrama
-                 instrumentName = "Cymbals" }
-	       { \cymbals  }
+    \with { \juntaPentagrama
+            instrumentName = "Cymbals" }
+    { \cymbals  }
 
     %bass drum
     \new RhythmicStaff
-         \with { \juntaPentagrama
-                 instrumentName = "Bass Drum" }
-	{ \drum }
-
+    \with { instrumentName = "Bass Drum" }
+    { \drum }
 
     %violins
     \new PianoStaff  <<
-	\new Staff \with { instrumentName = "1st Violins" }
-		{ \violinI }
-	\new Staff \with { instrumentName = "2nd Violins" }
-		{ \violinII } >>
+      \new Staff \with { instrumentName = "1st Violins" }
+      { \violinI }
+      \new Staff \with { instrumentName = "2nd Violins" }
+      { \violinII } >>
 
->> %main
+  >> %main
 
-   \layout { indent=1.5\cm %era 4 para a3
-
-	      \context { \Score
-	      \override StaffSymbol #'thickness = #(magstep -3)
-
-	      }
-   }
-
-
+  \layout { indent=1.5\cm %era 4 para a3
+            \context { \Score
+                       \override StaffSymbol #'thickness = #(magstep -3)
+            }
+  }
 } %score
 
-
-\paper { ragged-right=##f
-       line-width=16.5\cm
-	 page-count=1
-	 system-count=1
+\paper {
+  ragged-right=##f
+  line-width=16.5\cm
+  page-count=1
+  system-count=1
 }
-
 \end{lilypond}
 
 
@@ -214,8 +191,7 @@ consignemos lo siguiente para cada uno de los apartados:
 
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Voice & DynamicText & 'extra-offset & '(-0.8 . 1) \\
-Voice & DynamicText & 'X-offset & -2.5
+Voice & DynamicText & 'extra-offset & '(-2.5 . 1)
 \end{tabular}
 
 \medskip
@@ -229,8 +205,7 @@ objeto y la propiedad.  En el ejemplo se ve que las tres indicaciones
 están afectadas por una sola sobreescritura:
 
 \begin[fragment,verbatim]{lilypond}
-    \override DynamicText #'extra-offset = #'(-0.8 . 1)
-    \override DynamicText #'X-offset = #-2.5
+    \override DynamicText #'extra-offset = #'(-2.5 . 1)
     g1\p g\p g\p
 \end{lilypond}
 
@@ -244,8 +219,7 @@ clave \verb+\once+.  Aquí podemos ver que sólo la primera
 indicación dinámica está afectada por \verb+\once \override+:
 
 \begin[fragment,verbatim]{lilypond}
-    \once \override DynamicText #'extra-offset = #'(-0.8 . 1)
-    \once \override DynamicText #'X-offset = #-2.5
+    \once \override DynamicText #'extra-offset = #'(-2.5 . 1)
     g1\p g\p  g\p
 \end{lilypond}
 
@@ -269,22 +243,22 @@ Por ejemplo:
 \end{verbatim}
 
 \begin{lilypond}
-\new PianoStaff <<\new Staff 
-	{ 
-	\voiceTwo c'1 
+\new PianoStaff <<\new Staff
+	{
+	\voiceTwo c'1
 	\override TextScript #'whiteout = ##t
 	\override DynamicText #'whiteout = ##t
-	
+
 	\once \override TextScript #'outside-staff-priority = ##f
 	\once \override TextScript #'X-offset = #-3
 
 	\once \override DynamicText #'X-offset = #-4.5
 	\once \override DynamicText #'extra-offset = #'(0 . 1.4)
-	 c'2  
+	 c'2
 	\mp
 
 	-"III"
-	c'2 
+	c'2
 }
 
 \new Staff { c'1 c' }
@@ -325,41 +299,38 @@ de sentido opuesto, y el aspecto predeterminado en segundo lugar.
 \subsection{Separación de pautas}
 
 El espaciado vertical es un asunto delicado.  El ajuste de la
-separación entre cada pauta y la siguiente se hace también
-mediante sobreescritura de propiedades, pero desde la versión de
-desarrollo 2.13 de LilyPond los objetos y propiedades han cambiado
-de nombre y la sobreescritura tiene otro formato.  En cualquier
-caso aquí tenemos las que valdrán para la futura versión estable
-2.14:
+separación entre cada pauta y la siguiente se hace también mediante
+sobreescritura de propiedades. Aquí suprimimos el relleno de
+separación de manera que los pentagramas casi se tocan:
 
 \medskip
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Staff & VerticalAxisGroup  & 'next-staff-spacing & \#((space . 6) (padding . 0)) \\
+Staff & VerticalAxisGroup  & 'staff-staff-spacing & \#((padding . 0)) \\
 \end{tabular}
 \medskip
 
 Esta sobreescritura se puede almacenar en una variable para utilizarla
-repetidas veces (sólo para 2.13):
+repetidas veces:
 
 \begin[verbatim]{lilypond}
 juntaPauta = \with {
-                    \override VerticalAxisGroup #'next-staff-spacing =
-                      #'((space . 3) (padding . 0))
-                  }
+  \override VerticalAxisGroup #'staff-staff-spacing =
+  #'((padding . 0))
+}
 <<
   \new RhythmicStaff
-    \with {
-      instrumentName= "Side Drum"
-      \juntaPauta
-    }
-    { c4 c c8 c c4 }
+  \with {
+    instrumentName= "Side Drum"
+    \juntaPauta
+  }
+  { c4 c c8 c c4 }
   \new RhythmicStaff
-    \with {
-      instrumentName= "Cymbals"
-      \juntaPauta
-    }
-    { c4 c c8 c c4 }
+  \with {
+    instrumentName= "Cymbals"
+    \juntaPauta
+  }
+  { c4 c c8 c c4 }
 >>
 \end{lilypond}
 

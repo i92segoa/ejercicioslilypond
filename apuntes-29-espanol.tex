@@ -19,14 +19,14 @@ antes por las siguientes razones:
   pueden mezclar fácilmente varios idiomas en el mismo documento.
 \end{itemize}
 
-A pesar de ello, es posible que algunos usuarios prefieran
-escribir los nombres de las notas en su propio idioma, y por ello
-lo mencionamos aquí.  El ejemplo que presentamos es el final del
-primero de los Intermezzi para piano Op.4 de Schumann y contiene
-gran cantidad de expresiones, digitaciones y articulaciones,
-polifonía en el pentagrama inferior, notas de pentagrama cruzado y
-reguladores textuales; proponemos que se tipografíe utilizando
-nombres de nota en español.
+A pesar de ello, es posible que algunos usuarios prefieran escribir
+los nombres de las notas en su propio idioma, y por ello lo
+mencionamos aquí.  El ejemplo que presentamos es el final del primero
+de los \emph{Intermezzi para piano Op.4} de Schumann y contiene gran
+cantidad de expresiones, digitaciones y articulaciones, polifonía en
+el pentagrama inferior, notas de pentagrama cruzado y reguladores
+textuales; proponemos que se tipografíe utilizando nombres de nota en
+español.
 
 \bigskip
 
@@ -34,7 +34,7 @@ nombres de nota en español.
 \def\betweenLilyPondSystem#1{\vspace{0.4cm}\linebreak}
 
 \begin[staffsize=15]{lilypond}
-\version "2.11.54"
+\version "2.15.20"
 
 % Schumann, Op.4, I, 11 last measures
 
@@ -55,8 +55,8 @@ d'^\sf <cis-4>8.. b32) \clef treble
 <e b>8_.  <fis cis>_.\< <gis d>_. <a e>_. <b fis>_. <b e,>_.
 \once \override  DynamicText #'whiteout = ##t
 <cis a cis,>8.._([ \ff -4 <d a d,>32 <e a, e>8) <b fis>_. \p <cis gis>_. <d a>_. ]
-\oneVoice %\crescTextCresc
-<e b>8-.  \cresc <fis cis>-. <gis d>-. <a e>-. <b fis>-. <b e,>-.
+\oneVoice
+<e b>8-. <fis cis>-. <gis d>-.  \cresc <a e>-. <b fis>-. <b e,>-.
 \once \override  DynamicText #'whiteout = ##t
 <cis-4 a cis,>8..  \ff ( [ <d a d,>32 <e a, e>8) <gis, d>_> ( <a cis,>) <gis d>_> ( ]
 <a cis,>8-.) r <a, cis,>4._> r8 \fermata \bar"|."
@@ -144,9 +144,8 @@ las marcas clásicas del pedal derecho del piano:
 
 \subsection{Crescendo de texto}
 
-A partir de la versión 2.13 de LilyPond disponemos de
-instrucciones para tipografiar reguladores de texto, como puede
-verse aquí:
+Disponemos de instrucciones para tipografiar reguladores de texto,
+como puede verse aquí:
 
 \begin[verbatim,relative=1]{lilypond}
 c16  \p \cresc c c c c c c c c c c c c c c c

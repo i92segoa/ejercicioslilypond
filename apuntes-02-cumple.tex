@@ -1,7 +1,8 @@
-\section{Cumpleaños feliz}
+\section{\emph{Cumpleaños feliz}}
 \subsection{Modelo}
 
-Aprenderemos a tipografiar este ejemplo mediante las indicaciones que se dan en los apartados siguientes.
+Aprenderemos a tipografiar este ejemplo mediante las indicaciones que
+se dan en los apartados siguientes.
 
 \bigskip
 
@@ -14,7 +15,11 @@ f'8. f16 e4 c d c2. \bar "|."
 \end{lilypond}
 
 \subsection{Modo relativo}
-Al introducir las notas, si precedemos la expresión entre llaves por la instrucción \verb+\relative+ seguida de una nota, no tenemos que especificar la altura de cada nota para saltos de cuarta o menores; a partir de un salto de quinta hay que añadir un apóstrofo para subir una octava, y una coma para bajar una octava.
+Al introducir las notas, si precedemos la expresión entre llaves por
+la instrucción \verb+\relative+ seguida de una nota, no tenemos que
+especificar la altura de cada nota para saltos de cuarta o menores; a
+partir de un salto de quinta hay que añadir un apóstrofo para subir
+una octava, y una coma para bajar una octava.
 
 \begin[verbatim,staffsize=13]{lilypond}
 \relative c' { c e g c g' a f e d c g c, }
@@ -31,7 +36,9 @@ El compás es de 3/4; escribimos
 
 \subsection{Anacrusa}
 
-El compás inicial está incompleto y sólo tiene un valor de negra; lo expresamos mediante \verb+\partial+ seguido de una duración, en nuestro caso el 4 que indica un valor de negra.
+El compás inicial está incompleto y sólo tiene un valor de negra; lo
+expresamos mediante \verb+\partial+ seguido de una duración, en
+nuestro caso el 4 que indica un valor de negra.
 
 \begin[verbatim,relative=2,staffsize=13,fragment]{lilypond}
 \time 3/4 \partial 4 g
@@ -39,13 +46,16 @@ El compás inicial está incompleto y sólo tiene un valor de negra; lo expresam
 
 \subsection{Duraciones. Puntillo}
 
-Los valores de nuestro ejemplo son: blanca, negra, corchea y semicorchea.  Se escriben como las cifras 2, 4, 8 y 16, respectivamente, detrás de la nota.
+Los valores de nuestro ejemplo son: blanca, negra, corchea y
+semicorchea.  Se escriben como las cifras 2, 4, 8 y 16,
+respectivamente, detrás de la nota.
 
 \begin[verbatim,relative=2,staffsize=13,fragment]{lilypond}
 g2 g4 g8 g16
 \end{lilypond}
 
-El puntillo se consigue mediante el punto ortográfico después del número de la duración.
+El puntillo se consigue mediante el punto ortográfico después del
+número de la duración.
 
 \begin[verbatim,notime,relative=2,staffsize=13,fragment]{lilypond}
 g2. g4. g8.
@@ -53,7 +63,10 @@ g2. g4. g8.
 
 \subsection{Calderón y doble barra final}
 
-Colocamos un calderón sobre una nota mediante la instrucción \verb+\fermata+ y la doble barra mediante la instrucción \verb+\bar+ seguida del tipo de barra deseado, que en nuestro caso es \verb+"|."+, entre comillas.
+Colocamos un calderón sobre una nota mediante la instrucción
+\verb+\fermata+ y la doble barra mediante la instrucción \verb+\bar+
+seguida del tipo de barra deseado, que en nuestro caso es \verb+"|."+,
+entre comillas.
 
 \begin[verbatim,notime,relative=2,staffsize=13,fragment]{lilypond}
 g2\fermata \bar "|."
