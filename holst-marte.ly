@@ -1,7 +1,7 @@
-\version "2.13.0"
+\version "2.15.20"
 
-juntaPentagrama = \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0)) 
+juntaPentagrama = \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0))
 		   }
 
 
@@ -48,7 +48,7 @@ juntaPentagrama = \with { \override VerticalAxisGroup #'next-staff-spacing =
 		bassoonsIII =  \relative  d, {
 			\clef bass
 			s1*5/4 s1*5/4 R1*5/4*2
-			%  \once \override Voice.DynamicText #'extra-offset = #'(-2.9 . 2.9 ) 
+			%  \once \override Voice.DynamicText #'extra-offset = #'(-2.9 . 2.9 )
 			\override TextScript #'whiteout = ##t
 			\override DynamicText #'whiteout = ##t
 			\once \override DynamicText #'X-offset = #-4.5
@@ -257,12 +257,12 @@ incipitTimpaniGroup = \markup {
 \score {
 
     % main
-    \new StaffGroup <<   \tempo "Allegro"
-	\time 5/4
+    \new StaffGroup <<
+
 
     % piccolos, flutes
     \new PianoStaff <<
-	\new Staff  \with { instrumentName = "2 Piccolos" \juntaPentagrama } { \piccolo }
+	\new Staff  \with { instrumentName = "2 Piccolos" \juntaPentagrama } { \time 5/4 \tempo "Allegro" \piccolo } % ugly hack
 	\new Staff  \with { instrumentName = "2 Flutes"   \juntaPentagrama } { \flute } >>
 
     % oboes
@@ -273,7 +273,7 @@ incipitTimpaniGroup = \markup {
 
     %clarinets
     \new PianoStaff  <<
-	\new Staff  \with { instrumentName = \markup { \line { "3 Clarinets in B" \smaller \flat } } 
+	\new Staff  \with { instrumentName = \markup { \line { "3 Clarinets in B" \smaller \flat } }
 	     	    	    \juntaPentagrama }
                     { \clarinetes }
 	\new Staff  \with { instrumentName = \markup { \line { "Bass Clarinet in B" \small \flat } } }
@@ -310,35 +310,35 @@ incipitTimpaniGroup = \markup {
     \new PianoStaff \with { systemStartDelimiter=#'SystemStartBar
     	 	    	    instrumentName = \markup { \incipitTimpaniGroup } } <<
                     \new Staff  { \timpaniI }
-	            \new Staff \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0)) }
+	            \new Staff \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0)) }
 		     { \timpaniII } >>
 
     %side drum
     \new RhythmicStaff
-         \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0))
+         \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0))
                  instrumentName = "Side Drum" }
                { \side }
 
     % cymbals
     \new RhythmicStaff
-         \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0))
+         \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0))
                  instrumentName = "Cymbals" }
 	       { \cymbals  }
 
     %bass drum
     \new RhythmicStaff
-         \with { \override VerticalAxisGroup #'next-staff-spacing =
-                   #'((space . 6) (padding . 0))
+         \with { \override VerticalAxisGroup #'staff-staff-spacing =
+                   #'((basic-distance . 6) (padding . 0))
                  instrumentName = "Bass Drum" }
 	{ \drum }
 
     %gong
     \new RhythmicStaff \with {
-      \override VerticalAxisGroup #'next-staff-spacing =
-        #'((space . 6) (padding . 0))
+      \override VerticalAxisGroup #'staff-staff-spacing =
+        #'((basic-distance . 6) (padding . 0))
       instrumentName = "Gong" }
     { \gong }
 
