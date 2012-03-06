@@ -1,4 +1,4 @@
-\section{Márgenes. Frère Jacques}
+\section{Márgenes. \emph{Frère Jacques}}
 
 
 \subsection{Modelo}
@@ -70,7 +70,7 @@ partitura ocupará todo el papel hasta el margen inferior.
 
 \begin{verbatim}
 \paper {
-  ragged-last-bottom=##f
+  ragged-last-bottom = ##f
 }
 \end{verbatim}
 
@@ -109,16 +109,16 @@ dentro de la expresión que contiene la letra, o dentro de un bloque
 \begin{itemize}
 \item Consulte cómo cambiar el tamaño global de la partitura en el apartado \ref{tamano-global} de la página \pageref{tamano-global}.
 
-\item Suprima la línea informativa final definiendo \verb+tagline=##f+
+\item Suprima la línea informativa final definiendo \verb+tagline = ##f+
   dentro del bloque \verb+\header+.
 
 \item Pruebe cómo suena el canon con este bloque de ejemplo: \footnotesize
 \begin{verbatim}
 \score { << \new Staff \with { midiInstrument="trumpet" }{ \tempo 4=150 \canon }
-            \new Staff \with { midiInstrument="muted trumpet" }{  R1*2 \canon  }
-            \new Staff \with { midiInstrument="accordion" }{ R1*4 \canon }
-            \new Staff \with { midiInstrument="choir aahs" }{  R1*6 \canon  }
-	>> \midi{} \layout{} }
+            \new Staff \with { midiInstrument="muted trumpet" }  { R1*2 \canon }
+            \new Staff \with { midiInstrument="accordion" }      { R1*4 \canon }
+            \new Staff \with { midiInstrument="choir aahs" }     { R1*6 \canon } >>
+	  \midi{} \layout{} }
 \end{verbatim}
 \normalsize
 \end{itemize}

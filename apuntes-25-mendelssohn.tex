@@ -71,8 +71,6 @@ pianoMI = \relative c { \key d \minor \clef bass \time 2/2 \partial 4. bes8( a) 
 	\new Staff \with { instrumentName="Clarinete I" } { \clarineteUno }
 \layout{}
 \midi{}
-	
-	
 }
 
 \score {
@@ -94,9 +92,9 @@ instrucción \verb+\change+ nos permite especificar el contexto al que
 deseamos cambiar, llamándolo por su nombre.  Por ejemplo:
 
 \begin[verbatim]{lilypond}
-musica = \relative c''{ g16 e c \change Staff="abajo" g c,4 }
+musica = \relative c''{ g16 e c \change Staff = "abajo" g c,4 }
 << \new Staff = "arriba" { \musica }
-   \new Staff ="abajo"   { \clef bass s2 }
+   \new Staff = "abajo"   { \clef bass s2 }
 >>
 \end{lilypond}
 
@@ -146,8 +144,35 @@ clarinete = \relative c''' { \transposition bes
 \end{lilypond}
 
 
+Si no nos preocupa la producción de MIDI, para producir una
+particella con destino a un instrumento transpositor a partir de
+música en tono de concierto, sólo hay que aplicar el transporte
+inverso en el momento de imprimir la particella.
 
-Si no nos preocupa la producción de MIDI, para producir una particella
-con destino a un instrumento transpositor a partir de música en tono
-de concierto, sólo hay que aplicar el transporte inverso en el momento
-de imprimir la particella.
+\subsection{Notas}
+\begin{itemize}
+\item El nombre del sistema de piano puede establecerse con una de
+  las dos instrucciones siguientes:
+
+\begin{tabular}{l     r}
+\verb+\set PianoStaff.instrumentName = "Piano"+ & (dentro de la música) \\
+\verb+\new PianoStaff \with{ instrumentName = "Piano" }+ & (al crear el contexto)
+\end{tabular}
+
+\medskip
+
+Véase la sección \ref{instrumentname}
+(pág. \pageref{instrumentname}).  Vimos también el uso de
+\verb+\with+ en el apartado \ref{with} (pág. \pageref{with}).
+
+\item La literatura en inglés se refiere a los cambios de
+  pentagrama como \emph{cross-staff beams}, es decir, barras de
+  pentagrama cruzado.
+
+\item Algunas ediciones de música para instrumentos transpositores
+  imprimen las partes de éstos en la partitura general con el
+  transporte aplicado, igual que en las particellas, lo que puede
+  ser confuso para el pianista (pues no son los sonidos reales)
+  pero tiene la ventaja de que los nombres de las notas son los
+  mismos en todos los papeles.
+\end{itemize}
