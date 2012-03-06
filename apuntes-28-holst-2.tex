@@ -172,11 +172,12 @@ instrucción \verb+\override+ se utiliza de la siguiente manera:
 \override contexto.objeto #'propiedad = #valor
 \end{verbatim}
 
-Que significa: asignar el \emph{valor} a la \emph{propiedad}
-del \emph{objeto} dentro del \emph{contexto}.  El contexto
-predeterminado es Voice y muchas veces se puede dejar sin
-especificar.  Veamos a continuación un ejemplo del uso de la
-sobreescritura de propiedades para mover objetos.
+Que significa: asignar el \emph{valor} a la \emph{propiedad} del
+\emph{objeto} dentro del \emph{contexto}.  Preste especial atención a
+los símbolos que sirven de prefijo.  El contexto predeterminado es
+Voice y muchas veces se puede dejar sin especificar.  Veamos a
+continuación un ejemplo del uso de la sobreescritura de propiedades
+para mover objetos.
 
 
 \subsection{Mover objetos}
@@ -191,7 +192,7 @@ consignemos lo siguiente para cada uno de los apartados:
 
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Voice & DynamicText & 'extra-offset & '(-2.5 . 1)
+Voice & DynamicText & extra-offset & (-2.5 . 1)
 \end{tabular}
 
 \medskip
@@ -233,7 +234,7 @@ propiedad \verb+whiteout+.
 \medskip
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Voice & TextScript, DynamicText  & 'whiteout & verdadero (\#t) o falso (\#f) \\
+Voice & TextScript, DynamicText  & whiteout & verdadero (\#t) o falso (\#f) \\
 \end{tabular}
 \medskip
 
@@ -274,7 +275,7 @@ delgadas en pautas sueltas o en toda la partitura:
 \medskip
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Staff, Score & StaffSymbol  & 'thickness & \#(magstep -3) \\
+Staff, Score & StaffSymbol  & thickness & (magstep -3) \\
 \end{tabular}
 \medskip
 
@@ -283,8 +284,9 @@ Por ejemplo:
 \new Staff \with { \override StaffSymbol #'thickness = #(magstep -3) }
 \end{verbatim}
 
-En el ejemplo que aparece a continuación podemos ver dos aplicaciones
-de sentido opuesto, y el aspecto predeterminado en segundo lugar.
+En el ejemplo que aparece a continuación podemos ver el efecto de dos
+valores de signo opuesto, y el aspecto predeterminado en segundo
+lugar.
 
 
 \begin[staffsize=10]{lilypond}
@@ -306,7 +308,7 @@ separación de manera que los pentagramas casi se tocan:
 \medskip
 \begin{tabular}{c|c|c|c}
 Contexto & Objeto & Propiedad & Valor \\ \hline
-Staff & VerticalAxisGroup  & 'staff-staff-spacing & \#((padding . 0)) \\
+Staff & VerticalAxisGroup  & staff-staff-spacing & ((padding . 0)) \\
 \end{tabular}
 \medskip
 

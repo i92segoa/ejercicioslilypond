@@ -55,7 +55,7 @@ música dentro del bloque \verb+\score+, así:
 
 \begin{verbatim}
 \score{ \cumple
-  \header { piece="Cumpleaños feliz" }
+  \header { piece = "Cumpleaños feliz" }
 }
 \end{verbatim}
 
@@ -76,9 +76,6 @@ sí, o antes de una partitura para separarla del borde superior:
 \markup{ \vspace #5 }
 \score { ... }
 \end{verbatim}
-
-La instrucción de marcado \verb+\vspace+ está disponible a partir de
-LilyPond versión 2.13.6.
 
 \subsection{Bloques de libro: distintos archivos de salida}
 
@@ -116,8 +113,8 @@ La siguiente estructura es un ejemplo que resume lo explicado más
 arriba.
 
 \begin{verbatim}
-musicaUno={...}
-musicaDos={...}
+musicaUno = {...}
+musicaDos = {...}
 ...
 
 \book{                          % primer libro

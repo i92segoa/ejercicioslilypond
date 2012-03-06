@@ -92,9 +92,9 @@ instrucción \verb+\change+ nos permite especificar el contexto al que
 deseamos cambiar, llamándolo por su nombre.  Por ejemplo:
 
 \begin[verbatim]{lilypond}
-musica = \relative c''{ g16 e c \change Staff="abajo" g c,4 }
+musica = \relative c''{ g16 e c \change Staff = "abajo" g c,4 }
 << \new Staff = "arriba" { \musica }
-   \new Staff ="abajo"   { \clef bass s2 }
+   \new Staff = "abajo"   { \clef bass s2 }
 >>
 \end{lilypond}
 
@@ -155,8 +155,8 @@ inverso en el momento de imprimir la particella.
   las dos instrucciones siguientes:
 
 \begin{tabular}{l     r}
-\verb+\set PianoStaff.instrumentName="Piano"+ & (dentro de la música) \\
-\verb+\new PianoStaff \with{ instrumentName="Piano" }+ & (al crear el contexto)
+\verb+\set PianoStaff.instrumentName = "Piano"+ & (dentro de la música) \\
+\verb+\new PianoStaff \with{ instrumentName = "Piano" }+ & (al crear el contexto)
 \end{tabular}
 
 \medskip
