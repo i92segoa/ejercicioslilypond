@@ -1,0 +1,43 @@
+\documentclass[a4paper,13pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+\input{definiciones.itex}
+%\newcommand{\imgw}{0.485}
+\newcommand{\imgw}{0.67}
+\newcommand{\tn}{\\[1ex]}
+%\newcommand{\tn}{\tabularnewline}
+%\newcommand{\tn}{\\}
+
+%\def\imagetop#1{\raisebox{-\height+\baselineskip}{#1}}
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+
+\begin{document}
+%\begin{tabular}{x{2.7cm}x{4.5cm}x{4.45cm}}
+\begin{center}
+\vfill
+{\huge W.A. Mozart}\\[1ex]
+{\huge Sonatas para piano}\\[1ex]
+\vfill
+%\newcolumntype{S}{>{\centering\arraybackslash} m{.1\linewidth} }
+\begin{tabular}{>{\bfseries}m{3cm}l}
+1. KV189d (279)&\includegraphics[scale=\imgw]{out/01-KV189d_279}\tn
+2. KV189e (280)&\includegraphics[scale=\imgw]{out/02-KV189e_280}\tn
+3. KV189f (281)&\includegraphics[scale=\imgw]{out/03-KV189f_281}\tn
+4. KV189g (282)&\includegraphics[scale=\imgw]{out/04-KV189g_282}\tn
+5. KV189h (283)&\includegraphics[scale=\imgw]{out/05-KV189h_283}\tn
+6. KV205b (284)&\includegraphics[scale=\imgw]{out/06-KV205b_284}\tn
+7. KV284b (309)&\includegraphics[scale=\imgw]{out/07-KV284b_309}\tn
+8. KV284c (311)&\includegraphics[scale=\imgw]{out/08-KV284c_311}\tn
+9. KV300d (310)&\includegraphics[scale=\imgw]{out/09-KV300d_310}\tn
+10. KV300h (330)&\includegraphics[scale=\imgw]{out/10-KV300h_330}\tn
+11. KV300i (331)&\includegraphics[scale=\imgw]{out/11-KV300i_331}\tn
+12. KV300k (332)&\includegraphics[scale=\imgw]{out/12-KV300k_332}\tn
+13. KV315c (333)&\includegraphics[scale=\imgw]{out/13-KV315c_333}\tn
+14. KV475&\includegraphics[scale=\imgw]{out/14-KV475}\tn
+15. KV457&\includegraphics[scale=\imgw]{out/15-KV457}\tn
+16. KV533/494&\includegraphics[scale=\imgw]{out/16-KV533_494}\tn
+17. KV545&\includegraphics[scale=\imgw]{out/17-KV545}\tn
+18. KV570&\includegraphics[scale=\imgw]{out/18-KV570}\tn
+19. KV576&\includegraphics[scale=\imgw]{out/19-KV576}\tn
+\end{tabular}
+\end{center}
+\vfill
+\end{document}

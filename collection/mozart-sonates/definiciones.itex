@@ -1,0 +1,63 @@
+%\usepackage{cprotect}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+\tracingstats=0
+
+%\usepackage{relsize}
+\usepackage{url}
+\usepackage{graphicx}
+%\usepackage{multicol}
+%\usepackage{colortbl}
+%\usepackage{grffile} % Fix loading files name a.preview.pdf
+\usepackage{times}
+\usepackage[margin=0.5cm]{geometry}
+
+% \usepackage{listings}
+% \usepackage{fancyvrb}  % to allow Verbatim inside headerbox
+\usepackage[pdfborderstyle=\@empty]{hyperref}
+
+\pagestyle{empty}
+
+% Workaround: \mytilde to create a normal tilde (not superscript) in Lily code
+\catcode`~=11 % make LaTeX treat tilde (~) like a normal character
+\newcommand{\mytilde}{\kern 0em\lower .7ex\hbox{~}\kern -0.1em}
+\catcode`~=13 % revert back to treating tilde (~) as an active character
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcolumntype{x}[1]{>{\raggedright}m{#1}}
+%\newcommand{\tn}{\tabularnewline}
+%\newcommand{\tn}{\\[1.3cm]}
+%\newcommand{\tn}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Multicol Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\columnsep}{0.7em}
+\setlength{\columnseprule}{0mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Save space in lists. Use this after the opening of the list
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\compresslist}{%
+\setlength{\itemsep}{1pt}%
+\setlength{\parskip}{0pt}%
+\setlength{\parsep}{0pt}%
+\setlength{\leftskip}{-1em}%
+}
+\setlength{\tabcolsep}{3pt}
+
+%% Already patched in baposter.cls:
+% \usepackage[table]{xcolor}
+
+\DeclareGraphicsExtensions{.preview.pdf,.pdf,.eps,.png,.jpg}
+\DeclareGraphicsRule{.preview.pdf}{pdf}{*}{}
+
+%\usepackage{cprotect}
+%\usepackage{array}
+\usepackage[table]{xcolor}

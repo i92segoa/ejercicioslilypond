@@ -1,0 +1,64 @@
+\documentclass[a4paper,13pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+\input{definiciones.itex}
+%\newcommand{\imgw}{0.485}
+\newcommand{\imgw}{0.5}
+
+\newcommand{\tn}{\\[1.3cm]}
+%\newcommand{\tn}{\tabularnewline}
+%\newcommand{\tn}{\\}
+
+%\def\imagetop#1{\raisebox{-\height+\baselineskip}{#1}}
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+
+\begin{document}
+%\begin{tabular}{x{2.7cm}x{4.5cm}x{4.45cm}}
+\begin{center}
+\vfill
+{\huge J.S.Bach}\\[1ex]
+{\huge El clave bien temperado}\\[1ex]
+{\Large Libro I}
+\vfill
+%\newcolumntype{S}{>{\centering\arraybackslash} m{.1\linewidth} }
+\begin{tabular}{>{\bfseries}m{0cm}ll|>{\bfseries}m{0cm}ll}
+% 1.&\rule{3cm}{3cm}\includegraphics[scale=\imgw]{out/01-p} & \includegraphics[scale=\imgw]{out/01-f} &
+%13. & \includegraphics[scale=\imgw]{out/13-p} & \includegraphics[scale=\imgw]{out/13-f} \tn
+
+1.&\imagetop{\includegraphics[scale=\imgw]{out/01-p}} & \imagetop{\includegraphics[scale=\imgw]{out/01-f}} &
+13. &\imagetop{\includegraphics[scale=\imgw]{out/13-p}} & \imagetop{\includegraphics[scale=\imgw]{out/13-f}} \tn
+
+2. &\imagetop{\includegraphics[scale=\imgw]{out/02-p}} & \imagetop{\includegraphics[scale=\imgw]{out/02-f}} & 
+14. &\imagetop{\includegraphics[scale=\imgw]{out/14-p}} & \imagetop{\includegraphics[scale=\imgw]{out/14-f}} \tn
+
+3. &\imagetop{\includegraphics[scale=\imgw]{out/03-p}} & \imagetop{\includegraphics[scale=\imgw]{out/03-f}} &
+15. &\imagetop{\includegraphics[scale=\imgw]{out/15-p}} & \imagetop{\includegraphics[scale=\imgw]{out/15-f}} \tn
+
+4. &\imagetop{\includegraphics[scale=\imgw]{out/04-p}} & \imagetop{\includegraphics[scale=\imgw]{out/04-f}} &
+16. &\imagetop{\includegraphics[scale=\imgw]{out/16-p}} & \imagetop{\includegraphics[scale=\imgw]{out/16-f}} \tn
+
+5. &\imagetop{\includegraphics[scale=\imgw]{out/05-p}} & \imagetop{\includegraphics[scale=\imgw]{out/05-f}} &
+17. &\imagetop{\includegraphics[scale=\imgw]{out/17-p}} & \imagetop{\includegraphics[scale=\imgw]{out/17-f}} \tn
+
+6. &\imagetop{\includegraphics[scale=\imgw]{out/06-p}} & \imagetop{\includegraphics[scale=\imgw]{out/06-f}} &
+18. &\imagetop{\includegraphics[scale=\imgw]{out/18-p}} & \imagetop{\includegraphics[scale=\imgw]{out/18-f}} \tn
+
+7. &\imagetop{\includegraphics[scale=\imgw]{out/07-p}} & \imagetop{\includegraphics[scale=\imgw]{out/07-f}} &
+19. &\imagetop{\includegraphics[scale=\imgw]{out/19-p}} & \imagetop{\includegraphics[scale=\imgw]{out/19-f}} \tn
+
+8. &\imagetop{\includegraphics[scale=\imgw]{out/08-p}} & \imagetop{\includegraphics[scale=\imgw]{out/08-f}} &
+20. &\imagetop{\includegraphics[scale=\imgw]{out/20-p}} & \imagetop{\includegraphics[scale=\imgw]{out/20-f}} \tn
+
+9. &\imagetop{\includegraphics[scale=\imgw]{out/09-p}} & \imagetop{\includegraphics[scale=\imgw]{out/09-f}} &
+21. &\imagetop{\includegraphics[scale=\imgw]{out/21-p}} & \imagetop{\includegraphics[scale=\imgw]{out/21-f}} \tn
+
+10. &\imagetop{\includegraphics[scale=\imgw]{out/10-p}} & \imagetop{\includegraphics[scale=\imgw]{out/10-f}} &
+22. &\imagetop{\includegraphics[scale=\imgw]{out/22-p}} & \imagetop{\includegraphics[scale=\imgw]{out/22-f}} \tn
+
+11. &\imagetop{\includegraphics[scale=\imgw]{out/11-p}} & \imagetop{\includegraphics[scale=\imgw]{out/11-f}} &
+23. &\imagetop{\includegraphics[scale=\imgw]{out/23-p}} & \imagetop{\includegraphics[scale=\imgw]{out/23-f}} \tn
+
+12. &\imagetop{\includegraphics[scale=\imgw]{out/12-p}} & \imagetop{\includegraphics[scale=\imgw]{out/12-f}} &
+24. &\imagetop{\includegraphics[scale=\imgw]{out/24-p}} & \imagetop{\includegraphics[scale=\imgw]{out/24-f}} \tn
+\end{tabular}
+\end{center}
+\vfill
+\end{document}
