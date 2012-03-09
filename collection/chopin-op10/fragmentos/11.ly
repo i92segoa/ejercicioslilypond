@@ -1,5 +1,6 @@
 \version "2.15.30"
 \include "indice.ily"
+
 \new Staff \relative f {
   \time 3/4
   \key es \major
@@ -16,7 +17,7 @@
   <bes aes'! f'>-.\arpeggio )
   <bes aes' bes>\arpeggio (
   %Double stem here!
-  <bes aes' a>\arpeggio \<
+  <bes aes'! a>\arpeggio \<
   <bes aes' bes>\arpeggio \!
   <bes aes' c>\arpeggio \>
   <bes aes' bes>\arpeggio \!
