@@ -1,10 +1,11 @@
 \documentclass[a4paper,13pt,oneside,headinclude,titlepage]{article} % la clase article estándar
 \input{definiciones.itex}
 %\newcommand{\imgw}{0.485}
-\newcommand{\imgw}{0.5}
-
-\newcommand{\tn}{\\[1.3cm]}
-%\newcommand{\tn}{\tabularnewline}
+\newcommand{\imgw}{0.55}
+\newlength{\colw}
+\setlength{\colw}{4.5cm}
+%\newcommand{\tn}{\\[1.3cm]}
+\newcommand{\tn}{\tabularnewline}
 %\newcommand{\tn}{\\}
 
 %\def\imagetop#1{\raisebox{-\height+\baselineskip}{#1}}
@@ -19,7 +20,7 @@
 {\Large Libro I}
 \vfill
 %\newcolumntype{S}{>{\centering\arraybackslash} m{.1\linewidth} }
-\begin{tabular}{>{\bfseries}m{0cm}ll|>{\bfseries}m{0cm}ll}
+\begin{tabular}{>{\bfseries}m{2ex}m{\colw}m{\colw}|>{\bfseries}m{2ex}m{\colw}m{\colw}}
 % 1.&\rule{3cm}{3cm}\includegraphics[scale=\imgw]{out/01-p} & \includegraphics[scale=\imgw]{out/01-f} &
 %13. & \includegraphics[scale=\imgw]{out/13-p} & \includegraphics[scale=\imgw]{out/13-f} \tn
 
