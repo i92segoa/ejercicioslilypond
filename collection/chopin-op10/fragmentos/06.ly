@@ -22,6 +22,6 @@
     }
     \new CueVoice \relative f { \voiceTwo s8 bes16
                                 
-                                c a c bes ges }
+                                ces a ces bes ges }
   >>
 }
