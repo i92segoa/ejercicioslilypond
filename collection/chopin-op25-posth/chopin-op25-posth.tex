@@ -1,0 +1,50 @@
+\documentclass[a4paper,13pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+\input{definiciones.itex}
+%\newcommand{\imgw}{0.485}
+\newcommand{\imgw}{0.67}
+\newlength{\colw}
+\setlength{\colw}{12cm}
+\newcommand{\tn}{\\[1.5ex]}
+%\newcommand{\tn}{\tabularnewline}
+%\newcommand{\tn}{\\}
+
+%\def\imagetop#1{\raisebox{-\height+\baselineskip}{#1}}
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+
+\begin{document}
+%\begin{tabular}{x{2.7cm}x{4.5cm}x{4.45cm}}
+\begin{center}
+\vfill
+{\huge F. Chopin}\\[1ex]
+{\huge Estudios, Op. 25}\\[1ex]
+\vfill
+%\newcolumntype{S}{>{\centering\arraybackslash} m{.1\linewidth} }
+\begin{tabular}{>{\bfseries}m{2ex}m{\colw}}
+1.&\includegraphics[scale=\imgw]{out/01}\tn
+2.&\includegraphics[scale=\imgw]{out/02}\tn
+3.&\includegraphics[scale=\imgw]{out/03}\tn
+4.&\includegraphics[scale=\imgw]{out/04}\tn
+5.&\includegraphics[scale=\imgw]{out/05}\tn
+6.&\includegraphics[scale=\imgw]{out/06}\tn
+7.&\includegraphics[scale=\imgw]{out/07}\tn
+8.&\includegraphics[scale=\imgw]{out/08}\tn
+9.&\includegraphics[scale=\imgw]{out/09}\tn
+10.&\includegraphics[scale=\imgw]{out/10}\tn
+11.&\includegraphics[scale=\imgw]{out/11}\tn
+12.&\includegraphics[scale=\imgw]{out/12}\tn
+\end{tabular}
+\vfill
+\newpage
+{\huge F. Chopin}\\[1ex]
+{\huge Estudios póstumos}\\[1ex]
+\vfill
+\renewcommand{\tn}{\\[5ex]}
+%\newcolumntype{S}{>{\centering\arraybackslash} m{.1\linewidth} }
+\begin{tabular}{>{\bfseries}m{2ex}m{\colw}}
+1.&\includegraphics[scale=\imgw]{out/13}\tn
+2.&\includegraphics[scale=\imgw]{out/14}\tn
+3.&\includegraphics[scale=\imgw]{out/15}\tn
+\end{tabular}
+\end{center}
+\vfill
+\end{document}
