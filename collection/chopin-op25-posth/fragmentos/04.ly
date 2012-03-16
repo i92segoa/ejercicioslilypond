@@ -14,7 +14,8 @@
       r8 <a e'>-| r <c e c'>-| \< r <c f c'>-| r <b f' b>-|       
       r8 <a f' a>-| r <e' a e'>-| r <d a' d>-| \! r <e gis e'>-|       
     }
-    \new CueVoice \relative f {
+    \new CueVoice
+    \relative f {
       \voiceTwo e'4 ->(
       a,8) s c s b s e s
       c8 s a s

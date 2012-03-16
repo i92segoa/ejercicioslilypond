@@ -21,14 +21,17 @@
   }
   
   << 
-     \new Voice \relative f { s2. \voiceOne e''2( dis8.[ cis16] ) }
-     \new Voice \relative f { \voiceOne r8 ^\pp <gis' cis>[ q q q q]
-     \voiceTwo <e a>[ q q q q q] }
-     \new Voice \relative f { \voiceTwo 
-                              e'2(  dis8.[  cis16]
-                               \voiceThree 
-                               % should be stemDown
-                               cis4) }
+    \new Voice \relative f {
+      s2. \voiceOne e''2( dis8.[ cis16] ) }
+    \new Voice \relative f {
+      \voiceOne r8 ^\pp <gis' cis>[ q q q q]
+      \voiceTwo <e a>[ q q q q q] }
+    \new Voice \relative f {
+      \voiceTwo
+      e'2(  dis8.[  cis16]
+      \voiceThree
+      % should be stemDown
+      cis4) }
   >>
   
 }

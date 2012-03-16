@@ -6,6 +6,7 @@
   \clef treble
   \tempo "Vivace assai"
   \partial 8
+  %need to tweak the slur shape
    es'8\(
    % accents should go inside slur
    aes8 \f\< <c aes'>->( bes)

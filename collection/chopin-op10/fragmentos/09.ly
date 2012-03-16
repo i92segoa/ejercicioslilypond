@@ -8,7 +8,9 @@
   <<
     \new Voice \relative f {
       \voiceOne
-      \ottava #0                             
+      \ottava #0
+      % fake octave! due to simultaneous 8vb cue
+      % a fix does exist. See cues in their octave LSR? snippet
       r8 _\markup\italic{legatissimo} f-.( g-.)
       r8 aes'-.( bes-.)
       \oneVoice 
