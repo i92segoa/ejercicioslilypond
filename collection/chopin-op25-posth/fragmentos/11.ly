@@ -9,8 +9,7 @@
 e'4( \p e8. e16 e4 f
 e4 c e2 \fermata)
 \stopStaff s1 s1
-\startStaff
-% no deber´ia haber barra
+\startStaff \bar ""
 \override Staff.Clef #'break-visibility = #center-visible	
 \clef treble
 \ottava #1
