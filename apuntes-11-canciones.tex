@@ -42,7 +42,7 @@ música es expresar la duración de cada sílaba como si fueran notas:
 
 Otra manera, más sencilla, es utilizar \verb+\addlyrics+ después de la
 música, como aparece en el siguiente ejemplo.  Las sinalefas se
-consiguen uniendo las sílabas mediante una tilde curva, el mismo
+obtienen uniendo las sílabas mediante una tilde curva, el mismo
 símbolo que se utiliza para la ligadura de unión.
 
 \begin[verbatim,relative=3,staffsize=17.5]{lilypond}
@@ -50,3 +50,22 @@ símbolo que se utiliza para la ligadura de unión.
 \addlyrics { ¿Dón -- de~es -- tán las lla -- ves? }
 \end{lilypond}
 
+La construcción
+
+\begin{verbatim}
+{ música }\addlyrics{ letra }
+\end{verbatim}
+
+es una abreviatura de otra construcción más compleja en la que se
+utiliza un contexto de voz explícito y con un nombre, y un contexto de
+letra que se asigna a éste gracias a la instrucción
+\verb+\lyricsto+. Equivale a lo siguiente:
+
+\begin{verbatim}
+<<
+  \new Voice = "nombre" { música }
+  \new Lyrics \lyricsto "nombre" { letra }
+>>
+\end{verbatim}
+
+donde se puede observar que \verb+\lyricsto+ implica a \verb+\lyricmode+.
