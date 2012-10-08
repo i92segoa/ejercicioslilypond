@@ -2,7 +2,7 @@
 
 NOMBRE=lilypond-templates
 OUT=out
-LYNOMBRES=un-pentagrama titulo-y-autor coro-mixto-4vm piano camara #faenas incarnatus lilypond
+LYNOMBRES=un-pentagrama titulo-y-autor coro-mixto-4vm piano voz-piano camara #faenas incarnatus lilypond
 LYARCHIVOS=$(addsuffix .ly, $(LYNOMBRES))
 LYPDF=$(addsuffix .pdf, $(LYNOMBRES))
 RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
@@ -15,7 +15,7 @@ IMAGENES=lily-logo.png $(SPLITPDFS) # frerejacques.pdf holst-marte.pdf
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex \
 	un-pentagrama.tex titulo-y-autor.tex coro-mixto-4vm.tex \
-	piano.tex camara.tex
+	piano.tex voz-piano.tex camara.tex
 	# apuntes-02-cumple.tex apuntes-03-mozart.tex			\
 	apuntes-03-mozart.tex						\
 	apuntes-04-alteraciones-titulos-ofrenda.tex			\
@@ -48,7 +48,7 @@ build: $(NOMBRE).pdf
 show: 
 	$(RUNEVINCE)
 
-$(NOMBRE).pdf: $(NOMBRE).tex $(INCLUDESTEX) $(IMAGENES)
+$(NOMBRE).pdf: $(NOMBRE).tex $(INCLUDESTEX) $(IMAGENES) $(LYPDF) $(LYARCHIVOS)
 	mkdir -p $(OUT)
 	if [ -f $(OUT)/$(NOMBRE).tex ] ; then rm $(OUT)/$(NOMBRE).tex; fi
 	# rm $(OUT)/$(NOMBRE).tex
