@@ -51,7 +51,7 @@ d'^\sf <cis-4>8.. b32) \clef treble
 <ais-1-2>4( <g'-5 e-3>\sf  <fis-4 d-1>8.. <e-5 cis-3>32
 <d b>8.. <cis a!>32 \clef bass <b -3-5>4 b \clef treble
 \change Staff = "LH"
-<a e cis>8..)^\ff ( <a d,>32 <a e>8)
+<a e cis>8..)^\ff ( <a d,>32 \override Beam #'concaveness = #5 <a e>8)
 \change Staff = "RH"
 <a b>_. \p <cis a>_. <d a>_.
 <e b>8_.  <fis cis>_.\< <gis d>_. <a e>_. <b fis>_. <b e,>_.
@@ -114,11 +114,12 @@ indent=1\cm
 
 La instrucción \verb+\language+ seguida de una cadena específica que
 denota el idioma, permite escoger el idioma en que se escriben los
-nombres de las notas.  En nuestro caso, la cadena es ``espanol'' con
-``n'' en lugar de ``ñ'', como se ve en el ejemplo siguiente:
+nombres de las notas.  En nuestro caso, la cadena es ``español'' o
+también ``espanol'' con ``n'' en lugar de ``ñ'', como se ve en el
+ejemplo siguiente:
 
 \begin[verbatim]{lilypond}
-\language "espanol"
+\language "español"
 \new Staff \relative do' { \cadenzaOn
   do8[ dos reb re res mib mi fa fas solb sol sols lab la las sib si do]
 }
