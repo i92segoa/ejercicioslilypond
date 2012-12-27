@@ -1,0 +1,632 @@
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+\usepackage[spanish]{babel}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[utopia]{mathdesign}
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+\title{LilyPond por ejemplo: la guía visual}
+\author{Francisco Vila}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\nonfrenchspacing
+
+\begin{titlepage} %%%%%%%%%%%% PORTADA
+  \makeatletter
+  \begin{center}
+    %\textbf{\Large Universidad de Extremadura}\par
+    \vfill
+    \includegraphics[width=60mm]{lily-logo.png}\par
+    \vfill
+    \textbf{\huge\@title}\par
+%    \textbf{\large\@subtitle}\par
+    {\@date}
+    \vfill
+    \textbf{\large\@author}
+    \vfill
+  \end{center}
+  \makeatother
+\end{titlepage}
+
+%\singlespace
+
+%\begin{singlespace} % los listados van a un espacio. Necesita el paquete setspace
+ % \tableofcontents
+ % \listoffigures
+ % \listoftables
+%\end{singlespace}
+
+% chuleta de texto sencillo
+%Las entradas con asterisco son complementarias
+
+% LilyPond by example -- a visual guide
+% text-only cheatsheet
+
+% *-entries are complementary
+
+\section*{Una nota: la}
+\begin[verbatim,fragment]{lilypond}
+    a
+\end{lilypond}
+
+\section*{Un silencio}
+\begin[verbatim,fragment]{lilypond}
+    r
+\end{lilypond}
+
+\section*{*Silencio de compás completo: 4/4}
+\begin[verbatim,fragment]{lilypond}
+   R1
+\end{lilypond}
+
+\section*{*Silencio de compás completo: 3/4}
+
+\begin{verbatim}
+   R2.
+\end{verbatim}
+
+\begin[fragment]{lilypond}
+   \time 3/4 R2.
+\end{lilypond}
+
+\section*{Una expresión musical}
+\begin[verbatim,fragment]{lilypond}
+    { a }
+\end{lilypond}
+
+\section*{Una octava más aguda}
+\begin[verbatim,fragment]{lilypond}
+    a'
+\end{lilypond}
+
+\section*{Una octava más grave}
+\begin[verbatim,fragment]{lilypond}
+    a,
+\end{lilypond}
+
+\section*{*Una escala de do a si}
+\begin[verbatim,fragment]{lilypond}
+    c d e f g a b
+\end{lilypond}
+
+\section*{*Alturas en modo absoluto: una escala de cuatro octavas}
+\begin[verbatim,fragment]{lilypond}
+  {
+  \clef "bass"
+  c,4 d, e, f,
+  g,4 a, b, c 
+  d4 e f g
+  a4 b c' d'
+  \clef "treble"
+  e'4 f' g' a'
+  b'4 c'' d'' e''
+  f''4 g'' a'' b''
+  c'''1
+}
+\end{lilypond}
+
+\section*{Alturas en modo relativo: una escala}
+\begin[verbatim,fragment]{lilypond}
+    \relative c' { c d e f g a b c }
+\end{lilypond}
+
+\section*{Alteración: do sostenido}
+\begin[verbatim,fragment,relative=2]{lilypond}
+    cis
+\end{lilypond}
+
+\section*{Alteración cuando hay armadura: si bemol en fa mayor}
+\begin[verbatim,fragment,relative=2]{lilypond}
+    \key f \major
+    bes
+\end{lilypond}
+
+\section*{Alteración: la bemol}
+\begin[verbatim,fragment,relative=2]{lilypond}
+    aes
+\end{lilypond}
+
+\section*{*Alteración forzada: becuadro}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+   a!
+\end{lilypond}
+
+\section*{*Alteración de cortesía}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+   aes?
+\end{lilypond}
+
+\section*{*Becuadro de cortesía}
+
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+   a?
+\end{lilypond}
+
+\section*{Efecto de las alteraciones: la bemol seguido de la natural}
+
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    aes a
+\end{lilypond}
+
+\section*{*Escala cromática ascendente con sostenidos}
+\begin[verbatim,fragment,relative=1,notime]{lilypond}
+    c cis d dis e f fis g gis a ais b
+\end{lilypond}
+
+\section*{*Escala cromática descendente con bemoles}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    c b bes a aes g ges f e es d des
+\end{lilypond}
+
+\section*{Una corchea}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a8
+\end{lilypond}
+
+\section*{Varias corcheas}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a8 a a a 
+\end{lilypond}
+
+\section*{*Todos los valores, de redonda a semifusa}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a1 a2 a4 a8 a16 a32 a64
+\end{lilypond}
+
+\section*{Negra con puntillo}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a4.
+\end{lilypond}
+
+\section*{*Doble puntillo}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a4..
+\end{lilypond}
+
+\section*{Dos notas unidas por ligadura}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a ~ a
+\end{lilypond}
+
+\section*{Un acorde}
+\begin[verbatim,fragment,relative=1,notime]{lilypond}
+    <c e g>
+\end{lilypond}
+
+\section*{Duración de un acorde}
+\begin[verbatim,fragment,relative=1,notime]{lilypond}
+    <c e g>8
+\end{lilypond}
+
+\section*{Ligadura de expresión: dos notas}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    a( b)
+\end{lilypond}
+
+\section*{*Ligadura de expresión: varias notas}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    c( d e f g a)
+\end{lilypond}
+
+\section*{Ligadura de fraseo}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    c\( d e f g a\)
+\end{lilypond}
+
+\section*{Asignación de una expresión musical a una variable}
+\begin{verbatim}
+    violin = { a b c }
+\end{verbatim}
+
+\section*{Uso de una variable}
+\begin{verbatim}
+    \violin
+\end{verbatim}
+
+\begin{lilypond}
+    violin = \relative c''{ a b c }
+    { \violin }
+\end{lilypond}
+
+\section*{Tresillo de corcheas}
+\begin[verbatim,fragment,relative=2,notime]{lilypond}
+    \times 2/3 { a8 a a }
+\end{lilypond}
+
+\section*{Clave de Sol en 2ª}
+\begin[verbatim,fragment,notime]{lilypond}
+    \clef treble
+\end{lilypond}
+
+\section*{Clave de Fa en 4ª}
+\begin[verbatim,fragment,notime]{lilypond}
+    \clef bass
+\end{lilypond}
+
+\section*{Tonalidad: Re mayor}
+\begin{verbatim}
+    \key d \major
+\end{verbatim}
+\begin[fragment]{lilypond}
+  \hide Staff.TimeSignature
+  \key d \major s1
+\end{lilypond}
+
+\section*{Compás: 3/4}
+\begin{verbatim}
+    \time 3/4
+\end{verbatim}
+
+\begin[fragment]{lilypond}
+    \time 3/4 s2.
+\end{lilypond}
+
+\section*{Tempo}
+\begin[verbatim,fragment]{lilypond}
+    \tempo "Allegro"
+\end{lilypond}
+
+\section*{Indicación metronómica}
+\begin[verbatim,fragment]{lilypond}
+    \tempo 4=60
+\end{lilypond}
+
+\section*{Articulación: picado}
+\begin[verbatim,fragment]{lilypond}
+    a-.
+\end{lilypond}
+
+\section*{*Otras articulaciones}
+\begin[verbatim,fragment]{lilypond}
+    c4-^ c-+ c-- c-| c4-> c-. c2-_
+\end{lilypond}
+
+\section*{Digitaciones}
+\begin[verbatim,fragment]{lilypond}
+    c-1 e-3 g-5
+\end{lilypond}
+
+\section*{Forzar articulación por encima}
+\begin[verbatim,fragment]{lilypond}
+    a^.
+\end{lilypond}
+
+\section*{Forzar articulación por debajo}
+\begin[verbatim,fragment]{lilypond}
+    a_.
+\end{lilypond}
+
+\section*{Arco arriba, arco abajo}
+\begin[verbatim,fragment]{lilypond}
+    a\upbow a\downbow
+\end{lilypond}
+
+\section*{Nota con calderón}
+\begin[verbatim,fragment]{lilypond}
+    a \fermata
+\end{lilypond}
+
+\section*{Matiz dinámico}
+\begin{verbatim}
+    \pp
+\end{verbatim}
+
+\begin[fragment]{lilypond}
+    s1 \pp
+\end{lilypond}
+
+\section*{*Otros matices}
+\begin{verbatim}
+    \p \mf \f \ff
+\end{verbatim}
+
+\begin[fragment]{lilypond}
+    s1 \p s1 \mf s1 \f s1 \ff
+\end{lilypond}
+
+\section*{Regulador (crescendo), fin de regulador}
+\begin[verbatim,fragment]{lilypond}
+    a\< b\!
+\end{lilypond}
+
+\section*{Regulador (diminuendo), fin de regulador}
+\begin[verbatim,fragment]{lilypond}
+    a\> b\!
+\end{lilypond}
+
+\section*{Final implícito de un regulador}
+\begin[verbatim,fragment]{lilypond}
+    a\p a\< a\f
+\end{lilypond}
+
+\section*{Texto sobre una nota, sin formato}
+\begin[verbatim,fragment]{lilypond}
+    a-"dolce"
+\end{lilypond}
+
+\section*{Texto sobre una nota, con formato (elemento de marcado)}
+\begin[verbatim,fragment]{lilypond}
+    a-\markup{ \italic dolce }
+\end{lilypond}
+
+\section*{Unir corcheas manualmente con una barra}
+\begin[verbatim,fragment]{lilypond}
+    a8[ a a a a a a a a]
+\end{lilypond}
+
+\section*{Compás de anacrusa: valor de corchea}
+\begin[verbatim,fragment]{lilypond}
+    \partial 8
+    a8
+\end{lilypond}
+
+\section*{Notas de adorno (genéricas)}
+\begin[verbatim,fragment]{lilypond}
+    \grace{ g16 b }
+    a1
+\end{lilypond}
+
+\section*{Notas de adorno: apoyatura}
+\begin[verbatim,fragment]{lilypond}
+    \appoggiatura c4
+    d2
+\end{lilypond}
+
+\section*{Notas de adorno: mordente de una nota}
+\begin[verbatim,fragment]{lilypond}
+    \acciaccatura c16
+    d2
+\end{lilypond}
+
+\section*{Dos expresiones en secuencia}
+\begin[verbatim,fragment]{lilypond}
+    {{ a b c } { d e f }}
+\end{lilypond}
+
+\section*{Dos expresiones simultáneas}
+\begin[verbatim,fragment]{lilypond}
+    << { a b c } { d e f } >>
+\end{lilypond}
+
+\section*{Dos variables en secuencia}
+\begin{verbatim}
+    { \parteUno \parteDos }
+\end{verbatim}
+
+\begin{lilypond}
+parteUno = { c' }
+parteDos = { e' }
+    { \parteUno \parteDos }
+\end{lilypond}
+    
+\section*{Dos variables simultáneas}
+\begin{verbatim}
+    << \parteUno \parteDos >>
+\end{verbatim}
+
+\begin{lilypond}
+parteUno = { c' }
+parteDos = { e' }
+    << \parteUno \parteDos >>
+\end{lilypond}
+
+\section*{Un contexto de partitura explícito}
+\begin[verbatim]{lilypond}
+    \score {
+            { a b c }
+     }
+\end{lilypond}
+
+\section*{Un contexto de pentagrama explícito}
+\begin[verbatim,fragment]{lilypond}
+    \new Staff { a b c }
+\end{lilypond}
+
+\section*{Dos expresiones simultáneas dentro de un pentagrama explícito}
+\begin[verbatim,fragment]{lilypond}
+   \new Staff << { a b c } { d e f } >>
+\end{lilypond}
+
+\section*{Dos voces independientes dentro de un pentagrama explícito}
+\begin[verbatim,fragment]{lilypond}
+   \new Staff << { a b c } \\ { d e f } >>
+\end{lilypond}
+
+\section*{Un contexto de voz explícito}
+\begin[verbatim,fragment]{lilypond}
+   \new Voice { a b c }
+\end{lilypond}
+
+\section*{Dos voces explícitas dentro de un pentagrama}
+\begin[verbatim,fragment]{lilypond}
+   \new Staff <<
+      \new Voice { a b c }
+      \new Voice { d e f }
+   >>
+\end{lilypond}
+
+\section*{Tres voces explícitas dentro de un pentagrama, con control de las plicas}
+\begin[verbatim,fragment]{lilypond}
+   \new Staff <<
+      \new Voice { \voiceOne   a b c }
+      \new Voice { \voiceTwo   d e f }
+      \new Voice { \voiceThree g a b }
+   >>
+\end{lilypond}
+
+\section*{Dos pentagramas simultáneos}
+\begin{verbatim}
+   << \new Staff { \parteUno }
+      \new Staff { \parteDos } >>
+\end{verbatim}
+
+\begin{lilypond}
+parteUno = { c' }
+parteDos = { e' }
+   << \new Staff { \parteUno }
+      \new Staff { \parteDos } >>
+\end{lilypond}
+
+\section*{Sistema de piano: claves de Sol y Fa}
+\begin{verbatim}
+    \new PianoStaff <<
+        \new Staff { ... }
+	\new Staff { \clef bass ... }
+    >>
+\end{verbatim}
+
+\begin{lilypond}
+    \new PianoStaff <<
+        \new Staff { s1 }
+	\new Staff { \clef bass s1 }
+    >>
+\end{lilypond}
+
+\section*{Sistema de coro: SATB}
+\begin{verbatim}
+    \new ChoirStaff <<
+        \new Staff { \soprano }
+	\new Staff { \alto }
+	\new Staff { \clef "G_8" \tenor }
+	\new Staff { \clef bass \bajo }
+    >>
+\end{verbatim}
+
+\begin{lilypond}
+soprano = { s }
+alto = { s }
+tenor = { s }
+bajo = { s }
+    \new ChoirStaff <<
+        \new Staff { \soprano }
+	\new Staff { \alto }
+	\new Staff { \clef "G_8" \tenor }
+	\new Staff { \clef bass \bajo }
+    >>
+\end{lilypond}
+
+\section*{Una breve canción}
+\begin[verbatim,fragment]{lilypond}
+    { a } \addlyrics{ Aaaah }
+\end{lilypond}
+
+\section*{Una canción con dos letras}
+\begin[verbatim,fragment]{lilypond}
+    { a }
+      \addlyrics { Aaaah }
+      \addlyrics { Eeeeh }
+\end{lilypond}
+
+\section*{Asignar letra a una variable}
+\begin{verbatim}
+    letraTenor = \lyricmode { Aaaah }
+\end{verbatim}
+
+\section*{Uso de una variable de letra}
+\begin{verbatim}
+    { a } \addlyrics { \letraTenor }
+\end{verbatim}
+
+\begin{lilypond}
+    letraTenor = \lyricmode { Aaaah }
+    { a } \addlyrics { \letraTenor }
+\end{lilypond}
+
+\section*{Una canción que usa variables}
+\begin[verbatim]{lilypond}
+    tenor = { a }
+    letraTenor = \lyricmode { Aaaah }
+    { \tenor } \addlyrics { \letraTenor }
+\end{lilypond}
+    
+\section*{Letra: separar sílabas}
+\begin[verbatim,fragment]{lilypond}
+    { a b c }
+       \addlyrics{ Ky -- ri -- e }
+\end{lilypond}
+
+\section*{Letra: melisma con ligadura de expresión}
+\begin[verbatim,fragment]{lilypond}
+    { a( b c) d e }
+       \addlyrics { Ky -- ri -- e }
+\end{lilypond}
+
+\section*{Letra: melisma sin ligadura de expresión}
+\begin[verbatim,fragment]{lilypond}
+    { a b c d e }
+       \addlyrics { Ky -- _ _ ri -- e }
+\end{lilypond}
+
+\section*{Letra: línea extensora sobre la última sílaba}
+\begin[verbatim,fragment]{lilypond}
+    { a( b c) }
+       \addlyrics { son __ }
+\end{lilypond}
+
+\section*{Letra: más de una sílaba por nota, con ligadura de letra}
+\begin[verbatim,fragment]{lilypond}
+    { a } \addlyrics { e_e }
+\end{lilypond}
+
+\section*{Letra: más de una sílaba por nota, sin ligadura de letra}
+\begin[verbatim,fragment]{lilypond}
+    { a } \addlyrics { "e e" }
+\end{lilypond}
+
+\section*{Un contexto de letra explícito}
+\begin{verbatim}
+    \new Lyrics { \letraTenor }
+\end{verbatim}
+
+\begin{lilypond}
+letraTenor = \lyricmode { Ah }
+    \new Lyrics { \letraTenor }
+\end{lilypond}
+
+\section*{Una canción que usa contextos con nombre}
+\begin{verbatim}
+    << \new Voice = "vozUno" { \musicaUno }
+       \new Lyrics \lyricsto "vozUno" { \letraUno }
+    >>
+\end{verbatim}
+
+\begin{lilypond}
+musicaUno = { c' }
+letraUno = \lyricmode { Ah }
+    << \new Voice = "vozUno" { \musicaUno }
+       \new Lyrics \lyricsto "vozUno" { \letraUno }
+    >>
+\end{lilypond}
+
+\section*{Título de la obra}
+\begin[verbatim]{lilypond}
+    \header {
+      title = "Sinfonía"
+    }
+\end{lilypond}
+
+\section*{Título y autor}
+\begin[verbatim]{lilypond}
+    \header {
+      title = "Sinfonía"
+      composer = "Beethoven"
+    }
+\end{lilypond}
+
+\end{document}

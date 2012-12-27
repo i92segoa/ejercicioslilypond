@@ -1,0 +1,318 @@
+LilyPond por ejemplo: chuleta de texto sencillo
+Las entradas con asterisco son complementarias
+
+LilyPond by example -- a text-only cheatsheet
+*-entries are complementary
+
+
+
+Una nota: la
+    a
+
+Un silencio
+    r
+
+*Silencio de compás completo: 4/4
+   R1
+
+*Silencio de compás completo: 3/4
+   R2.
+
+Una expresión musical
+    { a }
+
+Una octava más aguda
+    a'
+
+Una octava más grave
+    a,
+
+* Una escala de do a si
+    c d e f g a b
+
+* Alturas en modo absoluto: una escala de cuatro octavas
+  {
+  \clef "bass"
+  c,4 d, e, f,
+  g,4 a, b, c 
+  d4 e f g
+  a4 b c' d'
+  \clef "treble"
+  e'4 f' g' a'
+  b'4 c'' d'' e''
+  f''4 g'' a'' b''
+  c'''1
+}
+
+Alturas en modo relativo: una escala
+    \relative c' { c e d f g a b c }
+
+Alteración: do sostenido
+    cis
+
+Alteración cuando hay armadura: si bemol en fa mayor
+    \key f \major
+    bes
+
+Alteración: la bemol
+    aes
+
+* Alteración forzada: becuadro
+   a!
+
+* Alteración de cortesía
+   aes?
+
+* becuadro de cortesía
+   a?
+
+Efecto de las alteraciones: la bemol seguido de la natural
+    aes a
+
+* Escala cromática ascendente con sostenidos
+    c cis d dis e f fis g gis a ais b c'
+
+* Escala cromática descendente con bemoles
+    c' b bes a aes g ges f e es d des c
+
+Una corchea
+    a8
+
+Varias corcheas
+    a8 a a a 
+
+* Todos los valores, de redonda a semifusa
+    a1 a2 a4 a8 a16 a32 a64
+
+Negra con puntillo
+    a4.
+
+* Doble puntillo
+    a4..
+
+Dos notas unidas por ligadura
+    a ~ a
+
+Un acorde
+    <c e g>
+
+Duración de un acorde
+    <c e g>8
+
+Ligadura de expresión: dos notas
+    a( b)
+
+* Ligadura de expresión: varias notas
+    c( d e f g a)
+
+Ligadura de fraseo
+    c\( d e f g a\)
+
+Asignación de una expresión musical a una variable
+    violin = { a b c }
+
+Uso de una variable
+    \violin
+
+Tresillo de corcheas
+    \times 2/3 { a8 a a }
+
+Clave de Sol en 2ª
+    \clef treble
+
+Clave de Fa en 4ª
+    \clef bass
+
+Tonalidad: Re mayor
+    \key d \major
+
+Compás: 3/4
+    \time 3/4
+
+Tempo
+    \tempo "Allegro"
+
+Indicación metronómica
+    \tempo 4=60
+
+Articulación: picado
+    a-.
+
+*Otras articulaciones
+    c4-^ c-+ c-- c-| c4-> c-. c2-_
+
+Digitaciones
+    c-1 e-3 g-5
+
+Forzar articulación por encima
+    a^.
+
+Forzar articulación por debajo
+    a_.
+
+Arco arriba, arco abajo
+    a\upBow a\downBow
+
+Nota con calderón
+    a \fermata
+
+Matiz dinámico
+    \pp
+
+* Otros matices
+    \pp \p \mf \f \ff
+
+Regulador (crescendo), fin de regulador
+    a\< b\!
+
+Regulador (diminuendo), fin de regulador
+    a\> b\!
+
+Final implícito de un regulador
+    a\p a\< a\f
+
+Texto sobre una nota, sin formato
+    a-"dolce"
+
+Texto sobre una nota, con formato (elemento de marcado)
+    a-\markup{ \italic dolce }
+
+Unir corcheas manualmente con una barra
+    a8[ a a a a a a a a]
+
+Compás de anacrusa: valor de corchea
+    \partial 8
+    a8
+
+Notas de adorno (genéricas)
+    \grace{ g16 a }
+    a1
+
+Notas de adorno: apoyatura
+    \appoggiatura c4
+    d2
+
+Notas de adorno: mordente de una nota
+    \acciaccatura c16
+    d2
+
+Dos expresiones en secuencia
+    {{ a b c } { d e f }}
+
+Dos expresiones simultáneas
+    << { a b c } { d e f } >>
+
+Dos variables en secuencia
+    { \parteUno \parteDos }
+    
+Dos variables simultáneas
+    << \parteUno \parteDos >>
+
+Una partitura explícita
+    \score {
+            { a b c }
+     }
+
+Un pentagrama explícito
+    \new Staff { a b c }
+
+Dos expresiones simultáneas dentro de un pentagrama explícito
+   \new Staff << { a b c } { d e f } >>
+
+Dos voces independientes dentro de un pentagrama explícito
+   \new Staff << { a b c } \\ { d e f } >>
+
+Un contexto de voz explícito
+   \new Voice { a b c }
+
+Dos voces explícitas dentro de un pentagrama
+   \new Staff <<
+      \new Voice { a b c }
+      \new Voice { d e f }
+   >>
+
+Tres voces explícitas dentro de un pentagrama, con control de las plicas
+   \new Staff <<
+      \new Voice { \voiceOne   a b c }
+      \new Voice { \voiceTwo   d e f }
+      \new Voice { \voiceThree g a b }
+   >>
+
+Dos pentagramas simultáneos
+   << \new Staff { \parteUno }
+      \new Staff { \parteDos } >>
+
+Sistema de piano: claves de Sol y Fa
+    \new PianoStaff <<
+        \new Staff { ... }
+	\new Staff { \clef bass ...}
+    >>
+
+Sistema de coro: SATB
+    \new ChoirStaff <<
+        \new Staff { \soprano }
+	\new Staff { \alto }
+	\new Staff { \clef "G_8" \tenor }
+	\new Staff { \clef bass \bajo }
+    >>
+
+Una breve canción
+    { a } \addlyrics{ Aaaah }
+
+Una canción con dos letras
+    { a }
+      \addlyrics { Aaaah }
+      \addlyrics { Eeeeh }
+
+Asignar letra a una variable
+    letraTenor = \lyricmode { Aaaah }
+
+Uso de una variable de letra
+    { a } \addlyrics { \letraTenor }
+
+Una canción que usa variables
+    tenor = { a }
+    letraTenor = \lyricmode { Aaaah }
+    { \tenor } \addlyrics { \letraTenor }
+    
+Letra: separar sílabas
+    { a b c }
+       \addlyrics{ Ky -- ri -- e }
+
+Letra: melisma con ligadura de expresión
+    { a( b c) d e }
+       \addlyrics { Ky -- ri -- e }
+
+Letra: melisma sin ligadura de expresión
+    { a b c d e }
+       \addlyrics { Ky -- _ _ ri -- e }
+
+Letra: línea extensora sobre la última sílaba
+    { a( b c) }
+       \addlyrics { son __ }
+
+Letra: más de una sílaba por nota, con ligadura de letra
+    { a } \addlyrics { e_e }
+
+Letra: más de una sílaba por nota, sin ligadura de letra
+    { a } \addlyrics { "e e" }
+
+Un contexto de letra explícito
+    \new Lyrics { \letraTenor }
+
+Una canción que usa contextos con nombre
+    << \new Voice = "vozUno" { \musicaUno }
+       \new Lyrics \lyricsto "vozUno" { \letraUno }
+    >>
+
+Título de la obra
+    \header {
+      title = "Sinfonía"
+    }
+
+Título y autor
+    \header {
+      title = "Sinfonía"
+      composer = "Beethoven"
+    }
+
