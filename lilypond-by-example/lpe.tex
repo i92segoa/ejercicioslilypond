@@ -1,0 +1,1125 @@
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+\usepackage[spanish]{babel}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage[utopia]{mathdesign}
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
+
+\newcommand{\preLilyPondExample}{\vspace{-10pt}}
+\newcommand{\lpversion}{2.13.4}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+\title{LilyPond por ejemplo: la guía visual}
+\author{Francisco Vila}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\nonfrenchspacing
+
+\begin{titlepage} %%%%%%%%%%%% PORTADA
+  \makeatletter
+  \begin{center}
+    %\textbf{\Large Universidad de Extremadura}\par
+    \vfill
+    \includegraphics[width=60mm]{lily-logo.png}\par
+    \vfill
+    \textbf{\huge\@title}\par
+%    \textbf{\large\@subtitle}\par
+    {\@date}
+    \vfill
+    \textbf{\large\@author}
+    \vfill
+  \end{center}
+  \makeatother
+\end{titlepage}
+
+%\singlespace
+
+%\begin{singlespace} % los listados van a un espacio. Necesita el paquete setspace
+ % \tableofcontents
+ % \listoffigures
+ % \listoftables
+%\end{singlespace}
+
+% chuleta de texto sencillo
+%Las entradas con asterisco son complementarias
+
+% LilyPond by example -- a visual guide
+% text-only cheatsheet
+
+% *-entries are complementary
+
+\section*{Una nota: La}
+\begin{tabular}{m{2cm}m{2cm}}
+%\multicolumn{2}{c}{Una nota: la}\\
+\begin{verbatim}
+a
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a
+\end{lilypond}
+\end{tabular}
+
+\section*{Un silencio}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+r
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+r
+\end{lilypond}
+\end{tabular}
+
+\section*{*Silencio de compás completo: 4/4}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+R1
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+R1
+\end{lilypond}
+\end{tabular}
+
+\section*{*Silencio de compás completo: 3/4}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+R2.
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+\time 3/4 R2.
+\end{lilypond}
+\end{tabular}
+
+\section*{Una expresión musical}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+{ a }
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+{ a }
+\end{lilypond}
+\end{tabular}
+
+\section*{Una octava más aguda}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a'
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+a'
+\end{lilypond}
+\end{tabular}
+
+\section*{Una octava más grave}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a,
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+a,
+\end{lilypond}
+\end{tabular}
+
+\section*{*Una escala de Do a Si}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+c d e f g a b
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+c d e f g a b
+\end{lilypond}
+\end{tabular}
+
+\section*{*Alturas en modo absoluto: una escala de cuatro octavas}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+{
+  \clef "bass"
+  c,4 d, e, f,
+  g,4 a, b, c 
+  d4 e f g
+  a4 b c' d'
+  \clef "treble"
+  e'4 f' g' a'
+  b'4 c'' d'' e''
+  f''4 g'' a'' b''
+  c'''1
+}
+\end{verbatim}
+&
+\begin[fragment,staffsize=15,line-width=13\cm]{lilypond}
+{
+  \clef "bass"
+  c,4 d, e, f,
+  g,4 a, b, c 
+  d4 e f g
+  a4 b c' d'
+  \clef "treble"
+  e'4 f' g' a'
+  b'4 c'' d'' e''
+  f''4 g'' a'' b''
+  c'''1
+}
+\end{lilypond}
+\end{tabular}
+
+\section*{Alturas en modo relativo: una escala}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+\relative c' { c d e f g a b c }
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+\relative c' { c d e f g a b c }
+\end{lilypond}
+\end{tabular}
+
+\section*{Alteración: do sostenido}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+cis
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+cis
+\end{lilypond}
+\end{tabular}
+
+\section*{Alteración cuando hay armadura: Si bemol en Fa mayor}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+\key f \major
+bes
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+    \key f \major
+    bes
+\end{lilypond}
+\end{tabular}
+
+\section*{Alteración: La bemol}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+aes
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+aes
+\end{lilypond}
+\end{tabular}
+
+\section*{*Alteración forzada: becuadro}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a!
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a!
+\end{lilypond}
+\end{tabular}
+
+\section*{*Alteración de cortesía}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+aes?
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+aes?
+\end{lilypond}
+\end{tabular}
+
+\section*{*Becuadro de cortesía}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a?
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a?
+\end{lilypond}
+\end{tabular}
+
+\section*{Efecto de las alteraciones: La bemol seguido de La natural}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+aes a
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+aes a
+\end{lilypond}
+\end{tabular}
+
+\section*{*Escala cromática ascendente con sostenidos}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+c cis d dis e f fis g gis a ais b
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+c cis d dis e f fis g gis a ais b
+\end{lilypond}
+\end{tabular}
+
+\section*{*Escala cromática descendente con bemoles}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+c b bes a aes g ges f e es d des
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+c b bes a aes g ges f e es d des
+\end{lilypond}
+\end{tabular}
+
+\section*{Una corchea}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a8
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a8
+\end{lilypond}
+\end{tabular}
+
+\section*{Varias corcheas}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a8 a a a
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a8 a a a
+\end{lilypond}
+\end{tabular}
+
+\section*{*Todos los valores, de redonda a semifusa}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+a1 a2 a4 a8 a16 a32 a64
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a1 a2 a4 a8 a16 a32 a64
+\end{lilypond}
+\end{tabular}
+
+\section*{Negra con puntillo}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a4.
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a4.
+\end{lilypond}
+\end{tabular}
+
+\section*{*Doble puntillo}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a4..
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a4..
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos notas unidas por ligadura}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a ~ a
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+a ~ a
+\end{lilypond}
+\end{tabular}
+
+\section*{Un acorde}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+<c e g>
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+<c e g>
+\end{lilypond}
+\end{tabular}
+
+\section*{Duración de un acorde}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+<c e g>8
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+<c e g>8
+\end{lilypond}
+\end{tabular}
+
+\section*{Ligadura de expresión: dos notas}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a( b)
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+a( b)
+\end{lilypond}
+\end{tabular}
+
+\section*{*Ligadura de expresión: varias notas}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+c( d e f g a)
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+c( d e f g a)
+\end{lilypond}
+\end{tabular}
+
+\section*{Ligadura de fraseo}
+\begin{tabular}{m{2.5cm}m{2cm}}
+\begin{verbatim}
+c\( d e f g a\)
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+c\( d e f g a\)
+\end{lilypond}
+\end{tabular}
+
+\section*{Asignación de una expresión musical a una variable}
+\begin{verbatim}
+   violin = { a b c }
+\end{verbatim}
+
+\section*{Uso de una variable}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+\violin
+\end{verbatim}
+&
+\begin{lilypond}
+violin = \relative c''{ a b c }
+    { \violin }
+\end{lilypond}
+\end{tabular}
+
+\section*{Tresillo de corcheas}
+\begin{tabular}{m{4cm}m{2cm}}
+\begin{verbatim}
+\times 2/3 { a8 a a }
+\end{verbatim}
+&
+\begin[fragment,relative=2,notime]{lilypond}
+\times 2/3 { a8 a a }
+\end{lilypond}
+\end{tabular}
+
+\section*{Clave de Sol en 2ª}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+\clef treble
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+\clef treble s1
+\end{lilypond}
+\end{tabular}
+
+\section*{Clave de Fa en 4ª}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+\clef bass
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+\clef bass s1
+\end{lilypond}
+\end{tabular}
+
+\section*{Tonalidad: Re mayor}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+\key d \major
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+\hide Staff.TimeSignature
+\key d \major s1
+\end{lilypond}
+\end{tabular}
+
+\section*{Compás: 3/4}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+\time 3/4
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+\time 3/4 s2.
+\end{lilypond}
+\end{tabular}
+
+\section*{Tempo}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+\tempo "Allegro"
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+\tempo "Allegro" s1
+\end{lilypond}
+\end{tabular}
+
+\section*{Indicación metronómica}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+\tempo 4=60
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+\tempo 4=60 s1
+\end{lilypond}
+\end{tabular}
+
+\section*{Articulación: picado}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a-.
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a-.
+\end{lilypond}
+\end{tabular}
+
+\section*{*Otras articulaciones}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+c4-^ c-+ c-- c-| c4-> c2-_
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+\time 3/4 c4-^ c-+ c-- c-| c4-> c4-_
+\end{lilypond}
+\end{tabular}
+
+\section*{Digitaciones}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+c-1 e-3 g-5
+\end{verbatim}
+&
+\begin[fragment,relative=1,notime]{lilypond}
+c-1 e-3 g-5
+\end{lilypond}
+\end{tabular}
+
+\section*{Forzar articulación por encima}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a^.
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a^.
+\end{lilypond}
+\end{tabular}
+
+\section*{Forzar articulación por debajo}
+\begin{tabular}{m{2cm}m{2cm}}
+\begin{verbatim}
+a_.
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a_.
+\end{lilypond}
+\end{tabular}
+
+\section*{Arco arriba, arco abajo}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a\upbow a\downbow
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a\upbow a\downbow
+\end{lilypond}
+\end{tabular}
+
+\section*{Nota con calderón}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a\fermata
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a\fermata
+\end{lilypond}
+\end{tabular}
+
+\section*{Matiz dinámico}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+\pp
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+s1\pp
+\end{lilypond}
+\end{tabular}
+
+\section*{*Otros matices}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+\p \mf \f \ff
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+s1 \p s1 \mf s1 \f s1 \ff
+\end{lilypond}
+\end{tabular}
+
+\section*{Regulador (crescendo), fin de regulador}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a\< b\!
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a\< b\!
+\end{lilypond}
+\end{tabular}
+
+\section*{Regulador (diminuendo), fin de regulador}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a\> b\!
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a\> b\!
+\end{lilypond}
+\end{tabular}
+
+\section*{Final implícito de un regulador}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a\p a\< a a a a\f
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a\p a\< a a a a\f
+\end{lilypond}
+\end{tabular}
+
+\section*{Texto sobre una nota, sin formato}
+\begin{tabular}{m{3cm}m{2cm}}
+\begin{verbatim}
+a-"dolce"
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a-"dolce"
+\end{lilypond}
+\end{tabular}
+
+\section*{Texto sobre una nota, con formato (elemento de marcado)}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+a-\markup{ \italic dolce }
+\end{verbatim}
+&
+\begin[fragment,notime]{lilypond}
+a-\markup{ \italic dolce }
+\end{lilypond}
+\end{tabular}
+
+\section*{Unir corcheas manualmente con una barra}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+a8[ a a a a a a a a]
+\end{verbatim}
+&
+\begin[fragment]{lilypond}
+a8[ a a a a a a a a]
+\end{lilypond}
+\end{tabular}
+
+\section*{Notas de adorno (genéricas)}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+\grace{ c16 e }
+    d1
+\end{verbatim}
+&
+\begin[fragment,relative=1]{lilypond}
+\grace{ c16 e }
+    d1
+\end{lilypond}
+\end{tabular}
+
+\section*{Notas de adorno: apoyatura}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+\appoggiatura c4
+d1
+\end{verbatim}
+&
+\begin[fragment,relative=1]{lilypond}
+\appoggiatura c4
+d1
+\end{lilypond}
+\end{tabular}
+
+\section*{Notas de adorno: mordente de una nota}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+\acciaccatura c16
+d2
+\end{verbatim}
+&
+\begin[fragment,relative=1]{lilypond}
+\acciaccatura c16
+d2
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos expresiones en secuencia}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+{{ a b c } { d e f }}
+\end{verbatim}
+&
+\begin[fragment,relative=1]{lilypond}
+{{ a b c } { d e f }}
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos expresiones simultáneas}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+<< { a b c } { d e f } >>
+\end{verbatim}
+&
+\begin[fragment,relative=1]{lilypond}
+<< { a b c } { d e f } >>
+\end{lilypond}
+\end{tabular}
+
+
+\section*{Dos variables en secuencia}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+{ \parteUno \parteDos }
+\end{verbatim}
+&
+\begin{lilypond}
+parteUno = { c' }
+parteDos = { e' }
+    { \parteUno \parteDos }
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos variables simultáneas}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+<< \parteUno \parteDos >>
+\end{verbatim}
+&
+\begin{lilypond}
+parteUno = { c' }
+parteDos = { e' }
+    << \parteUno \parteDos >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Un contexto de partitura explícito}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+\score {
+  { a b c' }
+}
+\end{verbatim}
+&
+\begin{lilypond}
+\score {
+  { a b c' }
+}
+\end{lilypond}
+\end{tabular}
+
+\section*{Un contexto de pentagrama explícito}
+\begin{tabular}{m{6cm}m{2cm}}
+\begin{verbatim}
+\new Staff { a b c' }
+\end{verbatim}
+&
+\begin{lilypond}
+\new Staff { a b c' }
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos expresiones simultáneas dentro de un pentagrama explícito}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+\new Staff << { a b c' } { d e f } >>
+\end{verbatim}
+&
+\begin{lilypond}
+\new Staff << { a b c' } { d e f } >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos voces independientes dentro de un pentagrama explícito}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+\new Staff << { a b c' } \\ { d e f } >>
+\end{verbatim}
+&
+\begin{lilypond}
+\new Staff << { a b c' } \\ { d e f } >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Un contexto de voz explícito}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+\new Voice { a b c' }
+\end{verbatim}
+&
+\begin{lilypond}
+\new Voice { a b c' }
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos voces explícitas dentro de un pentagrama}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+   \new Staff <<
+      \new Voice { a b c' }
+      \new Voice { d e f }
+   >>
+\end{verbatim}
+&
+\begin{lilypond}
+   \new Staff <<
+      \new Voice { a b c' }
+      \new Voice { d e f }
+   >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Tres voces explícitas dentro de un pentagrama, con control de las plicas}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+   \new Staff <<
+      \new Voice { \voiceOne c' d' e' }
+      \new Voice { \voiceThree a b c' }
+      \new Voice { \voiceTwo   f g a }
+   >>
+\end{verbatim}
+&
+\begin{lilypond}
+   \new Staff <<
+      \new Voice { \voiceOne   c' d' e' }
+      \new Voice { \voiceThree   a b c' }
+      \new Voice { \voiceTwo f g a }
+   >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Dos pentagramas simultáneos}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+   << \new Staff { \parteUno }
+      \new Staff { \parteDos } >>
+\end{verbatim}
+&
+\begin{lilypond}
+parteUno = { c' }
+parteDos = { e' }
+   << \new Staff { \parteUno }
+      \new Staff { \parteDos } >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Sistema de piano: claves de Sol y Fa}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+\new PianoStaff <<
+  \new Staff { ... }
+  \new Staff { \clef bass ... }
+>>
+\end{verbatim}
+&
+\begin{lilypond}
+    \new PianoStaff <<
+        \new Staff { s1 }
+	\new Staff { \clef bass s1 }
+    >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Sistema de coro: SATB}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+\new ChoirStaff <<
+  \new Staff { \soprano }
+  \new Staff { \alto }
+  \new Staff { \clef "G_8" \tenor }
+  \new Staff { \clef bass \bajo }
+>>
+\end{verbatim}
+&
+\begin{lilypond}
+soprano = { s1 }
+alto = { s1 }
+tenor = { s1 }
+bajo = { s1 }
+\new ChoirStaff <<
+  \new Staff { \soprano }
+  \new Staff { \alto }
+  \new Staff { \clef "G_8" \tenor }
+  \new Staff { \clef bass \bajo }
+>>
+\end{lilypond}
+\end{tabular}
+
+\section*{Una breve canción}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a } \addlyrics{ Aaaah }
+\end{verbatim}
+&
+\begin{lilypond}
+{ a } \addlyrics{ Aaaah }
+\end{lilypond}
+\end{tabular}
+
+\section*{Una canción con dos letras}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a }
+  \addlyrics { Aaaah }
+  \addlyrics { Eeeeh }
+\end{verbatim}
+&
+\begin{lilypond}
+{ a }
+  \addlyrics { Aaaah }
+  \addlyrics { Eeeeh }
+\end{lilypond}
+\end{tabular}
+
+\section*{Asignar letra a una variable}
+\begin{verbatim}
+    letraTenor = \lyricmode { Aaaah }
+\end{verbatim}
+
+\section*{Uso de una variable de letra}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a } \addlyrics { \letraTenor }
+\end{verbatim}
+&
+\begin{lilypond}
+letraTenor = \lyricmode { Aaaah }
+{ a } \addlyrics { \letraTenor }
+\end{lilypond}
+\end{tabular}
+
+\section*{Una canción que usa variables}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+tenor = { a }
+letraTenor = \lyricmode { Aaaah }
+
+{ \tenor } \addlyrics { \letraTenor }
+\end{verbatim}
+&
+\begin{lilypond}
+  tenor = { a }
+    letraTenor = \lyricmode { Aaaah }
+    { \tenor } \addlyrics { \letraTenor }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: separar sílabas}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a b c' }
+  \addlyrics{ Ky -- ri -- e }
+\end{verbatim}
+&
+\begin{lilypond}
+    { a b c' }
+       \addlyrics{ Ky -- ri -- e }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: melisma con ligadura de expresión}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a( b c) d e }
+  \addlyrics { Ky -- ri -- e }
+\end{verbatim}
+&
+\begin{lilypond}
+\relative f { a( b c) d e }
+  \addlyrics { Ky -- ri -- e }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: melisma sin ligadura de expresión}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a b c d e }
+  \addlyrics { Ky -- _ _ ri -- e }
+\end{verbatim}
+&
+\begin{lilypond}
+\relative f { a b c d e }
+  \addlyrics { Ky -- _ _ ri -- e }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: línea extensora sobre la última sílaba}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a( b c) }
+  \addlyrics { son __ }
+\end{verbatim}
+&
+\begin{lilypond}
+\relative f { a( b c) }
+  \addlyrics { son __ }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: más de una sílaba por nota, con ligadura de letra}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a } \addlyrics { e~e }
+\end{verbatim}
+&
+\begin{lilypond}
+{ a } \addlyrics { e~e }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: más de una sílaba por nota, sin ligadura de letra}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a } \addlyrics { "e e" }
+\end{verbatim}
+&
+\begin{lilypond}
+{ a } \addlyrics { "e e" }
+\end{lilypond}
+\end{tabular}
+
+\section*{Letra: más de una sílaba por nota, con ligadura de letra (alternativa)}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+{ a } \addlyrics { e_e }
+\end{verbatim}
+&
+\begin{lilypond}
+{ a } \addlyrics { e_e }
+\end{lilypond}
+\end{tabular}
+
+\section*{Un contexto de letra explícito}
+\begin{tabular}{m{7cm}m{2cm}}
+\begin{verbatim}
+\new Lyrics { \letraTenor }
+\end{verbatim}
+&
+\begin{lilypond}
+letraTenor = \lyricmode { Ah }
+\new Lyrics { \letraTenor }
+\end{lilypond}
+\end{tabular}
+
+\section*{Una canción que usa contextos con nombre}
+\begin{tabular}{m{9cm}m{2cm}}
+\begin{verbatim}
+<<
+  \new Voice = "vozUno" { \musicaUno }
+  \new Lyrics \lyricsto "vozUno" { \letraUno }
+>>
+\end{verbatim}
+&
+\begin{lilypond}
+musicaUno = { c' }
+letraUno = \lyricmode { Ah }
+    << \new Voice = "vozUno" { \musicaUno }
+       \new Lyrics \lyricsto "vozUno" { \letraUno }
+    >>
+\end{lilypond}
+\end{tabular}
+
+\section*{Título de la obra}
+\begin{tabular}{m{3cm}m{9cm}}
+\begin{verbatim}
+\header {
+  title = "Sinfonía"
+}
+\end{verbatim}
+&
+\begin[line-width=10\cm]{lilypond}
+    \header {
+      title = "Sinfonía"
+    }
+\end{lilypond}
+\end{tabular}
+
+\section*{Título y autor}
+\begin{tabular}{m{3cm}m{9cm}}
+\begin{verbatim}
+\header {
+  title = "Sinfonía"
+  composer = "Beethoven"
+}
+\end{verbatim}
+&
+\begin[line-width=10\cm]{lilypond}
+    \header {
+      title = "Sinfonía"
+      composer = "Beethoven"
+    }
+\end{lilypond}
+\end{tabular}
+
+\end{document}
