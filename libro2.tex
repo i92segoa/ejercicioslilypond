@@ -1,9 +1,7 @@
 %\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
-%\documentclass[10pt,a4paper,oneside,headinclude,titlepage]{scrbook} % la clase book del Koma-script bundle
 \documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
 %\linespread{1.25}
 \usepackage{setspace}
-\usepackage{pdfpages}
 %\usepackage{tikz}
 %\usetikzlibrary{fit,shapes}
 \usepackage[spanish]{babel}
@@ -34,11 +32,11 @@
 %\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
 
 \parskip=0pt\clubpenalty=10000\widowpenalty=10000
-\parindent=6mm
+
 \newcommand{\preLilyPondExample}{\vspace{0pt}}
 \newcommand{\postLilyPondExample}{\vspace{6pt}}
 
-\newcommand{\lpversion}{2.15.30}
+\newcommand{\lpversion}{2.13.4}
 \newcommand{\defsep}{\textbf{$\|$}}
 \newcommand{\software}{\emph{software}}
 \newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
@@ -50,7 +48,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TÍTULOS
-\title{LilyPond\\30 Ejercicios semanales}
+\title{LilyPond\\Ejercicios semanales}
 %\subtitle{}
 % necesita Koma-script 2.98 2007/12/24
 \author{Francisco Vila}
@@ -58,7 +56,7 @@
 %\date{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN TÍTULOS
 
-% \includeonly{apuntes-29-espanol}
+% \includeonly{apuntes-21-midi-include}
 
 \begin{document}
 
@@ -90,38 +88,27 @@
 \end{singlespace}
  
  \include{introduccion}
- \include{apuntes-01-instalacion}
- \include{apuntes-02-cumple}
- \include{apuntes-03-mozart}
- \include{apuntes-04-alteraciones-titulos-ofrenda}
- \include{apuntes-05-barras-beethoven5th}
- \include{apuntes-06-ligaduras-bach-suite1-cello}
- \include{apuntes-07-repeticiones-beethoven-9thsym}
- \include{apuntes-08-contextos-simultanea}
- \include{apuntes-09-polifonia}
- \include{apuntes-10-piano-tresillos}
- \include{apuntes-11-canciones}
- \include{apuntes-12-acordes}
- \include{apuntes-13-variables}
- \include{apuntes-14-articulaciones-digitaciones}
- \include{apuntes-15-reguladores-markup}
- \include{apuntes-16-adornos}
- \include{apuntes-17-set}
- \include{apuntes-18-emperador}
- \include{apuntes-19-bajocifrado}
- \include{apuntes-20-machaut}
- \include{apuntes-21-midi}
- \include{apuntes-22-trucha}
- \include{apuntes-23-despertad}
- \include{apuntes-24-book}
- \include{apuntes-25-mendelssohn}
- \include{apuntes-26-margenes}
- \include{apuntes-27-holst-1}
- \include{apuntes-28-holst-2}
- \include{apuntes-29-espanol}
- \include{apuntes-30-antigua}
- \include{collections}
- \include{lilypond-por-ejemplo}
+ \include{apuntes-01-instalacion-include}
+ \include{apuntes-02-cumple-include}
+ \include{apuntes-03-mozart-include}
+ \include{apuntes-04-alteraciones-titulos-ofrenda-include}
+ \include{apuntes-05-barras-beethoven5th-include}
+ \include{apuntes-06-ligaduras-bach-suite1-cello-include}
+ \include{apuntes-07-repeticiones-beethoven-9thsym-include}
+ \include{apuntes-08-contextos-simultanea-include}
+ \include{apuntes-09-polifonia-include}
+ \include{apuntes-10-piano-tresillos-include}
+ \include{apuntes-11-canciones-include}
+ \include{apuntes-12-acordes-include}
+ \include{apuntes-13-variables-include}
+ \include{apuntes-14-articulaciones-digitaciones-include}
+ \include{apuntes-15-reguladores-markup-include}
+ \include{apuntes-16-adornos-include}
+ \include{apuntes-17-set-include}
+ \include{apuntes-18-emperador-include}
+ \include{apuntes-19-bajocifrado-include}
+ \include{apuntes-20-machaut-include}
+ \include{apuntes-21-midi-include}
 
 \end{document}
 

@@ -1,0 +1,45 @@
+lilypond-ejercicios
+
+gitn5lishk  (n5lishk?)
+
+The push URL for the project is
+ssh://repo.or.cz/srv/git/lilypond-ejercicios.git.
+
+The read-only URL for the project is
+git://repo.or.cz/lilypond-ejercicios.git,
+http://repo.or.cz/r/lilypond-ejercicios.git.
+
+You can assign users now - don't forget to assign yourself as a user
+as well if you want to push! Everyone who wants to push must register
+himself as a user first. (One user can have push access to multiple
+projects and multiple users can have push access to one project.)
+
+Note that you cannot clone an empty repository since it contains no
+branches; you need to make the first push from an existing
+repository. To import a new project, the procedure is roughly as
+follows:
+
+  $ git init
+  $ git add
+  $ git commit
+  $ git remote add origin ssh://repo.or.cz/srv/git/lilypond-ejercicios.git
+  $ git push --all origin
+
+You may experience permission problems if you try to push right now. If so, that should get fixed automagically in few minutes, please be patient.
+
+Enjoy yourself, and have a lot of fun!
+
+
+
+
+
+
+http://repo.or.cz/w/lilypond-ejercicios.git
+description	A booklet of LilyPond exercises for students. Cuaderno de ejercicios de LilyPond para alumnos.
+homepage URL	http://www.paconet.org/lilypond
+owner	paconet.org@gmail.com
+URL	git://repo.or.cz/lilypond-ejercicios.git
+	http://repo.or.cz/r/lilypond-ejercicios.git
+Push URL	ssh://repo.or.cz/srv/git/lilypond-ejercicios.git
+
+http://repo.or.cz/editproj.cgi?name=lilypond-ejercicios

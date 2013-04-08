@@ -1,0 +1,26 @@
+\documentclass[10pt,a4paper]{scrreprt}
+%\usepackage{classicthesis-ldpkg}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{rotating}
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\begin{document}
+
+  \centering
+  \renewcommand\multirowsetup{\centering}
+  \begin{tabular}{|M{20mm}|P{18mm}|P{20mm}|P{18mm}|P{20mm}|P{20mm}|M{15mm}|M{20mm}|M{15mm}|M{20mm}|} \hline
+    \multirow{3}{20mm}{Head Model} & \multirow{3}{20mm}{\# SG computed} 
+      & \multirow{3}{20mm}{\# Computed directly} & \multirow{3}{20mm}{\# SG Corrected} 
+      & \multirow{3}{20mm}{\# SG Approximated} & \multirow{3}{20mm}{SMAS triangle count} 
+      & \multicolumn{2}{P{35mm}|}{Machine~1} 
+      & \multicolumn{2}{P{35mm}|}{Machine~2} \\ \cline{7-10}
+    & & & & & & Runtime & \% spent calc geodesics  & Runtime & \% spent calc geodesics \\ \hline
+    African & 1102 & 994 & 102 & 56 & -- & 499~sec. (8.3~min.) & 77\% & -- & -- \\ \hline
+  \end{tabular}
+
+\end{document}
+

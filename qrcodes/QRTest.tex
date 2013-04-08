@@ -1,9 +1,10 @@
 %\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
-%\documentclass[10pt,a4paper,oneside,headinclude,titlepage]{scrbook} % la clase book del Koma-script bundle
 \documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
 %\linespread{1.25}
 \usepackage{setspace}
 \usepackage{pdfpages}
+\usepackage{hyperref}
+\hypersetup{colorlinks,citecolor=red,linkcolor=red,urlcolor=blue,linktocpage}
 %\usepackage{tikz}
 %\usetikzlibrary{fit,shapes}
 \usepackage[spanish]{babel}
@@ -50,7 +51,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TÍTULOS
-\title{LilyPond\\30 Ejercicios semanales}
+\title{QRTest\\QR Code Test Document}
 %\subtitle{}
 % necesita Koma-script 2.98 2007/12/24
 \author{Francisco Vila}
@@ -69,7 +70,7 @@
   \begin{center}
     %\textbf{\Large Universidad de Extremadura}\par
     \vfill
-    \includegraphics[width=60mm]{lily-logo.png}\par
+    % \includegraphics[width=60mm]{lily-logo.png}\par
     \vfill
     \textbf{\huge\@title}\par
 %    \textbf{\large\@subtitle}\par
@@ -89,39 +90,8 @@
  % \listoftables
 \end{singlespace}
  
- \include{introduccion}
- \include{apuntes-01-instalacion}
- \include{apuntes-02-cumple}
- \include{apuntes-03-mozart}
- \include{apuntes-04-alteraciones-titulos-ofrenda}
- \include{apuntes-05-barras-beethoven5th}
- \include{apuntes-06-ligaduras-bach-suite1-cello}
- \include{apuntes-07-repeticiones-beethoven-9thsym}
- \include{apuntes-08-contextos-simultanea}
- \include{apuntes-09-polifonia}
- \include{apuntes-10-piano-tresillos}
- \include{apuntes-11-canciones}
- \include{apuntes-12-acordes}
- \include{apuntes-13-variables}
- \include{apuntes-14-articulaciones-digitaciones}
- \include{apuntes-15-reguladores-markup}
- \include{apuntes-16-adornos}
- \include{apuntes-17-set}
- \include{apuntes-18-emperador}
- \include{apuntes-19-bajocifrado}
- \include{apuntes-20-machaut}
- \include{apuntes-21-midi}
- \include{apuntes-22-trucha}
- \include{apuntes-23-despertad}
- \include{apuntes-24-book}
- \include{apuntes-25-mendelssohn}
- \include{apuntes-26-margenes}
- \include{apuntes-27-holst-1}
- \include{apuntes-28-holst-2}
- \include{apuntes-29-espanol}
- \include{apuntes-30-antigua}
- \include{collections}
- \include{lilypond-por-ejemplo}
+ % \include{introduccion}
+ \include{pruebaQR} 
 
 \end{document}
 

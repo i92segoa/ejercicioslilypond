@@ -84,7 +84,7 @@ r
 \end{lilypond}
 \end{tabular}
 
-\section*{*Silencio de compás completo: 4/4}
+\section*{Silencio de compás completo: 4/4}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 R1
@@ -95,7 +95,7 @@ R1
 \end{lilypond}
 \end{tabular}
 
-\section*{*Silencio de compás completo: 3/4}
+\section*{Silencio de compás completo: 3/4}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 R2.
@@ -139,7 +139,7 @@ a,
 \end{lilypond}
 \end{tabular}
 
-\section*{*Una escala de Do a Si}
+\section*{Una escala de Do a Si}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 c d e f g a b
@@ -150,7 +150,7 @@ c d e f g a b
 \end{lilypond}
 \end{tabular}
 
-\section*{*Alturas en modo absoluto: una escala de cuatro octavas}
+\section*{Alturas en modo absoluto: una escala de cuatro octavas}
 \begin{tabular}{m{3cm}m{2cm}}
 \begin{verbatim}
 {
@@ -229,7 +229,7 @@ aes
 \end{lilypond}
 \end{tabular}
 
-\section*{*Alteración forzada: becuadro}
+\section*{Alteración forzada: becuadro}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 a!
@@ -240,7 +240,7 @@ a!
 \end{lilypond}
 \end{tabular}
 
-\section*{*Alteración de cortesía}
+\section*{Alteración de cortesía}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 aes?
@@ -251,7 +251,7 @@ aes?
 \end{lilypond}
 \end{tabular}
 
-\section*{*Becuadro de cortesía}
+\section*{Becuadro de cortesía}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 a?
@@ -273,7 +273,7 @@ aes a
 \end{lilypond}
 \end{tabular}
 
-\section*{*Escala cromática ascendente con sostenidos}
+\section*{Escala cromática ascendente con sostenidos}
 \begin{tabular}{m{6cm}m{2cm}}
 \begin{verbatim}
 c cis d dis e f fis g gis a ais b
@@ -284,7 +284,7 @@ c cis d dis e f fis g gis a ais b
 \end{lilypond}
 \end{tabular}
 
-\section*{*Escala cromática descendente con bemoles}
+\section*{Escala cromática descendente con bemoles}
 \begin{tabular}{m{6cm}m{2cm}}
 \begin{verbatim}
 c b bes a aes g ges f e es d des
@@ -317,7 +317,7 @@ a8 a a a
 \end{lilypond}
 \end{tabular}
 
-\section*{*Todos los valores, de redonda a semifusa}
+\section*{Todos los valores, de redonda a semifusa}
 \begin{tabular}{m{6cm}m{2cm}}
 \begin{verbatim}
 a1 a2 a4 a8 a16 a32 a64
@@ -339,7 +339,7 @@ a4.
 \end{lilypond}
 \end{tabular}
 
-\section*{*Doble puntillo}
+\section*{Doble puntillo}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 a4..
@@ -394,7 +394,7 @@ a( b)
 \end{lilypond}
 \end{tabular}
 
-\section*{*Ligadura de expresión: varias notas}
+\section*{Ligadura de expresión: varias notas}
 \begin{tabular}{m{2cm}m{2cm}}
 \begin{verbatim}
 c( d e f g a)
@@ -522,7 +522,7 @@ a-.
 \end{lilypond}
 \end{tabular}
 
-\section*{*Otras articulaciones}
+\section*{Otras articulaciones}
 \begin{tabular}{m{6cm}m{2cm}}
 \begin{verbatim}
 c4-^ c-+ c-- c-| c4-> c2-_
@@ -599,7 +599,7 @@ s1\pp
 \end{lilypond}
 \end{tabular}
 
-\section*{*Otros matices}
+\section*{Otros matices}
 \begin{tabular}{m{3cm}m{2cm}}
 \begin{verbatim}
 \p \mf \f \ff
@@ -826,10 +826,10 @@ parteDos = { e' }
 \section*{Dos voces explícitas dentro de un pentagrama}
 \begin{tabular}{m{7cm}m{2cm}}
 \begin{verbatim}
-   \new Staff <<
-      \new Voice { a b c' }
-      \new Voice { d e f }
-   >>
+\new Staff <<
+  \new Voice { a b c' }
+  \new Voice { d e f }
+>>
 \end{verbatim}
 &
 \begin{lilypond}
@@ -843,11 +843,11 @@ parteDos = { e' }
 \section*{Tres voces explícitas dentro de un pentagrama, con control de las plicas}
 \begin{tabular}{m{7cm}m{2cm}}
 \begin{verbatim}
-   \new Staff <<
-      \new Voice { \voiceOne c' d' e' }
-      \new Voice { \voiceThree a b c' }
-      \new Voice { \voiceTwo   f g a }
-   >>
+\new Staff <<
+  \new Voice { \voiceOne c' d' e' }
+  \new Voice { \voiceThree a b c' }
+  \new Voice { \voiceTwo   f g a }
+>>
 \end{verbatim}
 &
 \begin{lilypond}
@@ -862,8 +862,8 @@ parteDos = { e' }
 \section*{Dos pentagramas simultáneos}
 \begin{tabular}{m{7cm}m{2cm}}
 \begin{verbatim}
-   << \new Staff { \parteUno }
-      \new Staff { \parteDos } >>
+<< \new Staff { \parteUno }
+   \new Staff { \parteDos } >>
 \end{verbatim}
 &
 \begin{lilypond}
@@ -919,11 +919,11 @@ bajo = { s1 }
 \section*{Una breve canción}
 \begin{tabular}{m{7cm}m{2cm}}
 \begin{verbatim}
-{ a } \addlyrics{ Aaaah }
+{ a } \addlyrics { Aaaah }
 \end{verbatim}
 &
 \begin{lilypond}
-{ a } \addlyrics{ Aaaah }
+{ a } \addlyrics { Aaaah }
 \end{lilypond}
 \end{tabular}
 
@@ -979,12 +979,12 @@ letraTenor = \lyricmode { Aaaah }
 \begin{tabular}{m{7cm}m{2cm}}
 \begin{verbatim}
 { a b c' }
-  \addlyrics{ Ky -- ri -- e }
+  \addlyrics { Ky -- ri -- e }
 \end{verbatim}
 &
 \begin{lilypond}
     { a b c' }
-       \addlyrics{ Ky -- ri -- e }
+       \addlyrics { Ky -- ri -- e }
 \end{lilypond}
 \end{tabular}
 

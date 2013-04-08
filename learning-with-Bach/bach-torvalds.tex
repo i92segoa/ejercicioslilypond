@@ -1,0 +1,172 @@
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+\usepackage{setspace}
+\usepackage{pdfpages}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[utopia]{mathdesign}
+\parskip=0pt\clubpenalty=10000\widowpenalty=10000
+\parindent=6mm
+\newcommand{\preLilyPondExample}{\vspace{0pt}}
+\newcommand{\postLilyPondExample}{\vspace{6pt}}
+
+\newcommand{\lpversion}{2.15.30}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}
+\newcommand{\seppar}{
+\bigskip
+
+}
+\title{LilyPond}
+\author{Francisco Vila}
+\date{\today}
+
+\begin{document}
+
+\section{Introducción}
+
+El alemán Johann Sebastian Bach es a la música clásica lo que el
+finlandés Linus Torvalds es al software libre.
+
+Torvalds no inventó el software libre, no es el único desarrollador, y
+para unos es un genio mientras que otros lo ven como un oportuno
+producto de su época. Con su singular trayectoria dentro del mundo de
+la computación, no hay duda de que es una referencia, alguien que está
+``en el inicio de muchas cosas'', honor que comparte con otros gurús y
+que inspira a legiones de amantes del código y las aplicaciones
+libres.
+
+Bach es un icono en su campo: su poderosa mente del siglo XVII produjo
+una cantidad enciclopédica de música de una misteriosa perfección
+formal, verdaderos teoremas del arte de los sonidos. Para muchos el
+mejor compositor de todos los tiempos, Bach nos servirá de hilo
+conductor para presentar un veterano programa de tipografía musical
+libre: GNU LilyPond.
+
+LilyPond produce partituras musicales completas, listas para imprimir,
+a partir de documentos de texto plano.  Es una aplicación de consola y
+funciona en servidores como servicio\footnote{lilybin} o para
+tipografiar bases de datos musicales\footnote{mutopia}, pero lo más
+frecuente para un uso personal es utilizarlo a través de un entorno de
+desarrollo como Frescobaldi.
+
+\section{Lo instalamos y lo probamos}
+
+Frescobaldi y LilyPond están en los repositorios oficiales de Debian y
+Ubuntu. En el caso de Frescobaldi recomendamos la distribución wheezy
+de Debian; en Ubuntu se puede encontrar a partir de la versión
+12.04. Los podemos instalar mediante
+
+\begin{quote}
+\verb+# apt-get install frescobaldi lilypond+
+\end{quote}
+
+Lanzamos Frescobaldi desde nuestro menú principal, o bien
+
+\begin{quote}
+\verb+$ frescobaldi+
+\end{quote}
+
+Ahora comprobaremos si el tinglado completo funciona. Tecleamos en el
+panel izquierdo del editor la partitura musical más minimalista que
+existe,
+
+\begin{quote}
+\verb+{ b }+
+\end{quote}
+
+y al pulsar Control+M, Frescobaldi debería llamar a LilyPond y
+presentar en el panel derecho la vista previa del PDF.
+
+LilyPond presenta la música dentro de una serie de contextos
+(pentagrama, partitura) predeterminados y listos para usar: traza la
+pauta, la clave, el compás y lo coloca todo en una hoja A4.  Pasemos a
+un ejemplo más completo que incluye un título, el nombre del autor, un
+valor para las figuras, una alteración forzada y hasta un texto bajo
+las notas.
+
+\section{Un ejemplo completo}
+
+\begin{verbatim}
+\header{ title = "The title"            % (1)
+         composer = "J. S. Bach" }
+\language "deutsch"                     % (2)
+music = \relative f { b'1 a c h! }      % (3)
+\new Staff { \music }                   % (4)
+\addlyrics { B A C H }                  % (5)
+\end{verbatim}
+
+Creemos que el bloque \verb+\header+ (1) es autoexplicativo. La
+instrucción (2) declara el idioma para el nombre de las notas, en este
+caso el alemán, aunque nosotros podemos poner
+\verb+\language{espanol}+ o dejar el idioma por defecto, el holandés,
+que es perfecto para la mayoría de las partituras. Es igual que el
+alemán excepto porque \verb+b+ es \emph{si} natural.
+
+En la instrucción (3) creamos una variable musical que contiene unas
+cuantas notas. Esto nos permite utilizar la música más de una vez; de
+la forma en que están codificadas estas notas, podemos hablar más
+tarde.
+
+
+\section{Expresiones}
+
+La instrucción (4) introduce la expresión principal de la
+partitura. En una partitura completa de LilyPond, debe haber una sola
+expresión encerrada entre llaves, o con una o más funciones prefijas o
+postfijas que no hacen sino aumentar la expresión.  Matemáticamente,
+es como si tenemos un símbolo tal que ``a'' y lo aumentamos
+multiplicándolo por un factor, ``3a'', le añadimos una cantidad ``3a +
+5'' y le cambiamos el signo a todo el conjunto: ``-(3a + 5)''. Lo que
+tenemos al final sigue siendo una única expresión.
+
+En nuestro documento, las instrucciones (4) y (5) son el núcleo de la
+partitura. En (4) creamos un pentagrama; cuando declaramos un contexto
+\verb+Staff+ de forma explícita para incluir la música dentro de él,
+estamos esctructurando nuestro contenido y preparando el documento
+para que crezca sin perder legibilidad, manteniendo todo perfectamente
+ordenado. En cuanto a su contenido, nos limitamos a usar la variable
+que definimos previamente, precediendo su nombre por una barra
+invertida.
+
+En (5) añadimos un texto: cada sílaba o carácter suelto se coloca
+automáticamente debajo de una nota de la música precedente. Es
+perfecto para la letra de las canciones, y de hecho está pensado para
+ello.
+
+\section{El modo notas}
+
+La sintaxis de introducción de notas es sencilla. Las siete notas son
+\quad\verb+c d e f g a h+\quad en alemán,
+\quad\verb+c d e f g a b+\quad en holandés y
+\quad\verb+do re mi fa sol la si+\quad en español. Para explicar
+nuestro ejemplo completamente, nos basta saber por ahora que un
+apóstrofo coloca las notas una octava más aguda, los números a la
+derecha como 1, 2, 4, 8, 16 son las duraciones de las figuras, y si no
+damos ninguna duración se toma por defecto la de la nota anterior. El
+conveniente modo relativo, dado por \verb+\relative <nota>+, establece
+que las notas cercanas no requieren ninguna corrección de octava, sólo
+los saltos de quinta o mayores lo necesitan.
+
+Finalmente, hemos forzado en \verb+h!+ la alteración natural o
+becuadro con el símbolo de admiración. El resultado final, bellamente
+tipografiado por LilyPond en la tradición de las mejores ediciones
+impresas, puede verse a continuación.
+
+\includegraphics{BACH}
+
+\section{Conclusión}
+Lo crea o no, orquestas de todo el mundo interpretan sinfonías y
+óperas que se han compuesto tipográficamente con LilyPond. Es muy
+rápido para las pequeñas partituras de cada día y muy potente para
+grandes proyectos. Pero sólo hemos acariciado la superficie. LilyPond
+es a la música lo que \LaTeX\ es a los textos: un motor de tipografía
+que compila textos de alta calidad, y que a cambio exige del usuario
+que estructure su contenido en una serie de construcciones formales.
+
+\end{document}
