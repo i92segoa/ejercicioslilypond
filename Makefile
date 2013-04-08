@@ -11,7 +11,9 @@ RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
 #para Oregano
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/trabajos-doctorado/biblatex/biblatex/doc/resources/latin1.csf  $(NOMBRE)
 SPLITPDFS=outA1.pdf outA2.pdf outB1.pdf outB2.pdf
-IMAGENES=lily-logo.png $(SPLITPDFS) frerejacques.pdf holst-marte.pdf
+IMAGENES=lily-logo.png $(SPLITPDFS) frerejacques.pdf holst-marte.pdf	\
+bach-cbt1.pdf mozart-sonates.pdf chopin-op10.pdf			\
+chopin-op25-posth.pdf lpe.pdf
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-02-cumple.tex apuntes-03-mozart.tex			\
@@ -20,10 +22,9 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-05-barras-beethoven5th.tex				\
 	apuntes-06-ligaduras-bach-suite1-cello.tex			\
 	apuntes-07-repeticiones-beethoven-9thsym.tex			\
-	apuntes-08-contextos-simultanea.tex				\
-	apuntes-09-polifonia.tex apuntes-10-piano-tresillos.tex		\
-	apuntes-11-canciones.tex apuntes-12-acordes.tex			\
-	apuntes-13-variables.tex					\
+	apuntes-08-contextos-simultanea.tex apuntes-09-polifonia.tex	\
+	apuntes-10-piano-tresillos.tex apuntes-11-canciones.tex		\
+	apuntes-12-acordes.tex apuntes-13-variables.tex			\
 	apuntes-14-articulaciones-digitaciones.tex			\
 	apuntes-15-reguladores-markup.tex apuntes-16-adornos.tex	\
 	apuntes-17-set.tex apuntes-18-emperador.tex			\
@@ -32,7 +33,9 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-23-despertad.tex apuntes-24-book.tex			\
 	apuntes-25-mendelssohn.tex apuntes-26-margenes.tex		\
 	apuntes-27-holst-1.tex apuntes-28-holst-2.tex			\
-	apuntes-29-espanol.tex
+	apuntes-29-espanol.tex apuntes-30-antigua.tex			\
+	apuntes-00-teclado.tex collections.tex				\
+	lilypond-por-ejemplo.tex
 
 RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex

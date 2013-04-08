@@ -1,4 +1,6 @@
-\section{Márgenes. Frère Jacques}
+% \version "2.17.0"
+
+\section{Márgenes. \emph{Frère Jacques}}
 
 
 \subsection{Modelo}
@@ -38,11 +40,7 @@ La variable que controla el sangrado de la primera línea es
 \verb+indent+, y aquellas que controlan la medida de los márgenes son
 \verb+left-margin+, \verb+right-margin+, \verb+top-margin+ y
 \verb+bottom-margin+, para los márgenes izquierdo, derecho, superior e
-inferior, respectivamente\footnote{Sólo a partir de la versión 2.13 es
-  posible determinar la longitud de la línea por medio de los márgenes
-  izquierdo y derecho.  En la versión 2.12 debe hacerse explícitamente
-  mediante la definición de \texttt{line-width} y
-  \texttt{left-margin}.}.
+inferior, respectivamente.
 
 Para expresar las medidas en milímetros o centímetros, se utiliza
 \verb+\mm+ ó \verb+\cm+ después del valor; no es necesario si el valor
@@ -74,7 +72,7 @@ partitura ocupará todo el papel hasta el margen inferior.
 
 \begin{verbatim}
 \paper {
-  ragged-last-bottom=##f
+  ragged-last-bottom = ##f
 }
 \end{verbatim}
 
@@ -113,16 +111,16 @@ dentro de la expresión que contiene la letra, o dentro de un bloque
 \begin{itemize}
 \item Consulte cómo cambiar el tamaño global de la partitura en el apartado \ref{tamano-global} de la página \pageref{tamano-global}.
 
-\item Suprima la línea informativa final definiendo \verb+tagline=##f+
+\item Suprima la línea informativa final definiendo \verb+tagline = ##f+
   dentro del bloque \verb+\header+.
 
 \item Pruebe cómo suena el canon con este bloque de ejemplo: \footnotesize
 \begin{verbatim}
 \score { << \new Staff \with { midiInstrument="trumpet" }{ \tempo 4=150 \canon }
-            \new Staff \with { midiInstrument="muted trumpet" }{  R1*2 \canon  }
-            \new Staff \with { midiInstrument="accordion" }{ R1*4 \canon }
-            \new Staff \with { midiInstrument="choir aahs" }{  R1*6 \canon  }
-	>> \midi{} \layout{} }
+            \new Staff \with { midiInstrument="muted trumpet" }  { R1*2 \canon }
+            \new Staff \with { midiInstrument="accordion" }      { R1*4 \canon }
+            \new Staff \with { midiInstrument="choir aahs" }     { R1*6 \canon } >>
+	  \midi{} \layout{} }
 \end{verbatim}
 \normalsize
 \end{itemize}

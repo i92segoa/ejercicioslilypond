@@ -1,0 +1,176 @@
+% \version "2.17.0"
+
+\section{Más sobre transcripción de música antigua}
+
+En los apartados \ref{machaut} y \ref{midi} (véanse
+págs. \pageref{machaut} y \pageref{midi}) hemos hablado de música
+coral antigua. Completamos aquí el tema con algunos aspectos usuales
+de las partituras de transcripciones.
+
+La forma más rápida de preparar una partitura polifónica es tomar una
+plantilla (un documento completo con la mínima cantidad posible de
+música) y definir las variables que contienen la música de cada
+pentagrama y los textos.
+
+A la hora de componer tipográficamente otros elementos propios del
+estilo de partitura que nos ocupa, lo haremos como puede verse en los
+ejemplos de las secciones siguientes.
+
+\subsection{Corchetes de ligadura}
+
+Las ligaduras de la notación mensural blanca se indican de la forma
+que se ve a continuación:
+
+\begin{lilypond}[relative=3,fragment,verbatim,staffsize=15]
+ \[ a1 f \]
+\end{lilypond}
+
+Observamos que, a diferencia de los paréntesis de ligadura de
+expresión, que marcan las notas de inicio y fin \emph{por la derecha},
+los corchetes de ligadura \emph{encierran conjuntos de notas}.
+
+\subsection{Alteraciones sugeridas o sobreentendidas}
+No debemos olvidar que las alteraciones sugeridas que se colocan sobre
+las notas, son verdaderas alteraciones y como tales admiten el
+transporte sin ningún problema.
+
+Para colocar la alteración sobre la nota, especificamos la nota con su
+alteración de la forma habitual e indicamos que se sitúen arriba
+mediante una instrucción que altera una propiedad del contexto
+predeterminado, que es \verb+Voice+:
+
+\begin[fragment,relative=1,verbatim,staffsize=15]{lilypond}
+\set suggestAccidentals = ##t
+ fis1
+\end{lilypond}
+
+\noindent Si se va a utilizar esta instrucción varias veces para notas
+sueltas, es más práctico definir una variable:
+
+\begin[verbatim,staffsize=15]{lilypond}
+ss = \once \set suggestAccidentals = ##t
+{ \ss fis'1
+  \ss f'!1
+  \ss es' }
+\end{lilypond}
+
+\subsection{Alteraciones de cortesía}
+El signo de interrogación, utilizado como sufijo, produce los
+paréntesis de la alteración:
+\begin[verbatim,relative=2,fragment,staffsize=15]{lilypond}
+a?1
+\end{lilypond}
+
+\subsection{Breve y longa}
+Estas figuras duran, respectivamente, 2 y 4 redondas.
+\begin[verbatim,relative=2,fragment,staffsize=15]{lilypond}
+a\breve
+a\longa
+\end{lilypond}
+
+\noindent Para que ocupen un solo compás aplicamos un factor:
+\begin[verbatim,relative=2,fragment,staffsize=15]{lilypond}
+a\breve*1/2
+a\longa*1/4
+\end{lilypond}
+
+\noindent En el estilo barroco alternativo disponemos de la forma
+cuadrada para la breve y la longa, así como de la máxima:
+
+\begin[verbatim,relative=2,fragment,staffsize=15]{lilypond}
+\override NoteHead #'style = #'baroque
+a\breve*1/2
+a\longa*1/4
+a\maxima*1/8
+\end{lilypond}
+
+\subsection{Línea extensora}
+Se usa en las palabras cuya última sílaba es un melisma o una nota
+prolongada. Dos guiones bajos producen una línea extensora hasta el
+final de la nota actual.
+
+\begin[verbatim,staffsize=15]{lilypond}
+{ \clef bass
+f2 f ~
+f e }
+\addlyrics { -rat in __
+prin- }
+\end{lilypond}
+
+\subsection{Letra en itálica}
+Una vez más definimos nuestras propias variables para usarlas como
+instrucciones.
+
+\begin[verbatim,staffsize=15]{lilypond}
+italicas = \override LyricText #'font-shape = #'italic
+rectas =   \override LyricText #'font-shape = #'upright
+{ \clef bass
+c2 d4 d
+c4 c'8 c' f4 f
+c1 }
+\addlyrics { in -- sae -- cu -- \italicas "[la," et] \rectas in sae -- cu -- la }
+\end{lilypond}
+
+
+\subsection{Entonaciones gregorianas}
+Desde aquí no podemos recomendar la transcripción de las entonaciones
+gregorianas con notas cuadradas, a no ser que sea verdadera notación
+neumática vaticana.  LilyPond es capaz de realizar este tipo de
+notación pero presenta algunos problemas de espaciado.  En cambio, la
+mejor y más legible transcripción del canto gregoriano se efectúa con
+figuras blancas y negras sin plica.  Incluyendo un archivo especial de
+ajustes predefinidos podemos disponer de divisiones gregorianas.
+
+\begin[verbatim,staffsize=17.5]{lilypond}
+\include "gregorian.ly"
+\score {
+    \relative f {
+      a'4( bes) a( g) a2( d,) \divisioMinima 
+      f4( g a bes a g f e d) c d d2 \finalis
+    }
+    \addlyrics { Ký -- ri -- e  "*e" -- lé -- i -- son. }
+
+  \layout {
+    \context {
+      \Staff
+      \remove "Time_signature_engraver"
+      \remove "Bar_engraver"
+      \override Stem #'transparent = ##t
+      \override Stem #'length = #0
+    }
+  }
+}
+\end{lilypond}
+
+
+\subsection{Modos antiguos y transposición}
+Si estamos transcribiendo una pieza para editarla en otro tono, se
+recomienda transcribir el texto original con las mismas alturas, que
+es más fácil de revisar. Después, es inmediato subirlo o bajarlo el
+intervalo que deseemos.
+
+No solo están contempladas las tonalidades mayores y menores, sino el
+conjunto completo de armaduras de los siete modos.
+
+Supongamos que hemos transcrito lo siguiente, que está en Sol dórico:
+
+\begin[verbatim,staffsize=15]{lilypond}
+\new Staff{ \key g \dorian
+r2 g' ~ 
+g' \[d'' ~ 
+d'' e'' ~ \] e''4 }
+\end{lilypond}
+
+y lo queremos en Fa dórico (un tono por debajo). Para ello
+especificamos un transporte de Sol a Fa.
+\begin[verbatim,staffsize=15]{lilypond}
+\transpose g f
+\new Staff{ \key g \dorian
+r2 g' ~ 
+g' \[d'' ~ 
+d'' e'' ~ \] e''4 }
+\end{lilypond}
+
+Una única instrucción \verb+\transpose+ es suficiente para toda la
+expresión que le sigue, aunque sea la expresión de partitura de la
+pieza entera.

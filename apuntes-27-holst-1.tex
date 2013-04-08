@@ -1,24 +1,26 @@
+% \version "2.17.0"
+
 \includepdf{holst-marte}
 
-\section{Un gran ejemplo orquestal: Marte, de Holst (I)}
+\section{Un gran ejemplo orquestal: \emph{Marte}, de Holst (I)}
 
 
 \subsection{Modelo}
 
-Para esta gran partitura orquestal perteneciente a la suite ``Los
-planetas'' de Gustav Holst, vamos a trabajar en varias fases. Por
-ahora añadiremos dos instrumentos: los timbales y el gong. El
-ejemplo contiene repeticiones de trémolo, silencios de compás
-completo en 5/4 y una partitura completa dentro de un marcado.
+Para esta gran partitura orquestal perteneciente a la suite \emph{Los
+planetas} de Gustav Holst, vamos a trabajar en varias fases. Por ahora
+añadiremos dos instrumentos: los timbales y el gong. El ejemplo
+contiene repeticiones de trémolo, silencios de compás completo en 5/4
+y una partitura completa dentro de un marcado.
 
 \bigskip
 
 % Aumentar la separación entre sistemas
 \def\betweenLilyPondSystem#1{\vspace{0.4cm}\linebreak}
 
-\begin[line-width=17cm]{lilypond}
+\begin[line-width=17\cm]{lilypond}
 
-\version "2.13.18"
+\version "2.17.0"
 
            timpaniI = \relative g, { \clef bass
                          \key c \major
@@ -99,7 +101,7 @@ incipitTimpaniGroup = \markup {
    \layout { indent=3.5\cm
 	   \context { \Staff
 %                        \override InstrumentName #'padding = #-50
-%              \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3)
+%              \override VerticalAxisGroup #'minimum-distance = #'(-3 . 3)
 %	       \override instrumentName #'font-size = #8.0
 	   }
    }%layout

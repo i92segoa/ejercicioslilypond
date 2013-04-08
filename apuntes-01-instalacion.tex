@@ -1,78 +1,96 @@
+% \version "2.17.0"
 
-\section{Uso de LilyPond bajo Windows}
+\section{Uso de LilyPond y Frescobaldi bajo Windows}
 \subsection{Descarga e instalación}
 
-LilyPond está disponible para su descarga gratuita en la página
-oficial del proyecto, \texttt{lilypond.org}.  Después de
-ejecutar el instalador, la aplicación está lista para su uso.
+Recomendamos utilizar la combinación LilyPond/Frescobaldi para el
+trabajo con partituras de LilyPond. Ambos están disponibles para su
+descarga gratuita en las respectivas páginas oficiales de los
+proyectos, \texttt{lilypond.org} y \texttt{frescobaldi.org}.  Después
+de ejecutar los programas instaladores, las aplicaciones están listas
+para su uso.
+
+%\subsection{Configuración de Frescobaldi}
+%Después de instalar Frescobaldi y LilyPond, es necesario que el
+%primero pueda llamar al segundo para procesar las partituras, para lo
+%que debe estar configurado con la ruta
+
+% Opcional, no es seguro, comprobar
 
 \subsection{Creación de una partitura sencilla}
 
-Elegiremos el Escritorio para la realización de nuestro primer
-ejemplo. Para ello, abrimos el accesorio «Bloc de notas» de Windows y
-escribimos lo siguiente\footnote{Las llaves se consiguen con AltGr
-  pulsando una tecla que en los teclados de PC suele estar junto a la
+Ahora comprobaremos si todo nuestro software funciona, con un ejemplo
+absolutamente mínimo. Abrimos el programa Frescobaldi y escribimos lo
+siguiente\footnote{Las llaves se consiguen con AltGr pulsando una
+  tecla que en los teclados españoles de PC suele estar junto a la
   'Ñ'. Los apóstrofos se consiguen mediante la tecla que está justo a
   la derecha del número 0.}:
 
 \begin{quote}
 \begin{verbatim}
-{  c' d' e' f' g'2 e' }
+ { b }
 \end{verbatim}
 \end{quote}
 
 Denominamos a este texto \emph{código de entrada}.
 
-Guardamos este texto con un nombre terminado en la extensión
-\verb+.ly+, por ejemplo \verb+prueba.ly+, con las siguientes
-precauciones:
-
-\begin{enumerate}
-\item En la lista desplegable «Guardar como archivo de tipo\ldots» del
-  diálogo de Guardar, elegimos «Todos los archivos (*.*)»
-\item En la lista desplegable «Codificación» es necesario seleccionar
-  «UTF-8».
-\end{enumerate}
-
-Denominaremos a este archivo con la extensión \verb+.ly+ que
-contiene el código de entrada, \emph{archivo fuente} o
-\emph{archivo de entrada}.
-
 \subsection{Procesar el documento}
 
-El programa LilyPond no se utiliza para editar la partitura, sino para
-producir una salida en formato PDF a partir del documento de texto que
-hemos preparado. Esto se denomina \emph{procesar el código de
-  entrada}. Para procesar el código de entrada, si el icono del
-documento está seleccionado, pulsamos la tecla Enter. Si no, podemos
-hacer doble click sobre él con el ratón. También podemos pulsar con el
-botón derecho y elegir del menú «Procesar documento». En cualquier
-caso LilyPond hará su trabajo: interpretar el código de entrada y
-producir una salida.
+Los programas Frescobaldi (un editor) y LilyPond (un generador de
+partituras a partir de un texto) forman una combinación en la que cada
+uno está especializado en una misión.  Si pulsamos en Frescobaldi la
+combinación de teclas Control+M, éste llama a LilyPond pasándole el
+documento en curso para que lo convierta en una partitura en formato
+PDF. Esto se denomina \emph{procesar el código de entrada}, y al PDF
+resultante le llamamos \emph{la salida}.
 
-El procesado tarda un par de segundos\footnote{La primera vez, el
-  programa tiene que preparar las fuentes tipográficas; esto lleva
-  aproximadamente medio minuto, pero las ejecuciones posteriores
-  tardan, como se ha dicho, unos segundos.}. El resultado es un
-archivo PDF que en nuestro caso se llamará \verb+prueba.pdf+ y que
-puede examinarse con cualquier visor de documentos en este formato,
-como por ejemplo Acrobat Reader. El resultado es el siguiente:
+El procesado tarda un par de segundos\footnote{La primera vez después
+  de haber instalado LilyPond, el programa tiene que preparar las
+  fuentes tipográficas; esto lleva aproximadamente medio minuto, pero
+  las ejecuciones posteriores tardan, como se ha dicho, unos
+  segundos.}. El resultado es un archivo PDF que puede verse en el
+panel derecho de Vista Previa de la música:
 
-\begin[staffsize=15,fragment]{lilypond}
-  c' d' e' f' g'2 e'
+\begin[staffsize=15,fragment,quote]{lilypond}
+  b
 \end{lilypond}
 
+Podemos guardar este texto con un nombre terminado en la extensión
+\verb+.ly+, por ejemplo \verb+prueba.ly+.  Pulse la combinación de
+teclas Control+S para hacerlo.  Denominaremos a este archivo con la
+extensión \verb+.ly+ que contiene el código de entrada, \emph{archivo
+  fuente} o \emph{archivo de entrada}.  Si pulsamos de nuevo
+Control+M, el PDF resultante se llamará \verb+prueba.pdf+ y estará
+localizado en la misma carpeta en que hemos guardado el archivo
+fuente.
+
+Antes de haber guardado el documento, tanto el texto de entrada como
+el PDF de salida se encuentran en una carpeta temporal, de donde se
+borrarán al salir del programa Frescobaldi.
 
 \subsection{Expresiones musicales de LilyPond}
 
 Una partitura completa de LilyPond es un fragmento de música encerrado
 entre llaves \verb+{ }+, llamado \emph{expresión musical}.  En los
 ejemplos que aparecen en este cuaderno de ejercicios, con frecuencia
-se omiten las llaves por sencillez, pero no deben olvidarse cuando se
-inserte el código en los ejercicios propios.
+se omiten las llaves por sencillez, pero no debe olvidarlas cuando
+inserte el código en sus propios ejercicios.
 
 De igual forma que las expresiones matemáticas, en LilyPond podemos
 ampliar una expresión añadiéndole operadores a la izquierda o
 combinando varias de ellas en una sola; el ejemplo de este primer
 ejercicio, sin embargo, es una expresión sencilla.  Veremos casos más
 complejos cuando la música lo requiera.
+
+\subsection{Conclusión}
+
+Observamos que nuestro código de entrada minimalista se limita a
+declarar la nota \emph{si} por su nombre anglosajón, ``b'', y que el
+resultado incluye esta nota (con un valor de negra) y además un
+pentagrama, una clave de \emph{sol} y un compás de 4/4.  Son los
+valores por omisión, que se dan por supuestos si no los damos
+explícitamente.
+
+Le damos la enhorabuena si ha conseguido completar la primera lección
+con éxito. En los apartados siguientes vamos a profundizar en la
+producción de partituras progresivamente más complejas.

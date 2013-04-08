@@ -1,7 +1,6 @@
-This is a small collection of LilyPond weekly exercises I'm doing for
-my students at CSM Badajoz, Spain (csmbadajoz.es).  It is intended to
-reach 30 weeks.  It uses LaTeX, LilyPond and lilypond-book to generate
-a mixed music + text document.
+This is a small collection of 30 LilyPond weekly exercises I'm doing
+for my students at CSM Badajoz, Spain (csmbadajoz.es). It uses LaTeX,
+LilyPond and lilypond-book to generate a mixed music + text document.
 <br />
 Comments welcome, paconet dot org at gmail dot com.
 
@@ -9,10 +8,9 @@ Comments welcome, paconet dot org at gmail dot com.
 ===
 <br />
 
-Esto es una pequeÃ±a colecciÃ³n de ejercicios semanales de LilyPond que
-estoy elaborando para mis alumnos del Conservatorio Superior de
-Badajoz (csmbadajoz.es).  Pretende llegar a 30 semanas.  Utilizo
-LaTeX, LilyPond y lilypond-book para producir un documento que integra
-mÃºsica y texto.
+Esto es una pequeña colección de 30 ejercicios semanales de LilyPond
+que estoy elaborando para mis alumnos del Conservatorio Superior de
+Badajoz (csmbadajoz.es). Utilizo LaTeX, LilyPond y lilypond-book para
+producir un documento que integra música y texto.
 
 Se agradecen los comentarios en paconet punto org arroba gmail punto com.

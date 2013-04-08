@@ -1,17 +1,20 @@
-\section{Grabadores. Misa de Notre Dame, de Machaut}
+% \version "2.17.0"
 
+\section{Grabadores. \emph{Misa de Notre Dame}, de Machaut}
+\label{machaut}
 
 \subsection{Modelo}
 
 
-Esta transcripción moderna del ``Ite missa est'' de la Misa de Notre
-Dame, de Guillaume de Machaut (s.XIV) contiene indicaciones de
-tesitura y omite la indicación de compás.  Esto se hace añadiendo o
-retirando los complementos grabadores o ``plug-ins'' encargados de
-hacer esta tarea, en todos los contextos de pentagrama.  Además, la
-letra contiene apenas dos sílabas, por lo que es necesario saltar
-muchas notas de una sílaba a la siguiente.  También utiliza un sistema
-especial para coro, sin líneas divisorias entre los pentagramas.
+Esta transcripción moderna del \emph{Ite missa est} de la \emph{Misa
+  de Notre Dame}, de Guillaume de Machaut (s.XIV) contiene
+indicaciones de tesitura y omite la indicación de compás.  Esto se
+hace añadiendo o retirando los complementos grabadores o ``plug-ins''
+encargados de hacer esta tarea, en todos los contextos de pentagrama.
+Además, la letra contiene apenas dos sílabas, por lo que es necesario
+saltar muchas notas de una sílaba a la siguiente.  También utiliza un
+sistema especial para coro, sin líneas divisorias entre los
+pentagramas.
 
 \bigskip
 
@@ -146,7 +149,7 @@ de la indicación de tesitura) es la siguiente:
 Se pueden introducir varias instrucciones \verb+\consists+ o
 \verb+\remove+ dentro del mismo bloque \verb+\context+.
 
-\textbf{2.} Para gestionar los grabadores en un solo contexto,
+\textbf{2.}\label{with} Para gestionar los grabadores en un solo contexto,
 introducimos las instrucciones \verb+\consists+ y \verb+\remove+
 en el momento de la creación del contexto, dentro de un bloque
 \verb+\with+.  En el siguiente ejemplo vamos a crear dos contextos

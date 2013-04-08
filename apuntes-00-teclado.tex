@@ -1,0 +1,86 @@
+\section{Lección cero: teclear código de LilyPond}
+
+\subsection{Modelo}
+\verb+\\\\\\\\\\{{{{{{{{{}}}}}}}}}''''''''''''''~~~~~~~~~+
+
+\verb+\{}\{}\{}'~'~'~'~'~+
+
+\subsection{Las teclas más usuales no son nada usuales}
+
+Hemos observado que el lenguaje de entrada de LilyPond es bastante
+ajeno al uso que los hispanohablantes hacemos del teclado. Con esta
+``lección cero'' queremos allanar el camino a la utilización cómoda de
+estas teclas especiales que son tan frecuentes en el código de la
+música.
+
+Una sencillísima partitura como la siguiente
+
+\begin{lilypond}[verbatim]
+\relative c' {
+  \key c \minor
+  g'1 ~ g
+   
+}
+\end{lilypond}
+
+requiere los cinco caracteres que más nos preocupan: la barra
+invertida (\verb+\+), las llaves curvas (\verb+{+,\verb+}+), el
+apóstrofo (\verb+'+) y la tilde curva(\verb+~+).
+
+La barra invertida es el prefijo de todas las instrucciones del
+lenguaje; las llaves encierran a la partitura completa y a todas las
+expresiones musicales; el apóstrofo, en modo relativo denota un salto
+mayor que una cuarta respecto a la nota anterior, y una octava más por
+cada nuevo apóstrofo, y en modo absoluto designa la octava 4, desde el
+Do4 o \emph{Do central} hasta el Si de la tercera línea, en clave de
+Sol. La tilde curva se utiliza para la ligadura de unión.
+
+Por ello proponemos reproducir este modelo tan aparentemente absurdo,
+pero no una vez, sino varias. Repítalo hasta que pueda hacerlo con los
+ojos cerrados y sólo entonces podrá escribir en lilypond como si
+escribiera en español. Recuerde: en los teclados españoles,
+
+\begin{itemize}
+\item La barra invertida está en AltGr º, a la izquierda de la cifra 1
+\item Las llaves curvas están a la derecha de la 'Ñ' y también con AltGr
+\item El apóstrofo está a la derecha de la cifra 0 (directamente, sin AltGr ni tecla de cambio alguna)
+\item La tilde curva está en AltGr 4
+\end{itemize}
+
+\subsection{Otros caracteres extraños}
+
+Aún nos encontraremos en nuestras partituras con la necesidad de
+emplear algún que otro carácter poco común. La lista no definitiva es
+la siguiente:
+
+\begin{itemize}
+\item La almohadilla (\verb+#+) es necesaria para las expresiones en
+  lenguaje Scheme. Está en AltGr~3.
+\item El porcentaje (\verb+%+) sirve para hacer comentarios de una
+  línea, código libre informativo o anotaciones que no se procesan
+  como música. También permite convertir un bloque de código en un
+  comentario, encerrándolo entre \verb+%{+ y \verb+%}+. Está en la
+  cifra~5, con Mayús.
+\item La barra vertical se usa para la comprobación de líneas de
+  compás y forma parte de la indicación \verb+\bar "|."+ que produce
+  una doble barra final. La tenemos en AltGr~1.
+\item El signo de admiración (\verb+!+) es necesario para forzar las
+  alteraciones. Lo podemos obtener en la tecla de la cifra~1, con
+  Mayús.
+\item El signo de interrogación (\verb+?+) produce el paréntesis sobre
+  las alteraciones de cortesía. Está en la misma tecla que el
+  apóstrofo, a la derecha de la cifra~0, pero con Mayús.
+\item La barra inclinada (\verb+/+) es el signo de división, muy usado
+  en la indicación de compás como \verb+\time 2/4+. Lo tenemos en la
+  tecla del~7, con Mayús.
+\item Los corchetes rectos (\verb+[+ y \verb+]+) se emplean en las
+  barras de corchea manuales, marcando las notas inicial y final
+  \emph{por la derecha}, así: \verb+g[ g g]+. Estas teclas están a la
+  derecha de la~P, con AltGr.
+\end{itemize}
+
+Para practicar estas últimas teclas, le proponemos el ejercicio siguiente.
+
+\verb+#####%%%%%|||||!!!!????////[[[[]]]]+
+
+\verb+##%%||!!??//[[]]#%|!?[]#%|!?[]+

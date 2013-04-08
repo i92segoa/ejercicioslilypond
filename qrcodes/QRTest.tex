@@ -1,0 +1,97 @@
+%\documentclass[12pt,a4paper,oneside]{scrbook} % la clase book del Koma-script bundle
+\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
+%\linespread{1.25}
+\usepackage{setspace}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\hypersetup{colorlinks,citecolor=red,linkcolor=red,urlcolor=blue,linktocpage}
+%\usepackage{tikz}
+%\usetikzlibrary{fit,shapes}
+\usepackage[spanish]{babel}
+%\usepackage{verbatim} %para el entorno comment
+%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
+%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
+%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
+%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
+%\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
+\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
+
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+%\usepackage{url}
+
+\usepackage[utopia]{mathdesign}
+%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
+
+
+%\typearea[0mm]{13}% same as class options above
+%\usepackage{newcent}
+%\addtokomafont{part}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
+%\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
+%\setkomafont{disposition}{\normalcolor\bfseries} %no sans serif
+%\setkomafont{disposition}{\normalcolor\mdseries} %no negrita
+
+\parskip=0pt\clubpenalty=10000\widowpenalty=10000
+\parindent=6mm
+\newcommand{\preLilyPondExample}{\vspace{0pt}}
+\newcommand{\postLilyPondExample}{\vspace{6pt}}
+
+\newcommand{\lpversion}{2.15.30}
+\newcommand{\defsep}{\textbf{$\|$}}
+\newcommand{\software}{\emph{software}}
+\newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
+\newcommand{\seppar}{
+\bigskip
+%\vspace{6pt}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TÍTULOS
+\title{QRTest\\QR Code Test Document}
+%\subtitle{}
+% necesita Koma-script 2.98 2007/12/24
+\author{Francisco Vila}
+\date{\today}
+%\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN TÍTULOS
+
+% \includeonly{apuntes-29-espanol}
+
+\begin{document}
+
+\nonfrenchspacing
+
+\begin{titlepage} %%%%%%%%%%%% PORTADA
+  \makeatletter
+  \begin{center}
+    %\textbf{\Large Universidad de Extremadura}\par
+    \vfill
+    % \includegraphics[width=60mm]{lily-logo.png}\par
+    \vfill
+    \textbf{\huge\@title}\par
+%    \textbf{\large\@subtitle}\par
+    {\@date}
+    \vfill
+    \textbf{\large\@author}
+    \vfill
+  \end{center}
+  \makeatother
+\end{titlepage}
+
+%\singlespace
+
+\begin{singlespace} % los listados van a un espacio. Necesita el paquete setspace
+  \tableofcontents
+ % \listoffigures
+ % \listoftables
+\end{singlespace}
+ 
+ % \include{introduccion}
+ \include{pruebaQR} 
+
+\end{document}
+
