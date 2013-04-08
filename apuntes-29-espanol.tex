@@ -10,15 +10,16 @@ nombres de las notas en español.  Sin embargo, no lo hemos visto
 antes por las siguientes razones:
 
 \begin{itemize}
-\item La comunidad de usuarios de LilyPond a nivel global utiliza
-  los nombres predeterminados (holandeses) principalmente.
-\item Es bueno acostumbrarse a leer y escribir con soltura la
-  música en el idioma en que están escritos la mayoría de los
-  documentos que circulan entre usuarios de cualquier
-  nacionalidad.
+\item La comunidad de usuarios de LilyPond a nivel global utiliza los
+  nombres predeterminados (holandeses) principalmente.
+\item Es bueno acostumbrarse a leer y escribir con soltura la música
+  en el idioma en que están escritos la mayoría de los documentos que
+  circulan entre usuarios de cualquier nacionalidad.
 \item No es posible copiar y pegar directamente los ejemplos de un
   idioma dentro de un documento que utiliza otro idioma, y no se
   pueden mezclar fácilmente varios idiomas en el mismo documento.
+\item El sistema holandés de nomenclatura para las notas es más rápido
+  de escribir y es casi idéntico al cifrado americano más usual.
 \end{itemize}
 
 A pesar de ello, es posible que algunos usuarios prefieran escribir
@@ -39,6 +40,8 @@ español.
 \version "2.17.0"
 
 % Schumann, Op.4, I, 11 last measures
+% Paco Vila
+% Contributions from Trevor Daniels
 
 %#(set-global-staff-size 18)
 
@@ -112,11 +115,12 @@ indent=1\cm
 
 \subsection{Selección del idioma de las notas}
 
-La instrucción \verb+\language+ seguida de una cadena específica que
-denota el idioma, permite escoger el idioma en que se escriben los
-nombres de las notas.  En nuestro caso, la cadena es ``español'' o
-también ``espanol'' con ``n'' en lugar de ``ñ'', como se ve en el
-ejemplo siguiente:
+La instrucción \verb+\language+ seguida del nombre del idioma (por lo
+general, tal y como se escribe en el propio idioma), permite escoger
+el idioma en que se escriben los nombres de las notas\footnote{Sí,
+  sabemos que la palabra «idioma» se repite mucho en esta frase.}.  En
+nuestro caso debemos escribir ``español'' entre comillas, como se ve
+en el ejemplo siguiente:
 
 \begin[verbatim]{lilypond}
 \language "español"
