@@ -30,14 +30,45 @@ en notación inglesa\footnote{Holandesa, en realidad; la diferencia
 directamente una partitura. Esta forma de nombrar las notas se llama
 \emph{modo absoluto} y requiere un apóstrofo para las notas desde el
 Do central hasta el Si de la tercera línea, en clave de Sol, así:
-\verb+c'+ \verb+d'+ \verb+e'+ \verb+f'+ \verb+g'+ \verb+a'+
-\verb+b'+. Añadiremos otro apóstrofo para nombrar las notas de la
-octava superior: \verb+c''+ \verb+d''+ \verb+e''+ etc. Las notas sin
-apóstrofo \verb+c+ \verb+d+ \verb+e+ \verb+f+ \verb+g+ \verb+a+
-\verb+b+ dan la octava inferior al Do central. Al añadir una coma
-obtenemos la octava inferior \verb+c,+ \verb+d,+ \verb+e,+ \verb+f,+
-\verb+g,+ \verb+a,+ \verb+b,+ y otra octava por debajo si añadimos
-otra coma: \verb+c,,+ \verb+d,,+ \verb+e,,+ etc.
+
+\verb+c' d' e' f' g' a' b'+
+
+\begin[fragment,notime,staffsize=13]{lilypond}
+{ c' d' e' f' g' a' b' }
+\end{lilypond}
+
+Añadiremos otro apóstrofo para nombrar las notas de la octava
+superior:
+
+\verb+c'' d'' e'' f'' g'' a'' b''+
+
+\begin[fragment,notime,staffsize=13]{lilypond}
+{ c'' d'' e'' f'' g'' a'' b'' }
+\end{lilypond}
+
+Las notas sin apóstrofo dan la octava inferior al Do central.
+
+\verb+c d e f g a b+
+
+\begin[fragment,notime,staffsize=13]{lilypond}
+{ \clef bass c d e f g a b }
+\end{lilypond}
+
+Al añadir una coma obtenemos la octava inferior:
+
+\verb+c, d, e, f, g, a, b,+
+
+\begin[fragment,notime,staffsize=13]{lilypond}
+{ \clef bass c, d, e, f, g, a, b, }
+\end{lilypond}
+
+y otra octava por debajo si añadimos otra coma:
+
+\verb+c,, d,, e,, f,, g,, a,, b,,+
+
+\begin[fragment,notime,staffsize=13]{lilypond}
+{ \clef bass \ottava #-1 c,, d,, e,, f,, g,, a,, b,, }
+\end{lilypond}
 
 Este modo es adecuado para la introducción de música que tenga muchos
 saltos. Cuando hay voces melódicas con pocos saltos, es más cómodo el
@@ -50,8 +81,8 @@ especificar la altura de cada nota para saltos de cuarta o menores; a
 partir de un salto de quinta hay que añadir un apóstrofo para subir
 una octava, y una coma para bajar una octava.
 
-\begin[verbatim,staffsize=13]{lilypond}
-\relative c' { c e g c g' a f e d c g c, }
+\begin[verbatim,notime,staffsize=13]{lilypond}
+\relative c' { c e g c g' a f e d c g c, c' c, }
 \end{lilypond}
 
 
