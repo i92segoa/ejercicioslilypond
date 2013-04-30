@@ -37,7 +37,7 @@ INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-00-teclado.tex collections.tex				\
 	lilypond-por-ejemplo.tex
 
-RUNPDF=cd $(OUT) && echo && pwd && echo && pdflatex $(NOMBRE).tex
+RUNPDF=cd $(OUT) && echo && pwd && echo && xelatex $(NOMBRE).tex
 LPBOOK=lilypond-book --pdf --output=$(OUT) --include=$(OUT) --format=latex
 ARCHIVOSCOPIAR=$(IMAGENES)
 COPIAR=cp $(ARCHIVOSCOPIAR) $(OUT)
