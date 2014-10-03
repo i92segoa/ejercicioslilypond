@@ -1,58 +1,13 @@
-\documentclass[10pt,a4paper,oneside,headinclude,titlepage]{scrartcl} % la clase book del Koma-script bundle
-%\documentclass[10pt,a4paper,oneside,headinclude,titlepage]{scrbook} % la clase book del Koma-script bundle
-
-%\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
-
-%\linespread{1.25}
+\documentclass[10pt,a4paper,oneside,headinclude,titlepage]{scrartcl}
 \usepackage{setspace}
 \usepackage{pdfpages}
-%\usepackage{tikz}
-%\usetikzlibrary{fit,shapes}
-
-
 \usepackage{fontspec}
-%\usepackage{xunicode}
-%\renewcommand{\encodingdefault}{EU1}
-
-
-
-%\usepackage[utopia]{mathdesign} %nof
-%\usepackage{xltxtra}
-
-%---->\setmainfont{Utopia}
-
-
 \usepackage{polyglossia}
 \setdefaultlanguage{spanish}
 
 \DeclareGraphicsExtensions{.png,.pdf}
-
-%\usepackage[spanish]{babel}
-
-%\usepackage{verbatim} %para el entorno comment
-%\usepackage{moreverb} %para los ejemplos de lilypond, aporta verbatimtabinput
-%\usepackage{alltt} %para los ejemplos de lilypond, aporta verbatiminput
-%\usepackage{sverb} %para los ejemplos de lilypond, aporta verbinput
-%\usepackage{fancyvrb} %para los ejemplos de lilypond, aporta VerbatimInput
-%\pagestyle{empty}
-
-%\usepackage[utf8]{inputenc}
-%\usepackage[T1]{fontenc} %posiblemente sirva para eliminar el problema del enguionado de palabras acentuadas. Lo quitamos provisionalmente para evitar un error
-%\usepackage{textcomp} % recomendación de Javier Bezos para completar la fuente
 \DeclareTextCommandDefault{\nobreakspace}{\leavevmode\nobreak\ }
 \usepackage[margin=2cm]{geometry}
-
-%--->%\usepackage[xetex]{graphicx}
-
-
-%\usepackage{url}
-
-
-%\usepackage{mathptmx} %mejor que Times    % alternativa a Charter
-
-
-%\typearea[0mm]{13}% same as class options above
-%\usepackage{newcent}
 \addtokomafont{part}{\mdseries} %encabezamientos sin negrita
 %\addtokomafont{partnumber}{\mdseries} %encabezamientos sin negrita
 %\addtokomafont{chapter}{\mdseries} %encabezamientos sin negrita
@@ -73,24 +28,12 @@
 %\vspace{6pt}
 }
 
+\setmainfont[Ligatures=TeX]{TeX Gyre Schola} % or {Century Schoolbook L}
 
-%  \setmainfont[Scale=0.925]{ResagokrBold} %funciona!
-%  \setmainfont[Scale=0.925]{CenturySchL-Roma} %funciona!
-\setmainfont{Heuristica} % UTOPIA: funciona!
-%  \setmainfont{TeX Gyre Pagella} %Funciona
-%  \setmainfont{TeX Gyre Termes}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TÍTULOS
 \title{LilyPond\\30 Ejercicios semanales}
 \subtitle{y otros materiales didácticos}
-% necesita Koma-script 2.98 2007/12/24
 \author{Francisco Vila}
 \date{\today}
-%\date{}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN TÍTULOS
-
-% \includeonly{apuntes-29-espanol}
 
 \usepackage{graphics}
 \begin{document}
@@ -159,4 +102,3 @@
  \include{lilypond-por-ejemplo}
 
 \end{document}
-
