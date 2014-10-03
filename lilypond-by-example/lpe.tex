@@ -1,16 +1,16 @@
-\documentclass[a4paper,10pt,oneside,headinclude,titlepage]{article} % la clase article estándar
-\usepackage[spanish]{babel}
+\documentclass[10pt,a4paper,oneside,headinclude,titlepage]{scrartcl}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{spanish}
 \pagestyle{empty}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage[margin=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{array}
-\usepackage[utopia]{mathdesign}
-\parskip=6pt\clubpenalty=10000\widowpenalty=10000
 
+
+\parskip=6pt\clubpenalty=10000\widowpenalty=10000
 \newcommand{\preLilyPondExample}{\vspace{-10pt}}
-\newcommand{\lpversion}{2.13.4}
+\newcommand{\lpversion}{2.17.15}
 \newcommand{\defsep}{\textbf{$\|$}}
 \newcommand{\software}{\emph{software}}
 \newcommand{\negspace}{\vspace{-10pt}}  %{\vspace{-20pt}}
@@ -18,6 +18,8 @@
 \bigskip
 %\vspace{6pt}
 }
+
+\setmainfont[Ligatures=TeX]{TeX Gyre Schola} % or {Century Schoolbook L}
 
 \title{LilyPond por ejemplo: la guía visual}
 \author{Francisco Vila}
@@ -525,11 +527,11 @@ a-.
 \section*{Otras articulaciones}
 \begin{tabular}{m{6cm}m{2cm}}
 \begin{verbatim}
-c4-^ c-+ c-- c-| c4-> c2-_
+c4-^ c-+ c-- c-! c4-> c2-_
 \end{verbatim}
 &
 \begin[fragment,relative=1,notime]{lilypond}
-\time 3/4 c4-^ c-+ c-- c-| c4-> c4-_
+\time 3/4 c4-^ c-+ c-- c-! c4-> c4-_
 \end{lilypond}
 \end{tabular}
 
