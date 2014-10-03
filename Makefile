@@ -12,8 +12,8 @@ RUNEVINCE=evince $(OUT)/$(NOMBRE).pdf &
 #RUNBIB=cd $(OUT) && bibtex8 -W --csfile /home/fravd/trabajos-doctorado/biblatex/biblatex/doc/resources/latin1.csf  $(NOMBRE)
 SPLITPDFS=outA1.pdf outA2.pdf outB1.pdf outB2.pdf
 IMAGENES=lily-logo.png $(SPLITPDFS) frerejacques.pdf holst-marte.pdf	\
-bach-cbt1.pdf mozart-sonates.pdf chopin-op10.pdf			\
-chopin-op25-posth.pdf lpe.pdf
+	bach-cbt1.pdf mozart-sonates.pdf chopin-op10.pdf		\
+	chopin-op25-posth.pdf lpe.pdf
 #/home/fravd/software/latex/biblatex/doc/resources/latin1.csf $(NOMBRE)
 INCLUDESTEX=introduccion.tex apuntes-01-instalacion.tex			\
 	apuntes-02-cumple.tex apuntes-03-mozart.tex			\
