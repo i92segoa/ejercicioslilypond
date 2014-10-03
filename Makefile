@@ -66,7 +66,8 @@ $(NOMBRE).pdf: $(NOMBRE).tex $(INCLUDESTEX) $(IMAGENES)
 
 $(SPLITPDFS): pruebalibro.ly
 	lilypond pruebalibro.ly
-	. ./scriptPDFTK.sh
+	. ./scriptPDFTK.sh  # extract pages from the auxiliar document
+                            # to include them as images
 
 frerejacques.pdf: frerejacques.ly
 	lilypond frerejacques.ly
