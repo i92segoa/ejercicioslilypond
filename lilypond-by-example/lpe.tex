@@ -20,7 +20,7 @@
 }
 
 \setmainfont[Ligatures=TeX]{TeX Gyre Schola} % or {Century Schoolbook L}
-
+\setkomafont{section}{\rmfamily}
 \title{LilyPond por ejemplo: la guía visual}
 \author{Francisco Vila}
 \date{\today}
@@ -1119,6 +1119,7 @@ letraUno = \lyricmode { Ah }
 \begin[line-width=10\cm]{lilypond}
     \header {
       title = "Sinfonía"
+      instrument=" "  %workarond for a bug in lilypond 2.19
       composer = "Beethoven"
     }
 \end{lilypond}
